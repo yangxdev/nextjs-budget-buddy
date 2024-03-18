@@ -40,7 +40,7 @@ function BottomButtons() {
                         Settings
                 </NavLink>
                 <button
-                    className="transition duration-100 py-1 w-full hover:text-gray-300 hover:bg-[#424242] rounded-full text-left px-padding"
+                    className="transition duration-100 py-1 w-full hover:text-gray-300 hover:bg-[#424242] text-left px-padding"
                     onClick={() => signOut()}
                 >
                     <div className="flex flex-row items-center gap-2">

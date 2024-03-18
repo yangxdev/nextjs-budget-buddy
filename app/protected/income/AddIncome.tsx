@@ -34,7 +34,6 @@ export default function AddIncome() {
             return;
         }
 
-        // use api/add_income
         const response = fetch("/api/add_income", {
             method: "POST",
             headers: {
@@ -49,9 +48,8 @@ export default function AddIncome() {
                 notes,
             }),
         });
-        console.log(response);
+        // console.log(response);
 
-        // toast promise
         toast.promise(response, {
             loading: "Adding income...",
             success: "Income added!",
@@ -98,16 +96,16 @@ export default function AddIncome() {
                         ref={currencyRef}
                         className="w-full bg-[#434343] rounded-md p-2"
                     >
-                        <option value="1">USD</option>
-                        <option value="2">EUR</option>
-                        <option value="3">JPY</option>
-                        <option value="4">GBP</option>
-                        <option value="5">CNY</option>
-                        <option value="6">AUD</option>
-                        <option value="7">CAD</option>
-                        <option value="8">CHF</option>
-                        <option value="9">HKD</option>
-                        <option value="10">SGD</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="GBP">GBP</option>
+                        <option value="CNY">CNY</option>
+                        <option value="AUD">AUD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="HKD">HKD</option>
+                        <option value="SGD">SGD</option>
                     </select>
                 </div>
             </div>
@@ -118,9 +116,9 @@ export default function AddIncome() {
                     required
                     className="w-full bg-[#434343] rounded-md p-2"
                 >
-                    <option value="1">Salary</option>
-                    <option value="2">Bonus</option>
-                    <option value="3">Other</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Bonus">Bonus</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div className="pb-2">
