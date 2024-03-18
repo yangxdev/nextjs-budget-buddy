@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const { SIDEBAR_MAX_WIDTH, MAIN_PADDING } = require("./app/_styles/styles");
 
 const config: Config = {
   content: [
@@ -8,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        'sidebar': SIDEBAR_MAX_WIDTH,
+        'padding': MAIN_PADDING,
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

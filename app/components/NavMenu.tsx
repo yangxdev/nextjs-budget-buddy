@@ -40,7 +40,7 @@ function BottomButtons() {
                         Settings
                 </NavLink>
                 <button
-                    className="transition duration-100 py-1 w-full hover:text-gray-300 hover:bg-[#424242] rounded-full text-left px-6"
+                    className="transition duration-100 py-1 w-full hover:text-gray-300 hover:bg-[#424242] rounded-full text-left px-padding"
                     onClick={() => signOut()}
                 >
                     <div className="flex flex-row items-center gap-2">
@@ -65,7 +65,7 @@ export default function NavMenu() {
     return (
         <div className="bg-[#313131] flex flex-col justify-between rounded-r-xl h-screen max-w-72 select-none">
             <div className="">
-                <div className="my-6 px-6">
+                <div className="my-6 px-padding">
                     <AuthButton />
                 </div>
                 <ul>

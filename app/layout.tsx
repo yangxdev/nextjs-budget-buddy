@@ -27,7 +27,7 @@ export default async function RootLayout({
                 <SessionProvider session={session}>
                     <main className="flex flex-row">
                         <NavMenu />
-                        <div>{children}</div>
+                        <div className="bg-[#161616] flex-grow py-6 px-padding">{children}</div>
                     </main>
                 </SessionProvider>
             </body>
