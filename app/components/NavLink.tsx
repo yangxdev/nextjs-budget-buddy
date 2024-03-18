@@ -3,9 +3,9 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const ACTIVE_ROUTE =
-    "py-1 px-padding text-gray-300 bg-[#161616] rounded-full font-medium";
+    "py-1 px-padding text-gray-300 bg-[#161616] font-medium";
 const INACTIVE_ROUTE =
-    "transition duration-100 py-1 px-padding text-gray-500 hover:text-gray-300 hover:bg-[#424242] rounded-full";
+    "transition duration-100 py-1 px-padding text-gray-500 hover:text-gray-300 hover:bg-[#424242] ";
 
 const NavLink = ({ to, icon, children }: {to: string, icon: React.ComponentType, children: React.ReactNode}) => {
     const pathname = usePathname();

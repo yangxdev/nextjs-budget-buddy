@@ -18,9 +18,11 @@ export default function Balance() {
                 </div>
             </div>
             <div className="flex flex-row gap-1.5 font-bold text-xl py-4">
-                <div className="symbol">USD</div>
-                <div className="total-balance cursor-pointer" onClick={copyToClipboard}>
-                    10,234.00
+                <div
+                    className="total-balance cursor-pointer"
+                    onClick={copyToClipboard}
+                >
+                    USD 10,234.00
                 </div>
             </div>
             <div className="flex flex-row justify-between">
@@ -29,7 +31,12 @@ export default function Balance() {
                         <IoMdArrowDropup />
                         Income
                     </div>
-                    <div className="font-semibold text-base">USD 1,000.00</div>
+                    <div
+                        className="font-semibold text-base cursor-pointer"
+                        onClick={copyToClipboard}
+                    >
+                        USD 1,000.00
+                    </div>
                 </div>
                 <div className="border-l border-[#434343]"></div>
                 <div className="">
@@ -37,7 +44,12 @@ export default function Balance() {
                         <IoMdArrowDropdown />
                         Expenses
                     </div>
-                    <div className="font-semibold text-base">USD 1,000.00</div>
+                    <div
+                        className="font-semibold text-base cursor-pointer"
+                        onClick={copyToClipboard}
+                    >
+                        USD 1,000.00
+                    </div>
                 </div>
             </div>
         </div>

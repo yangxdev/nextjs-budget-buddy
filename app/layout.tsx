@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
 import NavMenu from "./components/NavMenu";
 import { getServers } from "dns";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,13 @@ export default async function RootLayout({
                 <SessionProvider session={session}>
                     <main className="flex flex-row">
                         <NavMenu />
-                        <div className="bg-[#161616] flex-grow py-6 px-padding">{children}</div>
+                        <div className="bg-[#161616] flex-grow py-6 px-padding">
+                            {children}
+                            <Toaster 
+                                position="top-right"
+                                reverseOrder={false}
+                            />
+                        </div>
                     </main>
                 </SessionProvider>
             </body>
