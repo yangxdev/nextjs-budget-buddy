@@ -2,20 +2,22 @@
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-
-const ACTIVE_ROUTE = "py-1 px-2 text-gray-300 bg-gray-700";
-const INACTIVE_ROUTE =
-    "py-1 px-2 text-gray-500 hover:text-gray-300 hover:bg-gray-700";
+import NavLink from "./NavLink";
+import { GoHome } from "react-icons/go";
 
 function AuthButton() {
     const { data: session } = useSession();
 
     if (session) {
         return (
-            <>
-                {session?.user?.name} <br />
-                <button onClick={() => signOut()}>Sign out</button>
-            </>
+            <div className="flex flex-col gap">
+                <div className="text-xl">
+                    Budget Buddy <br />
+                </div>
+                <div className="">
+                    Hi, <strong>{session?.user?.name}</strong>! <br />
+                </div>
+            </div>
         );
     }
     return (
@@ -25,67 +27,42 @@ function AuthButton() {
         </>
     );
 }
+function SignOutButton() {
+    const { data: session } = useSession();
+
+    if (session) {
+        return (
+            <div>
+                <button
+                    className="transition duration-100 my-6 py-1 w-full hover:text-gray-300 hover:bg-[#424242] rounded-full text-left px-6"
+                    onClick={() => signOut()}
+                >
+                    Sign out
+                </button>
+            </div>
+        );
+    }
+}
 export default function NavMenu() {
     const pathname = usePathname();
     return (
-        <div>
-            <AuthButton />
-            <hr className="my-4" />
-            <ul>
-                <Link href="/">
-                    <li
-                        className={
-                            pathname === "/" ? ACTIVE_ROUTE : INACTIVE_ROUTE
-                        }
-                    >
+        <div className="bg-[#313131] flex flex-col justify-between rounded-r-xl h-screen max-w-72 select-none">
+            <div className="">
+                <div className="my-6 px-6">
+                    <AuthButton />
+                </div>
+                <ul>
+                    <NavLink to="/" icon={GoHome}>
                         Home
-                    </li>
-                </Link>
-                <Link href="/protected">
-                    <li
-                        className={
-                            pathname === "/protected"
-                                ? ACTIVE_ROUTE
-                                : INACTIVE_ROUTE
-                        }
-                    >
-                        Protected Route
-                    </li>
-                </Link>
-                <Link href="/serverAction">
-                    <li
-                        className={
-                            pathname === "/serverAction"
-                                ? ACTIVE_ROUTE
-                                : INACTIVE_ROUTE
-                        }
-                    >
-                        Server Action
-                    </li>
-                </Link>
-                <Link href="/apiFromClient">
-                    <li
-                        className={
-                            pathname === "/apiFromClient"
-                                ? ACTIVE_ROUTE
-                                : INACTIVE_ROUTE
-                        }
-                    >
-                        API From Client
-                    </li>
-                </Link>
-                <Link href="/apiFromServer">
-                    <li
-                        className={
-                            pathname === "/apiFromServer"
-                                ? ACTIVE_ROUTE
-                                : INACTIVE_ROUTE
-                        }
-                    >
-                        API From Server
-                    </li>
-                </Link>
-            </ul>
+                    </NavLink>
+                    <NavLink to="/protected" icon={GoHome}>
+                        Protected
+                    </NavLink>
+                </ul>
+            </div>
+            <div>
+                <SignOutButton />
+            </div>
         </div>
     );
 }
