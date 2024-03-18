@@ -6,12 +6,13 @@ export default async function Home() {
 
     return (
         <>
-            getServerSession Result:
+            {/* getServerSession Result:
             {session?.user?.name ? (
                 <div>{session?.user?.name}</div>
             ) : (
                 <div>Not logged in</div>
-            )}
+            )} */}
+            Dashboard page (Main)
         </>
     );
 }

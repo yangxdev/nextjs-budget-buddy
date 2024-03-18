@@ -3,7 +3,6 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import NavLink from "./NavLink";
-import { GoHome } from "react-icons/go";
 
 function AuthButton() {
     const { data: session } = useSession();
@@ -27,22 +26,40 @@ function AuthButton() {
         </>
     );
 }
-function SignOutButton() {
+
+import { IoSettingsOutline } from "react-icons/io5";
+import { RiLogoutBoxLine } from "react-icons/ri";
+
+function BottomButtons() {
     const { data: session } = useSession();
 
     if (session) {
         return (
-            <div>
+            <div className="my-6">
+                <NavLink to="/p/settings" icon={IoSettingsOutline }>
+                        Settings
+                </NavLink>
                 <button
-                    className="transition duration-100 my-6 py-1 w-full hover:text-gray-300 hover:bg-[#424242] rounded-full text-left px-6"
+                    className="transition duration-100 py-1 w-full hover:text-gray-300 hover:bg-[#424242] rounded-full text-left px-6"
                     onClick={() => signOut()}
                 >
-                    Sign out
+                    <div className="flex flex-row items-center gap-2">
+                        <RiLogoutBoxLine />
+                        <div>Sign out</div>
+                    </div>
                 </button>
             </div>
         );
     }
 }
+
+import { GoHome } from "react-icons/go";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlinePayments } from "react-icons/md";
+import { GiReceiveMoney } from "react-icons/gi";
+import { MdMoneyOff } from "react-icons/md";
+import { MdOutlineSavings } from "react-icons/md";
+
 export default function NavMenu() {
     const pathname = usePathname();
     return (
@@ -52,16 +69,25 @@ export default function NavMenu() {
                     <AuthButton />
                 </div>
                 <ul>
-                    <NavLink to="/" icon={GoHome}>
-                        Home
+                    <NavLink to="/" icon={MdOutlineSpaceDashboard}>
+                        Dashboard
                     </NavLink>
-                    <NavLink to="/protected" icon={GoHome}>
-                        Protected
+                    <NavLink to="/p/payment" icon={MdOutlinePayments}>
+                        Payment
+                    </NavLink>
+                    <NavLink to="/p/income" icon={GiReceiveMoney}>
+                        Income
+                    </NavLink>
+                    <NavLink to="/p/debt" icon={MdMoneyOff}>
+                        Debt
+                    </NavLink>
+                    <NavLink to="/p/savings" icon={MdOutlineSavings}>
+                        Savings
                     </NavLink>
                 </ul>
             </div>
             <div>
-                <SignOutButton />
+                <BottomButtons />
             </div>
         </div>
     );
