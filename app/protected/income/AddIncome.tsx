@@ -34,7 +34,7 @@ export default function AddIncome() {
             return;
         }
 
-        const response = fetch("/api/add_income", {
+        const responsePromise = fetch("/api/database/add_income", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -47,14 +47,21 @@ export default function AddIncome() {
                 category,
                 notes,
             }),
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error ' + response.status);
+            }
+            return response;
         });
-        // console.log(response);
-
-        toast.promise(response, {
-            loading: "Adding income...",
-            success: "Income added!",
-            error: "Failed to add income!",
-        });
+        
+        toast.promise(
+            responsePromise,
+            {
+                loading: 'Saving...',
+                success: 'Income added successfully',
+                error: 'Error when adding income',
+            }
+        );
     };
 
     return (

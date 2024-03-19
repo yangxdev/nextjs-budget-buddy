@@ -13,8 +13,21 @@ export const authOptions = {
             clientSecret: process.env.GOOGLE_SECRET ?? "",
         })
     ],
+    callbacks: {
+        async signIn(user, account, profile) {
+            return true;
+        }
+    }
 };
 
-export const handler = NextAuth(authOptions);
+export const handler = NextAuth({
+    ...authOptions,
+    callbacks: {
+        async signIn(params) {
+            const { user, account, profile } = params;
+            return true;
+        }
+    }
+});
 
 export { handler as GET, handler as POST };

@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
     try {
-        // income values: date, source, amount, currency, category, notes
         const result = await sql`CREATE TABLE income (
             id SERIAL PRIMARY KEY,
             source VARCHAR(255) NOT NULL,
