@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
     try {
-        const result = await sql`CREATE TABLE income (
+        const result = await sql`CREATE TABLE incomes (
             id SERIAL PRIMARY KEY,
             source VARCHAR(255) NOT NULL,
             date DATE NOT NULL,

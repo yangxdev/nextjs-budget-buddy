@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
     try {
-        const result = await sql`DROP TABLE income`;
+        const result = await sql`DROP TABLE incomes`;
         console.log(result);
         return NextResponse.json({ result }, { status: 200 });
     } catch (error) {
