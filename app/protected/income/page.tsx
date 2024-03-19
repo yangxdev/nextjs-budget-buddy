@@ -4,7 +4,8 @@ import DatePicker from "tailwind-datepicker-react";
 import { IOptions } from "tailwind-datepicker-react/types/Options";
 import { useState } from "react";
 import AddIncome from "./AddIncome";
-import IncomeList from "./IncomeList";
+// import IncomeList from "./IncomeList";
+import IncomeHistory from "./IncomeHistory";
 import prisma from "@/lib/prisma";
 
 export default async function Income() {
@@ -13,13 +14,13 @@ export default async function Income() {
         redirect("/api/auth/signin");
     }
 
-    console.log(session);
-
     return (
         <>
             <div className="font-bold text-2xl pb-6 select-none">Income</div>
-            <AddIncome />
-            <IncomeList />
+            <div className="flex flex-row gap-4">
+                <AddIncome />
+                <IncomeHistory />
+            </div>
         </>
     );
 }

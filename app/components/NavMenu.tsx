@@ -63,7 +63,7 @@ import { MdOutlineSavings } from "react-icons/md";
 export default function NavMenu() {
     const pathname = usePathname();
     return (
-        <div className="bg-[#313131] flex flex-col justify-between h-screen max-w-72 select-none">
+        <div className="bg-[#313131] flex flex-col justify-between h-screen max-w-sidebar select-none">
             <div className="">
                 <div className="my-6 px-padding">
                     <AuthButton />
@@ -83,6 +83,9 @@ export default function NavMenu() {
                     </NavLink>
                     <NavLink to="/p/savings" icon={MdOutlineSavings}>
                         Savings
+                    </NavLink>
+                    <NavLink to="/p/crypto" icon={MdOutlineSavings}>
+                        Crypto
                     </NavLink>
                 </ul>
             </div>
