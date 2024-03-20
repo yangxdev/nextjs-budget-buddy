@@ -1,9 +1,6 @@
 "use client";
 import { useRef } from "react";
 import toast from "react-hot-toast";
-import { EventEmitter } from "events";
-
-export const incomeAddedEvent = new EventEmitter();
 
 export default function AddIncome() {
     const currentDate = new Date().toISOString().substring(0, 10);
@@ -24,7 +21,7 @@ export default function AddIncome() {
         const notes = notesRef.current?.value;
 
         if (!source || !date || !amount || !currency || !category) {
-            toast.error("Please fill in all required fields", {
+            toast.error("Please fill in all the required fields", {
                 style: {
                     background: "#333",
                     color: "#fff",
@@ -50,7 +47,6 @@ export default function AddIncome() {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
             }
-            incomeAddedEvent.emit("incomeAdded");
             return response;
         });
 

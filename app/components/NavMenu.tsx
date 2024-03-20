@@ -10,10 +10,10 @@ function AuthButton() {
     if (session) {
         return (
             <div className="flex flex-col gap">
-                <div className="text-xl">
+                <div className="text-2xl">
                     Budget Buddy <br />
                 </div>
-                <div className="">
+                <div className="text-xl">
                     Hi, <strong>{session?.user?.name}</strong>! <br />
                 </div>
             </div>
