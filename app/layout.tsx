@@ -28,9 +28,9 @@ export default async function RootLayout({
                 <SessionProvider session={session}>
                     <main className="flex flex-row">
                         <NavMenu />
-                        <div className="bg-[#161616] flex-grow p-dashboard-padding">
+                        <div className="bg-[#161616] flex-grow p-dashboard-padding h-screen">
                             {children}
-                            <Toaster 
+                            <Toaster
                                 position="top-right"
                                 reverseOrder={false}
                             />

@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-const { SIDEBAR_MAX_WIDTH, MAIN_PADDING, DASHBOARD_PADDING } = require("./app/_styles/styles");
+const { SIDEBAR_MIN_WIDTH, MAIN_PADDING, DASHBOARD_PADDING } = require("./app/_styles/styles");
 
 const config: Config = {
   content: [
@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       spacing: {
-        'sidebar': SIDEBAR_MAX_WIDTH,
+        'sidebar': SIDEBAR_MIN_WIDTH,
         'padding': MAIN_PADDING,
         'dashboard-padding': DASHBOARD_PADDING,
       },

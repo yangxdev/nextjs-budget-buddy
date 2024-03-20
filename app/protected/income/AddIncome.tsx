@@ -67,7 +67,7 @@ export default function AddIncome() {
     };
 
     return (
-        <div className="p-5 bg-[#313131] max-w-80 rounded-2xl text-sm select-none">
+        <div className="p-5 bg-[#313131] max-w-80 rounded-2xl text-sm select-none h-min">
             <div className="font-bold pb-2">Add income</div>
             <div className="pb-2">
                 Date

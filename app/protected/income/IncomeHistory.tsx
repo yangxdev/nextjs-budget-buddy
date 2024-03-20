@@ -12,7 +12,7 @@ import {
 } from "@/app/api/currency/currencies";
 
 export default async function IncomeHistory() {
-    const incomeData = await getIncomeDataByQuantity(5);
+    const incomeData = await getIncomeDataByQuantity(10);
     // const currencies = await getCurrenciesFromArray(incomeData); NOT WORKING
     const currencies = [
         ...new Set(
@@ -30,7 +30,7 @@ export default async function IncomeHistory() {
                 <div className="text-2xl select-none">History</div>
                 <IncomeRefreshButton />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col select-none">
                 {incomeData.incomes.map((income, index) => (
                     <div
                         className={`flex flex-row justify-between items-center gap-4 px-2 py-4 ${
@@ -39,7 +39,7 @@ export default async function IncomeHistory() {
                                 : ""
                         }`}
                     >
-                        <div className="">
+                        <div>
                             <div className="icon rounded-full p-3 bg-[#08931f]">
                                 {income.category === "Salary" && (
                                     <PiSuitcaseBold size={20} />
@@ -58,18 +58,18 @@ export default async function IncomeHistory() {
                             </div>
                         </div>
                         <div className="flex flex-row flex-grow justify-between">
-                            <div className="">
+                            <div>
                                 <div className="source font-semibold">
                                     {income.source}
                                 </div>
-                                <div className="category">
+                                <div className="category text-sm font-normal">
                                     {income.category}
                                 </div>
                             </div>
                             <div className="flex flex-col font-semibold items-end justify-center">
                                 <div className="flex flex-row">
                                     <div>{"+"}</div>
-                                    <div className="currency">
+                                    <div className="currency px-1">
                                         {income.currency}
                                     </div>
                                     <div className="amount">
@@ -79,12 +79,18 @@ export default async function IncomeHistory() {
                                 <div className="opacity-80 ">
                                     {income.currency !==
                                         GlobalConfig.baseCurrency && (
-                                        <div className="text-xs">
-                                            {GlobalConfig.baseCurrency}
-                                            {(
-                                                income.amount /
-                                                conversionRates[income.currency]
-                                            ).toFixed(2)}
+                                        <div className="text-xs flex flex-row">
+                                            <div className="pr-1">
+                                                {GlobalConfig.baseCurrency}
+                                            </div>
+                                            <div>
+                                                {(
+                                                    income.amount /
+                                                    conversionRates[
+                                                        income.currency
+                                                    ]
+                                                ).toFixed(2)}
+                                            </div>
                                         </div>
                                     )}
                                 </div>
