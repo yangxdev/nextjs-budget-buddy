@@ -1,6 +1,9 @@
 "use client";
 import { useRef } from "react";
 import toast from "react-hot-toast";
+import { EventEmitter } from "events";
+
+export const incomeAddedEvent = new EventEmitter();
 
 export default function AddIncome() {
     const currentDate = new Date().toISOString().substring(0, 10);
@@ -20,17 +23,13 @@ export default function AddIncome() {
         const category = categoryRef.current?.value;
         const notes = notesRef.current?.value;
 
-        console.log({
-            source,
-            date,
-            amount,
-            currency,
-            category,
-            notes,
-        });
-
         if (!source || !date || !amount || !currency || !category) {
-            toast.error("Please fill in all required fields");
+            toast.error("Please fill in all required fields", {
+                style: {
+                    background: "#333",
+                    color: "#fff",
+                },
+            });
             return;
         }
 
@@ -47,19 +46,26 @@ export default function AddIncome() {
                 category,
                 notes,
             }),
-        }).then(response => {
+        }).then((response) => {
             if (!response.ok) {
-                throw new Error('HTTP error ' + response.status);
+                throw new Error("HTTP error " + response.status);
             }
+            incomeAddedEvent.emit("incomeAdded");
             return response;
         });
-        
+
         toast.promise(
             responsePromise,
             {
-                loading: 'Saving...',
-                success: 'Income added successfully',
-                error: 'Error when adding income',
+                loading: "Saving...",
+                success: "Income added successfully",
+                error: "Error when adding income",
+            },
+            {
+                style: {
+                    background: "#333",
+                    color: "#fff",
+                },
             }
         );
     };

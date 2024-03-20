@@ -3,9 +3,12 @@ import { PiSuitcaseBold } from "react-icons/pi";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { PiGift } from "react-icons/pi";
 import { IoEllipsisHorizontalCircleOutline } from "react-icons/io5";
+import { incomeAddedEvent } from "./AddIncome";
 
-export default async function IncomeList() {
-    const incomeData = await getIncomeData(5); // get only the last 5 incomes
+export default async function IncomeHistory() {
+    // incomeAddedEvent.on("incomeAdded", async () => {
+        const incomeData = await getIncomeData(5); 
+    // });
     return (
         <div className="w-80">
             <div className="text-lg">History</div>
