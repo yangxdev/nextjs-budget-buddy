@@ -22,7 +22,7 @@ export default async function IncomeHistory() {
         ),
     ];
     const conversionRates = await getConversionRatesByArray(currencies, "EUR");
-    console.log(conversionRates);
+    const predefinedCategories = GlobalConfig.incomeCategories;
 
     return (
         <div className="w-80">
@@ -50,9 +50,11 @@ export default async function IncomeHistory() {
                                 {income.category === "Gift" && (
                                     <PiGift size={22} />
                                 )}
-                                {income.category === "Other" && (
+                                {!predefinedCategories.includes(
+                                    income.category
+                                ) && (
                                     <IoEllipsisHorizontalCircleOutline
-                                        size={22}
+                                        size={20}
                                     />
                                 )}
                             </div>
