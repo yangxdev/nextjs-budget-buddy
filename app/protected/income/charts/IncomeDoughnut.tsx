@@ -1,7 +1,8 @@
 "use client";
 import { Doughnut } from "react-chartjs-2";
-import { Chart, ArcElement } from "chart.js";
-Chart.register(ArcElement);
+import { Chart, ArcElement, Tooltip } from "chart.js";
+import GlobalConfig from "@/app/app.config";
+Chart.register(ArcElement, Tooltip);
 
 export default function IncomeDoughnut(incomeData: {
     categories: any;
@@ -11,24 +12,32 @@ export default function IncomeDoughnut(incomeData: {
         labels: incomeData.categories,
         datasets: [
             {
-                label: "Income categories",
+                label: GlobalConfig.baseCurrency,
                 data: incomeData.datasetsData,
                 backgroundColor: [
-                    "rgba(255, 99, 132, 0.2)",
-                    "rgba(54, 162, 235, 0.2)",
-                    "rgba(255, 206, 86, 0.2)",
-                    "rgba(75, 192, 192, 0.2)",
-                    "rgba(153, 102, 255, 0.2)",
-                    "rgba(255, 159, 64, 0.2)",
+                    "rgba(255, 99, 132, 0.5)",
+                    "rgba(54, 162, 235, 0.5)",
+                    "rgba(255, 206, 86, 0.5)",
+                    "rgba(75, 192, 192, 0.5)",
+                    "rgba(153, 102, 255, 0.5)",
+                    "rgba(255, 159, 64, 0.5)",
                 ],
-                hoverOffset: 0,
+                hoverOffset: 20,
             },
         ],
     };
 
     return (
-        <>
-            <Doughnut data={data} />
-        </>
+        <div className="">
+            <div className="font-bold">Categories, this year</div>
+            <Doughnut 
+                data={data}
+                options={{
+                    radius: "80%",
+                    devicePixelRatio: 2,
+                }
+                } 
+            />
+        </div>
     );
 }

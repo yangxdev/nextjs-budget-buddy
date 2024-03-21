@@ -1,4 +1,4 @@
-import { getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
+import { getConvertedIncomes, getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
 import { Doughnut } from "react-chartjs-2";
 import IncomeDoughnut from "./charts/IncomeDoughnut";
 
@@ -6,18 +6,22 @@ export default async function IncomeGraph() {
     // get all the incomes from first day of year to today
     const today = new Date();
     const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
-
-    const incomeData = await getIncomeDataByDateRange(
+    const incomeData = await getConvertedIncomes(
+        firstDayOfYear,
+        today
+    );
+    const incomeData2 = await getIncomeDataByDateRange(
         firstDayOfYear.toISOString(),
         today.toISOString()
     );
     const categories = [
-        ...new Set(incomeData.incomes.map((income) => income.category)),
+        ...new Set(incomeData2.incomes.map((income) => income.category)),
     ];
-    const datasetsData = categories.map((category) => {
-        return incomeData.incomes
-            .filter((income) => income.category === category)
-            .reduce((acc, income) => acc + income.amount, 0);
+    const datasetsData = categories.map((category, index) => {
+        return incomeData
+            .filter((income, incomeIndex) => incomeData2.incomes[incomeIndex].category === category)
+            .reduce((acc, income) => acc + income, 0)
+            .toFixed(2);
     });
 
     return (
