@@ -27,9 +27,53 @@ export default function IncomeDoughnut(incomeData: {
         ],
     };
 
+    function getColor(index: number) {
+        const colors = [
+            "bg-red-500",
+            "bg-blue-500",
+            "bg-yellow-500",
+            "bg-green-500",
+            "bg-purple-500",
+            "bg-orange-500",
+        ];
+        return colors[index];
+    }
+
     return (
         <div className="">
-            <div className="font-bold">Categories, this year</div>
+            <div>
+                <div className="font-bold mb-2">
+                    <div className="">Categories</div>
+                    <div className="">
+                        <select className="bg-[#313131] text-white rounded-md">
+                            <option value="all">All</option>
+                            <option value="lastMonth">Last Month</option>
+                            <option value="lastWeek">Last Week</option>
+                            <option value="lastYear">Last Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    {incomeData.categories.map(
+                        (category: any, index: number) => (
+                            <div key={index} className="flex justify-between">
+                                <div className="flex items-center">
+                                    <div
+                                        className={`w-2 h-2 mr-2 rounded-full bg-opacity-50 ${getColor(
+                                            index
+                                        )}`}
+                                    ></div>
+                                    {category}
+                                </div>
+                                <div>
+                                    {GlobalConfig.baseCurrency}{" "}
+                                    {incomeData.datasetsData[index]}
+                                </div>
+                            </div>
+                        )
+                    )}
+                </div>
+            </div>
             <Doughnut
                 data={data}
                 options={{

@@ -26,7 +26,6 @@ export default async function IncomeGraph() {
 
     return (
         <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
-            {/* <Doughnut data={data} /> */}
             <IncomeDoughnut categories={categories} datasetsData={datasetsData}/>
         </div>
     );
