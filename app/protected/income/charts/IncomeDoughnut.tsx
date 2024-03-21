@@ -30,13 +30,12 @@ export default function IncomeDoughnut(incomeData: {
     return (
         <div className="">
             <div className="font-bold">Categories, this year</div>
-            <Doughnut 
+            <Doughnut
                 data={data}
                 options={{
                     radius: "80%",
                     devicePixelRatio: 2,
-                }
-                } 
+                }}
             />
         </div>
     );

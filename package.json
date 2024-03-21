@@ -24,6 +24,7 @@
     "tailwind-datepicker-react": "^1.4.3"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
