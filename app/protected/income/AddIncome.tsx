@@ -94,7 +94,9 @@ export default function AddIncome() {
                     <input
                         type="number"
                         ref={amountRef}
-                        className="w-full bg-[#434343] rounded-md p-2"
+                        className="w-full bg-[#434343] rounded-md p-2
+                        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
+                        "
                         required
                     />
                 </div>
@@ -103,7 +105,7 @@ export default function AddIncome() {
                     <select
                         required
                         ref={currencyRef}
-                        className="w-full bg-[#434343] rounded-md p-2"
+                        className="w-full bg-[#434343] rounded-md p-2 cursor-pointer"
                     >
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
@@ -123,7 +125,7 @@ export default function AddIncome() {
                 <select
                     ref={categoryRef}
                     required
-                    className="w-full bg-[#434343] rounded-md p-2"
+                    className="w-full bg-[#434343] rounded-md p-2 cursor-pointer"
                 >
                     <option value="Salary">Salary</option>
                     <option value="Bonus">Bonus</option>

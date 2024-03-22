@@ -44,14 +44,14 @@ export default function IncomeDoughnut(incomeData: {
             <div>
                 <div className="font-bold mb-2">
                     <div className="">Categories</div>
-                    <div className="">
+                    {/* <div className="">
                         <select className="bg-[#313131] text-white rounded-md">
                             <option value="all">All</option>
                             <option value="lastMonth">Last Month</option>
                             <option value="lastWeek">Last Week</option>
                             <option value="lastYear">Last Year</option>
                         </select>
-                    </div>
+                    </div> */}
                 </div>
                 <div>
                     {incomeData.categories.map(

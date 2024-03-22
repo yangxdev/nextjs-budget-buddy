@@ -8,6 +8,7 @@ import IncomeHistory from "./IncomeHistory";
 import prisma from "@/lib/prisma";
 import IncomeInfoSum from "./IncomeInfoSum";
 import IncomeGraph from "./IncomeGraph";
+import AddIncomeWithFile from "./AddIncomeWithFile";
 
 export default async function Income() {
     const session = await getServerSession();
@@ -20,7 +21,10 @@ export default async function Income() {
             <div className="font-bold text-2xl pb-6 select-none">Income</div>
             <div className="flex flex-row gap-8 justify-between h-full">
                 <div className="flex flex-row gap-8">
-                    <AddIncome />
+                    <div className="flex flex-col gap-8 min-w-72">
+                        <AddIncome />
+                        <AddIncomeWithFile />
+                    </div>
                     <div className="flex flex-col gap-8">
                         <IncomeInfoSum />
                         <IncomeGraph />

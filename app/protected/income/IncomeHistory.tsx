@@ -50,6 +50,11 @@ export default async function IncomeHistory() {
                                 {income.category === "Gift" && (
                                     <PiGift size={22} />
                                 )}
+                                {income.category === "Other" && (
+                                    <IoEllipsisHorizontalCircleOutline
+                                        size={20}
+                                    />
+                                )}
                                 {!predefinedCategories.includes(
                                     income.category
                                 ) && (
