@@ -64,7 +64,7 @@ export default function NavMenu() {
     const pathname = usePathname();
     return (
         <div className="bg-[#313131] flex flex-col justify-between h-screen min-w-sidebar select-none">
-            <div className="">
+            <div>
                 <div className="my-6 px-padding">
                     <AuthButton />
                 </div>

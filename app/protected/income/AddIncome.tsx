@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import toast from "react-hot-toast";
+import GlobalConfig from "@/app/app.config";
 
 export default function AddIncome() {
     const currentDate = new Date().toISOString().substring(0, 10);
@@ -74,7 +75,7 @@ export default function AddIncome() {
                 <input
                     type="date"
                     ref={dateRef}
-                    className="cursor-pointer w-full bg-[#434343] rounded-md p-2"
+                    className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]"
                     defaultValue={currentDate}
                     required
                 />
@@ -84,7 +85,7 @@ export default function AddIncome() {
                 <input
                     type="text"
                     ref={sourceRef}
-                    className="w-full bg-[#434343] rounded-md p-2"
+                    className="w-full bg-[#434343] rounded-md p-2 hover:bg-[#565656] transition duration-100 focus:outline-none dark:[color-scheme:dark]"
                     required
                 />
             </div>
@@ -95,7 +96,7 @@ export default function AddIncome() {
                         type="number"
                         ref={amountRef}
                         className="w-full bg-[#434343] rounded-md p-2
-                        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
+                        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none
                         "
                         required
                     />
@@ -105,18 +106,13 @@ export default function AddIncome() {
                     <select
                         required
                         ref={currencyRef}
-                        className="w-full bg-[#434343] rounded-md p-2 cursor-pointer"
+                        className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]"
                     >
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="JPY">JPY</option>
-                        <option value="GBP">GBP</option>
-                        <option value="CNY">CNY</option>
-                        <option value="AUD">AUD</option>
-                        <option value="CAD">CAD</option>
-                        <option value="CHF">CHF</option>
-                        <option value="HKD">HKD</option>
-                        <option value="SGD">SGD</option>
+                        {GlobalConfig.currencies.map((currency, index) => (
+                            <option key={index} value={currency}>
+                                {currency}
+                            </option>
+                        ))}
                     </select>
                 </div>
             </div>
@@ -125,22 +121,43 @@ export default function AddIncome() {
                 <select
                     ref={categoryRef}
                     required
-                    className="w-full bg-[#434343] rounded-md p-2 cursor-pointer"
+                    className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]"
                 >
-                    <option value="Salary">Salary</option>
-                    <option value="Bonus">Bonus</option>
-                    <option value="Other">Other</option>
+                    {GlobalConfig.incomeCategories.map((category, index) => (
+                        <option key={index} value={category}>
+                            {category}
+                        </option>
+                    ))}
                 </select>
             </div>
             <div className="pb-2">
                 Notes (optional)
                 <textarea
                     ref={notesRef}
-                    className="w-full bg-[#434343] rounded-md p-2"
+                    className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]"
                     rows={1}
                 ></textarea>
             </div>
             <div className="flex flex-row justify-end">
+                <button
+                    onClick={() => {
+                        sourceRef.current!.value = "";
+                        dateRef.current!.value = currentDate;
+                        amountRef.current!.value = "";
+                        currencyRef.current!.value = "EUR";
+                        categoryRef.current!.value = "Job";
+                        notesRef.current!.value = "";
+                        toast.success("Fields reset", {
+                            style: {
+                                background: "#333",
+                                color: "#fff",
+                            },
+                        });
+                    }}
+                    className="transition duration-100 bg-[#434343] rounded-md p-2 hover:bg-[#565656] mr-2"
+                >
+                    Reset
+                </button>
                 <button
                     onClick={handleSubmit}
                     className="transition duration-100 bg-[#434343] rounded-md p-2 hover:bg-[#565656]"

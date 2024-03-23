@@ -10,7 +10,7 @@ export default async function IncomeInfoSum() {
     const firstDayOfWeek = new Date(
         today.getFullYear(),
         today.getMonth(),
-        today.getDate() - today.getDay() // ! notice: it starts from sunday
+        today.getDate() - today.getDay() // ! notice: it starts from Sunday
     );
     const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
@@ -30,48 +30,57 @@ export default async function IncomeInfoSum() {
         today
     );
 
+    function checkIfIncomesAreEmpty() {
+        return convertedIncomesThisWeek.length === 0 && convertedIncomesThisMonth.length === 0 && convertedIncomesThisYear.length === 0;
+    }
+
     return (
         <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
             <div className="text-sm font-bold select-none mb-2">Summary</div>
-            <div className="flex flex-col gap-2">
-                
-                <div className="flex flex-row justify-between items-center gap-4">
-                    <div className="font-normal">This year</div>
-                    <div className="flex flex-row font-semibold">
-                        {"+"}
-                        <div className="px-1">{GlobalConfig.baseCurrency}</div>
-                        <div>
-                            {convertedIncomesThisYear
-                                .reduce((acc, income) => acc + income, 0)
-                                .toFixed(2)}
+            {checkIfIncomesAreEmpty() ? (
+                <div className="text-left text-sm">
+                    No income data available
+                </div>
+            ) : (
+                <div className="flex flex-col gap-2">
+                    <div className="flex flex-row justify-between items-center gap-4">
+                        <div className="font-normal">This year</div>
+                        <div className="flex flex-row font-semibold">
+                            {"+"}
+                            <div className="px-1">{GlobalConfig.baseCurrency}</div>
+                            <div>
+                                {convertedIncomesThisYear
+                                    .reduce((acc, income) => acc + income, 0)
+                                    .toFixed(2)}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-row justify-between items-center gap-4">
+                        <div className="font-normal">This month</div>
+                        <div className="flex flex-row font-semibold">
+                            {"+"}
+                            <div className="px-1">{GlobalConfig.baseCurrency}</div>
+                            <div>
+                                {convertedIncomesThisMonth
+                                    .reduce((acc, income) => acc + income, 0)
+                                    .toFixed(2)}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-row justify-between items-center gap-4">
+                        <div className="font-normal">This week</div>
+                        <div className="flex flex-row font-semibold">
+                            {"+"}
+                            <div className="px-1">{GlobalConfig.baseCurrency}</div>
+                            <div>
+                                {convertedIncomesThisWeek
+                                    .reduce((acc, income) => acc + income, 0)
+                                    .toFixed(2)}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-between items-center gap-4">
-                    <div className="font-normal">This month</div>
-                    <div className="flex flex-row font-semibold">
-                        {"+"}
-                        <div className="px-1">{GlobalConfig.baseCurrency}</div>
-                        <div>
-                            {convertedIncomesThisMonth
-                                .reduce((acc, income) => acc + income, 0)
-                                .toFixed(2)}
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-row justify-between items-center gap-4">
-                    <div className="font-normal">This week</div>
-                    <div className="flex flex-row font-semibold">
-                        {"+"}
-                        <div className="px-1">{GlobalConfig.baseCurrency}</div>
-                        <div>
-                            {convertedIncomesThisWeek
-                                .reduce((acc, income) => acc + income, 0)
-                                .toFixed(2)}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            )}
         </div>
     );
 }

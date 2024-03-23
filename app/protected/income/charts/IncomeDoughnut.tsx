@@ -22,7 +22,7 @@ export default function IncomeDoughnut(incomeData: {
                     "rgba(153, 102, 255, 0.5)",
                     "rgba(255, 159, 64, 0.5)",
                 ],
-                hoverOffset: 20,
+                hoverOffset: 25,
             },
         ],
     };
@@ -39,40 +39,36 @@ export default function IncomeDoughnut(incomeData: {
         return colors[index];
     }
 
+    const totalIncome = incomeData.datasetsData.reduce(
+        (acc: number, income: string) => acc + Number(income),
+        0
+    );
+
     return (
-        <div className="">
+        <div>
             <div>
-                <div className="font-bold mb-2">
-                    <div className="">Categories</div>
-                    {/* <div className="">
-                        <select className="bg-[#313131] text-white rounded-md">
-                            <option value="all">All</option>
-                            <option value="lastMonth">Last Month</option>
-                            <option value="lastWeek">Last Week</option>
-                            <option value="lastYear">Last Year</option>
-                        </select>
-                    </div> */}
-                </div>
-                <div>
-                    {incomeData.categories.map(
-                        (category: any, index: number) => (
-                            <div key={index} className="flex justify-between">
-                                <div className="flex items-center">
-                                    <div
-                                        className={`w-2 h-2 mr-2 rounded-full bg-opacity-50 ${getColor(
-                                            index
-                                        )}`}
-                                    ></div>
-                                    {category}
-                                </div>
-                                <div>
-                                    {GlobalConfig.baseCurrency}{" "}
-                                    {incomeData.datasetsData[index]}
-                                </div>
-                            </div>
-                        )
-                    )}
-                </div>
+            {incomeData.categories.map((category: any, index: number) => {
+                // Calculate percentage for this category
+                const categoryIncome = incomeData.datasetsData[index];
+                const categoryPercentage = (categoryIncome / totalIncome) * 100;
+                console.log(totalIncome);
+
+                return (
+                    <div key={index} className="flex justify-between">
+                        <div className="flex items-center">
+                            <div
+                                className={`w-2 h-2 mr-2 rounded-full bg-opacity-50 ${getColor(
+                                    index
+                                )}`}
+                            ></div>
+                            {category}
+                        </div>
+                        <div>
+                            {categoryPercentage.toFixed(2)}%
+                        </div>
+                    </div>
+                );
+            })}
             </div>
             <Doughnut
                 data={data}

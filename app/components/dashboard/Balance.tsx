@@ -26,7 +26,7 @@ export default function Balance() {
                 </div>
             </div>
             <div className="flex flex-row justify-between">
-                <div className="">
+                <div>
                     <div className="flex flex-row items-center gap-1 select-none">
                         <IoMdArrowDropup />
                         Income
@@ -39,7 +39,7 @@ export default function Balance() {
                     </div>
                 </div>
                 <div className="border-l border-[#434343]"></div>
-                <div className="">
+                <div>
                     <div className="flex flex-row items-center gap-1 select-none">
                         <IoMdArrowDropdown />
                         Expenses
