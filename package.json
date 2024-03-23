@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@prisma/client": "^5.11.0",
     "@vercel/postgres": "^0.7.2",
     "chart.js": "^4.4.2",
