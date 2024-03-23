@@ -8,9 +8,6 @@ import { IoEllipsisHorizontalCircleOutline } from "react-icons/io5";
 import { MdCurrencyBitcoin, MdCurrencyExchange, MdOutlineSavings, MdOutlineSchool } from "react-icons/md";
 import { PiMedal } from "react-icons/pi";
 import { CgArrowsExchange } from "react-icons/cg";
-
-
-
 import {
     getConversionRatesByArray,
     getCurrenciesFromArray,
@@ -28,7 +25,6 @@ export default async function IncomeHistory() {
         ),
     ];
     const conversionRates = await getConversionRatesByArray(currencies, "EUR");
-    const predefinedCategories = GlobalConfig.incomeCategories;
 
     return (
         <div className="w-80">

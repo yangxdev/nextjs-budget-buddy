@@ -48,10 +48,8 @@ export default function IncomeDoughnut(incomeData: {
         <div>
             <div>
             {incomeData.categories.map((category: any, index: number) => {
-                // Calculate percentage for this category
                 const categoryIncome = incomeData.datasetsData[index];
                 const categoryPercentage = (categoryIncome / totalIncome) * 100;
-                console.log(totalIncome);
 
                 return (
                     <div key={index} className="flex justify-between">
