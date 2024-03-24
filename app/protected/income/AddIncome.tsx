@@ -160,7 +160,7 @@ export default function AddIncome() {
                 </button>
                 <button
                     onClick={handleSubmit}
-                    className="transition duration-100 bg-[#434343] rounded-md p-2 hover:bg-[#565656]"
+                    className="transition duration-100 bg-[#08931f] rounded-md p-2 hover:bg-[#067414]"
                 >
                     Add
                 </button>

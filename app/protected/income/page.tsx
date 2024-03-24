@@ -22,15 +22,15 @@ export default async function Income() {
             <div className="flex flex-row gap-8 justify-between h-full">
                 <div className="flex flex-row gap-8">
                     <div className="flex flex-col gap-8 min-w-72">
-                        {/* <AddIncome /> */}
+                        <AddIncome />
                         <AddIncomeWithFile />
                     </div>
                     <div className="flex flex-col gap-8">
-                        {/* <IncomeInfoSum /> */}
-                        {/* <IncomeGraph /> */}
+                        <IncomeInfoSum />
+                        <IncomeGraph />
                     </div>
                 </div>
-                {/* <IncomeHistory /> */}
+                <IncomeHistory />
             </div>
         </>
     );

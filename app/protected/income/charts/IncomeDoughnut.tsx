@@ -21,6 +21,12 @@ export default function IncomeDoughnut(incomeData: {
                     "rgba(75, 192, 192, 0.5)",
                     "rgba(153, 102, 255, 0.5)",
                     "rgba(255, 159, 64, 0.5)",
+                    "rgba(255, 99, 64, 0.5)",
+                    "rgba(54, 162, 132, 0.5)",
+                    "rgba(255, 206, 132, 0.5)",
+                    "rgba(75, 192, 255, 0.5)",
+                    "rgba(153, 102, 64, 0.5)",
+                    "rgba(255, 159, 132, 0.5)",
                 ],
                 hoverOffset: 25,
             },
@@ -35,6 +41,12 @@ export default function IncomeDoughnut(incomeData: {
             "bg-green-500",
             "bg-purple-500",
             "bg-orange-500",
+            "bg-pink-500",
+            "bg-indigo-500",
+            "bg-yellow-300",
+            "bg-green-300",
+            "bg-purple-300",
+            "bg-orange-300",
         ];
         return colors[index];
     }
@@ -47,11 +59,17 @@ export default function IncomeDoughnut(incomeData: {
     return (
         <div>
             <div>
-            {incomeData.categories.map((category: any, index: number) => {
-                const categoryIncome = incomeData.datasetsData[index];
-                const categoryPercentage = (categoryIncome / totalIncome) * 100;
+                {incomeData.categories.map((category: any, index: number) => {
+                    const categoryIncome = incomeData.datasetsData[index];
+                    const categoryPercentage = (categoryIncome / totalIncome) * 100;
 
-                return (
+                    return { category, categoryIncome, categoryPercentage };
+                })
+                .sort((a: { categoryPercentage: number; }, b: { categoryPercentage: number; }) => b.categoryPercentage - a.categoryPercentage)
+                .map((item: {
+                    category: string;
+                    categoryPercentage: number;
+                }, index: number) => (
                     <div key={index} className="flex justify-between">
                         <div className="flex items-center">
                             <div
@@ -59,14 +77,13 @@ export default function IncomeDoughnut(incomeData: {
                                     index
                                 )}`}
                             ></div>
-                            {category}
+                            {item.category}
                         </div>
                         <div>
-                            {categoryPercentage.toFixed(2)}%
+                            {item.categoryPercentage.toFixed(2)}%
                         </div>
                     </div>
-                );
-            })}
+                ))}
             </div>
             <Doughnut
                 data={data}

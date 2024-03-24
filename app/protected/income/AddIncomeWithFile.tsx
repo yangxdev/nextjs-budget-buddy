@@ -26,13 +26,20 @@ export default function AddIncomeWithFile() {
                     ,01-12-2023,Dechit,"$1,031.58",Job,Second month Dechit
                     ,02-10-2023,Dechit,$535.60,Job,Third last month Dechit
                     */
+                    // Replace commas within quotes
+                    line = line.replace(/"([^"]*)"/g, function (match) {
+                        return match.replace(/,/g, '');
+                    });
+
                     const data = line.split(',');
                     const date = data[1];
                     const source = data[2];
-                    const amount = data[3].replace('$', '');
+                    const amount = data[3].replace(/[$"]/g, '');
+                    const currencySymbol = data[3].replace(/[^$]/g, '');
+                    const currency = currencySymbol === '$' ? 'USD' : 'EUR';
                     const category = data[4];
                     const notes = data[5];
-                    incomeData.push({ date, source, amount, category, notes });
+                    incomeData.push({ date, source, amount, currency, category, notes });
                 }
                 console.log(incomeData);
                 setIncomeData(incomeData);
@@ -55,17 +62,22 @@ export default function AddIncomeWithFile() {
 
     return (
         <div className="p-5 bg-[#313131] max-w-80 rounded-2xl text-sm select-none h-min">
-            <AddIncomeWithFileModal 
-                isOpen={openDialog} 
+            <AddIncomeWithFileModal
+                isOpen={openDialog}
                 incomeData={incomeData}
-                handleClose={() => {setOpenDialog(false)}}
+                handleClose={() => { 
+                    setOpenDialog(false);
+                    if (fileInputRef.current) {
+                        fileInputRef.current.value = "";
+                    }
+                }}
             />
             <div className="font-bold pb-3">Import CSV</div>
             <input
                 type="file"
                 accept=".csv"
+                className="hidden"
                 ref={fileInputRef}
-                style={{ display: "none" }}
                 onChange={handleFileUpload}
             />
             <button className="w-full" onClick={() => fileInputRef.current?.click()}>
