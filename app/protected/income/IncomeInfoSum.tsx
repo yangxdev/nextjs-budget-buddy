@@ -47,7 +47,7 @@ export default async function IncomeInfoSum() {
                         <div className="font-normal">This year</div>
                         <div className="flex flex-row font-semibold">
                             {"+"}
-                            <div className="px-1">{GlobalConfig.baseCurrency}</div>
+                            <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
                             <div>
                                 {convertedIncomesThisYear
                                     .reduce((acc, income) => acc + income, 0)
@@ -59,7 +59,7 @@ export default async function IncomeInfoSum() {
                         <div className="font-normal">This month</div>
                         <div className="flex flex-row font-semibold">
                             {"+"}
-                            <div className="px-1">{GlobalConfig.baseCurrency}</div>
+                            <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
                             <div>
                                 {convertedIncomesThisMonth
                                     .reduce((acc, income) => acc + income, 0)
@@ -71,7 +71,7 @@ export default async function IncomeInfoSum() {
                         <div className="font-normal">This week</div>
                         <div className="flex flex-row font-semibold">
                             {"+"}
-                            <div className="px-1">{GlobalConfig.baseCurrency}</div>
+                            <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
                             <div>
                                 {convertedIncomesThisWeek
                                     .reduce((acc, income) => acc + income, 0)

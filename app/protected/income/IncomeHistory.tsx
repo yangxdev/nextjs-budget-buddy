@@ -107,10 +107,10 @@ export default async function IncomeHistory() {
                                 </div>
                                 <div className="opacity-80 ">
                                     {income.currency !==
-                                        GlobalConfig.baseCurrency && (
+                                        GlobalConfig.currency.baseCurrency && (
                                             <div className="text-xs flex flex-row">
                                                 <div className="pr-1">
-                                                    {GlobalConfig.baseCurrency}
+                                                    {GlobalConfig.currency.baseCurrency}
                                                 </div>
                                                 <div>
                                                     {(

@@ -45,10 +45,10 @@ export async function getConvertedIncomes(startDate: Date, endDate: Date) {
     ];
     const conversionRates = await getConversionRatesByArray(
         currencies,
-        GlobalConfig.baseCurrency
+        GlobalConfig.currency.baseCurrency
     );
     return incomeData.incomes.map((income) => {
-        if (income.currency === GlobalConfig.baseCurrency) {
+        if (income.currency === GlobalConfig.currency.baseCurrency) {
             return income.amount;
         } else {
             return income.amount / conversionRates[income.currency];

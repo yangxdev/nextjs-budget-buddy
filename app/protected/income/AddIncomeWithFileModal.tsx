@@ -131,7 +131,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                               }
                                             }}
                                           >
-                                            {GlobalConfig.currencies.map((currency, index) => {
+                                            {GlobalConfig.currency.currencies.map((currency, index) => {
                                               return (
                                                 <option key={index} value={currency} className="bg-[#313131] dark:[color-scheme:dark]">
                                                   {currency}
@@ -152,10 +152,10 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                                 e.target.classList.add("text-white");
                                               }
                                             }}
-                                            defaultValue={GlobalConfig.incomeCategories.includes(data.category) ? data.category : "Other"}
-                                            className={`w-20 bg-transparent focus:outline-none dark:[color-scheme:dark] ${!GlobalConfig.incomeCategories.includes(data.category) ? "text-orange-500" : "text-white"}`}
+                                            defaultValue={GlobalConfig.income.incomeCategories.includes(data.category) ? data.category : "Other"}
+                                            className={`w-20 bg-transparent focus:outline-none dark:[color-scheme:dark] ${!GlobalConfig.income.incomeCategories.includes(data.category) ? "text-orange-500" : "text-white"}`}
                                           >
-                                            {GlobalConfig.incomeCategories.map((category, index) => {
+                                            {GlobalConfig.income.incomeCategories.map((category, index) => {
                                               return (
                                                 <option key={index} value={category} className={`bg-[#313131] dark:[color-scheme:dark]`}>
                                                   {category}

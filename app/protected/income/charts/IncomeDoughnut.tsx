@@ -12,7 +12,7 @@ export default function IncomeDoughnut(incomeData: {
         labels: incomeData.categories,
         datasets: [
             {
-                label: GlobalConfig.baseCurrency,
+                label: GlobalConfig.currency.baseCurrency,
                 data: incomeData.datasetsData,
                 backgroundColor: [
                     "rgba(255, 99, 132, 0.5)",
