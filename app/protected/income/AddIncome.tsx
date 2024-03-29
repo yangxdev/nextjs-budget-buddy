@@ -4,6 +4,9 @@ import toast from "react-hot-toast";
 import GlobalConfig from "@/app/app.config";
 import addRandomIncome from "@/app/api/database/add_random_income/addRandomIncome";
 
+const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addIncome?.addIncomeForm;
+
 export default function AddIncome() {
   const currentDate = new Date().toISOString().substring(0, 10);
 
@@ -70,18 +73,18 @@ export default function AddIncome() {
 
   return (
     <div className="p-5 bg-[#313131] max-w-80 rounded-2xl text-sm select-none h-min">
-      <div className="font-bold pb-2">Add income</div>
+      <div className="font-bold pb-2">{gc?.title}</div>
       <div className="pb-2">
-        Date
+        {gc?.date}
         <input type="date" ref={dateRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]" defaultValue={currentDate} required />
       </div>
       <div className="pb-2">
-        Source
+        {gc?.source}
         <input type="text" ref={sourceRef} className="w-full bg-[#434343] rounded-md p-2 hover:bg-[#565656] transition duration-100 focus:outline-none dark:[color-scheme:dark]" required />
       </div>
       <div className="pb-2 flex flex-row gap-4">
         <div className="flex flex-col w-1/2">
-          Amount
+          {gc?.amount}
           <input
             type="number"
             ref={amountRef}
@@ -92,7 +95,7 @@ export default function AddIncome() {
           />
         </div>
         <div className="flex flex-col w-1/2">
-          Currency
+          {gc?.currency}
           <select required ref={currencyRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]">
             {GlobalConfig.currency.currencies.map((currency, index) => (
               <option key={index} value={currency}>
@@ -103,7 +106,7 @@ export default function AddIncome() {
         </div>
       </div>
       <div className="pb-2">
-        Category
+        {gc?.category}
         <select ref={categoryRef} required className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]">
           {GlobalConfig.income.incomeCategories.map((category, index) => (
             <option key={index} value={category}>
@@ -113,7 +116,7 @@ export default function AddIncome() {
         </select>
       </div>
       <div className="pb-2">
-        Notes (optional)
+        {gc?.notes}
         <textarea ref={notesRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]" rows={1}></textarea>
       </div>
       <div className="flex flex-row justify-end">
@@ -134,10 +137,10 @@ export default function AddIncome() {
           }}
           className="transition duration-100 bg-[#434343] rounded-md p-2 hover:bg-[#565656] mr-2"
         >
-          Reset
+          {gc?.reset}
         </button>
         <button onClick={handleSubmit} className="transition duration-100 bg-[#08931f] rounded-md p-2 hover:bg-[#067414]">
-          Add
+          {gc?.add}
         </button>
         {GlobalConfig.debug.showAddRandomIncomeButton && (
           <button
@@ -152,7 +155,7 @@ export default function AddIncome() {
             }}
             className="transition duration-100 ml-2 bg-[#e2820e] rounded-md p-2 hover:bg-[#bd8112]"
           >
-            Add randoms
+            {gc?.addRandom}
           </button>
         )}
       </div>

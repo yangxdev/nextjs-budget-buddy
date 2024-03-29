@@ -1,8 +1,9 @@
 module.exports = {
     
     currency: {
-        baseCurrency: "EUR",
-        currencies: [
+        baseCurrency: "EUR", // change the base currency here
+
+        currencies: [ // add or remove currencies
             "USD", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "CNY", "SEK", "NZD",
             "MXN", "SGD", "HKD", "NOK", "KRW", "TRY", "RUB", "INR", "BRL", "ZAR",
             "TWB", "THB", "IDR", "HUF", "PLN", "PHP", "CZK", "ILS", "CLP", "PKR"
@@ -10,7 +11,7 @@ module.exports = {
     },
 
     income: {
-        incomeCategories: [
+        incomeCategories: [ // add or remove income categories
             "Job",
             "Gift",
             "Crypto",
@@ -26,7 +27,7 @@ module.exports = {
     },
 
     i8n: {
-        defaultLanguage: "it",
+        defaultLanguage: "en", // change the default language here
         languages: [
             "en", "fr", "de", "es", "it", "pt", "ru", "zh", "ja", "ko"
         ],
@@ -90,6 +91,70 @@ module.exports = {
                         "Notte, {username}!",
                         "A domani, {username}!"
                     ]
+                }
+            }
+        },
+        translations: {
+            en: {
+                navMenu: {
+                    dashboard: "Dashboard",
+                    payment: "Payment",
+                    income: "Income",
+                    debt: "Debt",
+                    savings: "Savings",
+                    crypto: "Crypto",
+
+                    settings: "Settings",
+                    signOut: "Sign out",
+                },
+                addIncome: {
+                    title: "Income",
+
+                    addIncomeForm: {
+                        title: "Add income",
+                        date: "Date",
+                        source: "Source",
+                        amount: "Amount",
+                        currency: "Currency",
+                        category: "Category",
+                        notes: "Notes (optional)",
+
+                        reset: "Reset",
+                        add: "Add",
+                        addRandom: "Add 10 random incomes"
+                    }
+
+                    // TODO: add translations for addIncomeWithFile + modal
+                }
+            },
+            it: {
+                navMenu: {
+                    dashboard: "Dashboard",
+                    payment: "Pagamenti",
+                    income: "Entrate",
+                    debt: "Debiti",
+                    savings: "Risparmi",
+                    crypto: "Criptovalute",
+
+                    settings: "Impostazioni",
+                    signOut: "Esci",
+                },
+                addIncome: {
+                    title: "Entrate",
+
+                    addIncomeForm: {
+                        title: "Aggiungi entrata",
+                        date: "Data",
+                        source: "Fonte",
+                        amount: "Importo",
+                        currency: "Valuta",
+                        category: "Categoria",
+                        notes: "Note (opzionale)",
+
+                        reset: "Annulla",
+                        add: "Aggiungi",
+                        addRandom: "Aggiungi 10 entrate casuali"
+                    }
                 }
             }
         }
