@@ -3,6 +3,8 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import NavLink from "./NavLink";
+import GlobalConfig from "@/app/app.config";
+import Greetings from "./Greetings";
 
 function AuthButton() {
     const { data: session } = useSession();
@@ -10,11 +12,12 @@ function AuthButton() {
     if (session) {
         return (
             <div className="flex flex-col gap">
-                <div className="text-2xl">
+                <div className="text-2xl font-semibold">
                     Budget Buddy <br />
                 </div>
-                <div className="text-xl">
-                    Hi, <strong>{session?.user?.name}</strong>! <br />
+                <div className="text-xl greeting">
+                    {/* Hi, {session?.user?.name}!  */}
+                    <Greetings />
                 </div>
             </div>
         );
