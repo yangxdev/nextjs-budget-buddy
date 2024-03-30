@@ -65,25 +65,25 @@ export default function IncomeDoughnut(incomeData: {
 
                     return { category, categoryIncome, categoryPercentage };
                 })
-                .sort((a: { categoryPercentage: number; }, b: { categoryPercentage: number; }) => b.categoryPercentage - a.categoryPercentage)
-                .map((item: {
-                    category: string;
-                    categoryPercentage: number;
-                }, index: number) => (
-                    <div key={index} className="flex justify-between">
-                        <div className="flex items-center">
-                            <div
-                                className={`w-2 h-2 mr-2 rounded-full bg-opacity-50 ${getColor(
-                                    index
-                                )}`}
-                            ></div>
-                            {item.category}
+                    .sort((a: { categoryPercentage: number; }, b: { categoryPercentage: number; }) => b.categoryPercentage - a.categoryPercentage)
+                    .map((item: {
+                        category: string;
+                        categoryPercentage: number;
+                    }, index: number) => (
+                        <div key={index} className="flex justify-between">
+                            <div className="flex items-center">
+                                <div
+                                    className={`w-2 h-2 mr-2 rounded-full bg-opacity-50 ${getColor(
+                                        index
+                                    )}`}
+                                ></div>
+                                {item.category}
+                            </div>
+                            <div>
+                                {item.categoryPercentage.toFixed(2)}%
+                            </div>
                         </div>
-                        <div>
-                            {item.categoryPercentage.toFixed(2)}%
-                        </div>
-                    </div>
-                ))}
+                    ))}
             </div>
             <Doughnut
                 data={data}

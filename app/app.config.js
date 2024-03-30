@@ -1,5 +1,5 @@
 module.exports = {
-    
+
     currency: {
         baseCurrency: "EUR", // change the base currency here
 
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     i8n: {
-        defaultLanguage: "en", // change the default language here
+        defaultLanguage: "it", // change the default language here
         languages: [
             "en", "fr", "de", "es", "it", "pt", "ru", "zh", "ja", "ko"
         ],
@@ -122,9 +122,57 @@ module.exports = {
                         reset: "Reset",
                         add: "Add",
                         addRandom: "Add 10 random incomes"
-                    }
+                    },
 
-                    // TODO: add translations for addIncomeWithFile + modal
+                    addIncomeWithFile: {
+                        title: "Import CSV",
+                        chooseFile: "Choose a file",
+                        dragHere: "or drag it here",
+
+                        addIncomeWithFileModal: {
+                            title: "Import income data",
+                            question: "Do you want to import the following income data?",
+
+                            selectAll: "Select all",
+                            unselectAll: "Unselect all",
+                            date: "Date",
+                            source: "Source",
+                            amount: "Amount",
+                            currency: "Currency",
+                            category: "Category",
+                            notes: "Notes",
+
+                            bottomNote: [
+                                `Note: if the currency is not recognized, it will be imported as "USD".`,
+                                `If the category is not recognized, it will be imported as "Other".`,
+                                "Invalid or unrecognized entries are ",
+                                "highlighted"
+                            ],
+
+                            selectedCount: "Selected",
+                            cancelButton: "Cancel",
+                            importButton: "Import"
+                        }
+                    }
+                },
+                incomeInfoSummary: {
+                    title: "Summary",
+
+                    noIncomeDataAvailable: "No income data available",
+
+                    thisYear: "This year",
+                    thisMonth: "This month",
+                    thisWeek: "This week"
+                },
+                incomeInfoGraph: {
+                    title: "Categories",
+
+                    noIncomeDataAvailable: "No income data available",
+                },
+                incomeInfoHistory: {
+                    title: "History",
+
+                    noIncomeDataAvailable: "No income data available",
                 }
             },
             it: {
@@ -154,7 +202,58 @@ module.exports = {
                         reset: "Annulla",
                         add: "Aggiungi",
                         addRandom: "Aggiungi 10 entrate casuali"
+                    },
+
+                    addIncomeWithFile: {
+                        title: "Carica CSV",
+                        chooseFile: "Scegli un file",
+                        dragHere: "o trascinalo qui",
+                    
+                        addIncomeWithFileModal: {
+                            title: "Caricamento CSV",
+                            question: "Vuoi importare i seguenti dati?",
+                    
+                            selectAll: "Seleziona",
+                            unselectAll: "Deseleziona",
+                            date: "Data",
+                            source: "Fonte",
+                            amount: "Importo",
+                            currency: "Valuta",
+                            category: "Categoria",
+                            notes: "Note",
+                    
+                            bottomNote: [
+                                `Nota: se la valuta non è riconosciuta, verrà importata come "USD".`,
+                                `Se la categoria non è riconosciuta, verrà importata come "Altro".`,
+                                "Le voci non valide o non riconosciute sono ",
+                                "evidenziate"
+                            ],
+                    
+                            selectedCount: "Selezionato",
+                            cancelButton: "Annulla",
+                            importButton: "Importa"
+                        }
                     }
+                    
+                },
+                incomeInfoSummary: {
+                    title: "Sommario",
+                
+                    noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
+                
+                    thisYear: "Quest'anno",
+                    thisMonth: "Questo mese",
+                    thisWeek: "Questa settimana"
+                },
+                incomeInfoGraph: {
+                    title: "Categorie",
+                
+                    noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
+                },
+                incomeInfoHistory: {
+                    title: "Cronologia",
+                
+                    noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
                 }
             }
         }

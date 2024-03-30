@@ -15,7 +15,10 @@ import {
 import { FaExchangeAlt, FaHandsHelping } from "react-icons/fa";
 import { RiRefund2Line } from "react-icons/ri";
 
-export default async function IncomeHistory() {
+const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.incomeInfoHistory;
+
+export default async function IncomeInfoHistory() {
     const incomeData = await getIncomeDataByQuantity(10);
     const currencies = [
         ...new Set(
@@ -29,13 +32,13 @@ export default async function IncomeHistory() {
     return (
         <div className="w-80">
             <div className="flex flex-row justify-between items-center">
-                <div className="text-2xl select-none">History</div>
+                <div className="text-2xl select-none">{gc?.title}</div>
                 <IncomeRefreshButton />
             </div>
             <div className="flex flex-col select-none">
                 {incomeData.incomes.length === 0 && (
                     <div className="text-left text-sm py-4">
-                        No income data available
+                        {gc?.noIncomeDataAvailable}
                     </div>
                 )}
                 {incomeData.incomes.map((income, index) => (

@@ -1,8 +1,12 @@
 import { getConvertedIncomes, getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
 import { Doughnut } from "react-chartjs-2";
 import IncomeDoughnut from "./charts/IncomeDoughnut";
+import GlobalConfig from "@/app/app.config";
 
-export default async function IncomeGraph() {
+const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.incomeInfoGraph;
+
+export default async function IncomeInfoGraph() {
     // get all the incomes from first day of year to today
     const today = new Date();
     const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
@@ -26,12 +30,13 @@ export default async function IncomeGraph() {
 
     return (
         <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
-            <div className="font-bold pb-2">Categories</div>
+            <div className="font-bold pb-2">{gc?.title}</div>
             {incomeData2.incomes.length === 0 ? (
                 <div className="text-left text-sm">
-                    No income data available
+                    {gc?.noIncomeDataAvailable}
                 </div>
             ) : (
+                // TODO: add a period selector
                 <IncomeDoughnut categories={categories} datasetsData={datasetsData} />
             )}
         </div>

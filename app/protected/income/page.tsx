@@ -4,10 +4,10 @@ import DatePicker from "tailwind-datepicker-react";
 import { IOptions } from "tailwind-datepicker-react/types/Options";
 import { useState } from "react";
 import AddIncome from "./AddIncome";
-import IncomeHistory from "./IncomeHistory";
+import IncomeInfoHistory from "./IncomeInfoHistory";
 import prisma from "@/lib/prisma";
-import IncomeInfoSum from "./IncomeInfoSum";
-import IncomeGraph from "./IncomeGraph";
+import IncomeInfoSummary from "./IncomeInfoSummary";
+import IncomeInfoGraph from "./IncomeInfoGraph";
 import AddIncomeWithFile from "./AddIncomeWithFile";
 
 export default async function Income() {
@@ -26,11 +26,11 @@ export default async function Income() {
                         <AddIncomeWithFile />
                     </div>
                     <div className="flex flex-col gap-8">
-                        <IncomeInfoSum />
-                        <IncomeGraph />
+                        <IncomeInfoSummary />
+                        <IncomeInfoGraph />
                     </div>
                 </div>
-                <IncomeHistory />
+                <IncomeInfoHistory />
             </div>
         </>
     );

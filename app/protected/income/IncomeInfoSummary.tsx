@@ -5,7 +5,10 @@ import {
 import { getConversionRatesByArray } from "@/app/api/currency/currencies";
 import GlobalConfig from "@/app/app.config";
 
-export default async function IncomeInfoSum() {
+const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.incomeInfoSummary;
+
+export default async function IncomeInfoSummary() {
     const today = new Date();
     const firstDayOfWeek = new Date(
         today.getFullYear(),
@@ -36,15 +39,15 @@ export default async function IncomeInfoSum() {
 
     return (
         <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
-            <div className="text-sm font-bold select-none mb-2">Summary</div>
+            <div className="text-sm font-bold select-none mb-2">{gc?.title}</div>
             {checkIfIncomesAreEmpty() ? (
                 <div className="text-left text-sm">
-                    No income data available
+                    {gc?.noIncomeDataAvailable}
                 </div>
             ) : (
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-row justify-between items-center gap-4">
-                        <div className="font-normal">This year</div>
+                        <div className="font-normal">{gc?.thisYear}</div>
                         <div className="flex flex-row font-semibold">
                             {"+"}
                             <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
@@ -56,7 +59,7 @@ export default async function IncomeInfoSum() {
                         </div>
                     </div>
                     <div className="flex flex-row justify-between items-center gap-4">
-                        <div className="font-normal">This month</div>
+                        <div className="font-normal">{gc?.thisMonth}</div>
                         <div className="flex flex-row font-semibold">
                             {"+"}
                             <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
@@ -68,7 +71,7 @@ export default async function IncomeInfoSum() {
                         </div>
                     </div>
                     <div className="flex flex-row justify-between items-center gap-4">
-                        <div className="font-normal">This week</div>
+                        <div className="font-normal">{gc?.thisWeek}</div>
                         <div className="flex flex-row font-semibold">
                             {"+"}
                             <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
