@@ -27,7 +27,7 @@ module.exports = {
     },
 
     i8n: {
-        defaultLanguage: "it", // change the default language here
+        defaultLanguage: "en", // change the default language here
         languages: [
             "en", "fr", "de", "es", "it", "pt", "ru", "zh", "ja", "ko"
         ],
