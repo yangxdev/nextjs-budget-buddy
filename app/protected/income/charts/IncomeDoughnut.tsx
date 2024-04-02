@@ -5,6 +5,7 @@ import GlobalConfig from "@/app/app.config";
 Chart.register(ArcElement, Tooltip);
 
 export default function IncomeDoughnut(incomeData: {
+    id: string;
     categories: any;
     datasetsData: any;
 }) {
@@ -57,8 +58,16 @@ export default function IncomeDoughnut(incomeData: {
     );
 
     return (
-        <div>
+        <div id={incomeData.id}>
+            <Doughnut
+                data={data}
+                options={{
+                    radius: "80%",
+                    devicePixelRatio: 2,
+                }}
+            />
             <div>
+                {/* <div className="font-semibold pb-2">{incomeData.id}</div> */}
                 {incomeData.categories.map((category: any, index: number) => {
                     const categoryIncome = incomeData.datasetsData[index];
                     const categoryPercentage = (categoryIncome / totalIncome) * 100;
@@ -85,13 +94,6 @@ export default function IncomeDoughnut(incomeData: {
                         </div>
                     ))}
             </div>
-            <Doughnut
-                data={data}
-                options={{
-                    radius: "80%",
-                    devicePixelRatio: 2,
-                }}
-            />
         </div>
     );
 }

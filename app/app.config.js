@@ -24,6 +24,8 @@ module.exports = {
             "Expense reimbursement",
             "Other"
         ],
+
+        incomeDoughnutShowDefault: "Yearly",
     },
 
     i8n: {
@@ -168,6 +170,12 @@ module.exports = {
                     title: "Categories",
 
                     noIncomeDataAvailable: "No income data available",
+
+                    buttonThisWeek: "This week",
+                    buttonThisMonth: "This month",
+                    buttonThisYear: "This year",
+
+                    buttonDefault: "doughnutYearly"
                 },
                 incomeInfoHistory: {
                     title: "History",
@@ -249,6 +257,10 @@ module.exports = {
                     title: "Categorie",
                 
                     noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
+
+                    buttonThisWeek: "Questa sett.",
+                    buttonThisMonth: "Questo mese",
+                    buttonThisYear: "Quest'anno",
                 },
                 incomeInfoHistory: {
                     title: "Cronologia",

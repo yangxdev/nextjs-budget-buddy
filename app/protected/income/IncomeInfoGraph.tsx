@@ -1,44 +1,62 @@
 import { getConvertedIncomes, getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
-import { Doughnut } from "react-chartjs-2";
-import IncomeDoughnut from "./charts/IncomeDoughnut";
 import GlobalConfig from "@/app/app.config";
+import IncomeInfoGraphMain from "./IncomeInfoGraphMain";
+import IncomeInfoGraphSelector from "./IncomeInfoGraphSelector";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
 const gc = GlobalConfig.i8n.translations[defaultLanguage]?.incomeInfoGraph;
 
-export default async function IncomeInfoGraph() {
-    // get all the incomes from first day of year to today
-    const today = new Date();
-    const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
-    const incomeData = await getConvertedIncomes(
-        firstDayOfYear,
-        today
-    );
-    const incomeData2 = await getIncomeDataByDateRange(
-        firstDayOfYear.toISOString(),
-        today.toISOString()
-    );
-    const categories = [
-        ...new Set(incomeData2.incomes.map((income) => income.category)),
-    ];
-    const datasetsData = categories.map((category, index) => {
-        return incomeData
-            .filter((income, incomeIndex) => incomeData2.incomes[incomeIndex].category === category)
-            .reduce((acc, income) => acc + income, 0)
-            .toFixed(2);
-    });
+/**
+ * Income information graph component
+ * Displays income information over the last week, month and year
+ */
+export default async function IncomeInfoGraph(): Promise<JSX.Element> {
+  // get first day of the current year, month and week
+  const today = new Date();
+  const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+  const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const firstDayOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay());
 
-    return (
-        <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
-            <div className="font-bold pb-2">{gc?.title}</div>
-            {incomeData2.incomes.length === 0 ? (
-                <div className="text-left text-sm">
-                    {gc?.noIncomeDataAvailable}
-                </div>
-            ) : (
-                // TODO: add a period selector
-                <IncomeDoughnut categories={categories} datasetsData={datasetsData} />
-            )}
-        </div>
-    );
+  // get all the already converted incomes (from first day of year to today)
+  const convertedIncomeYearly = await getConvertedIncomes(firstDayOfYear, today);
+  // get all the non-converted incomes (from first day of year to today)
+  const nonConvertedIncomeYearly = await getIncomeDataByDateRange(firstDayOfYear.toISOString(), today.toISOString());
+  // get all the unique categories from the income data
+  const categoriesYearly = [...new Set(nonConvertedIncomeYearly.incomes.map((income) => income.category))];
+  // create an array of the total amount of each category, rounded to 2 decimal places
+  const datasetsDataYearly = categoriesYearly.map((category, _index) => {
+    return convertedIncomeYearly
+      .filter((_income, incomeIndex) => nonConvertedIncomeYearly.incomes[incomeIndex].category === category)
+      .reduce((acc, income) => acc + income, 0)
+      .toFixed(2);
+  });
+
+  const convertedIncomeMonthly = await getConvertedIncomes(firstDayOfMonth, today);
+  const nonConvertedIncomeMonthly = await getIncomeDataByDateRange(firstDayOfMonth.toISOString(), today.toISOString());
+  const categoriesMonthly = [...new Set(nonConvertedIncomeMonthly.incomes.map((income) => income.category))];
+  const datasetsDataMonthly = categoriesMonthly.map((category, _index) => {
+    return convertedIncomeMonthly
+      .filter((_income, incomeIndex) => nonConvertedIncomeMonthly.incomes[incomeIndex].category === category)
+      .reduce((acc, income) => acc + income, 0)
+      .toFixed(2);
+  });
+
+  const convertedIncomeWeekly = await getConvertedIncomes(firstDayOfWeek, today);
+  const nonConvertedIncomeWeekly = await getIncomeDataByDateRange(firstDayOfWeek.toISOString(), today.toISOString());
+  const categoriesWeekly = [...new Set(nonConvertedIncomeWeekly.incomes.map((income) => income.category))];
+  const datasetsDataWeekly = categoriesWeekly.map((category, _index) => {
+    return convertedIncomeWeekly
+      .filter((_income, incomeIndex) => nonConvertedIncomeWeekly.incomes[incomeIndex].category === category)
+      .reduce((acc, income) => acc + income, 0)
+      .toFixed(2);
+  });
+
+  return (
+    <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
+      <div className="pb-2 justify-between flex flex-row">
+        <div className="font-bold">{gc?.title}</div>
+      </div>
+      <IncomeInfoGraphMain datasets={[datasetsDataWeekly, datasetsDataMonthly, datasetsDataYearly]} categories={[categoriesWeekly, categoriesMonthly, categoriesYearly]} />
+    </div>
+  );
 }

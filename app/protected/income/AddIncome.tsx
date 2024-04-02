@@ -76,7 +76,7 @@ export default function AddIncome() {
             <div className="font-bold pb-2">{gc?.title}</div>
             <div className="pb-2">
                 {gc?.date}
-                <input type="date" ref={dateRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]" defaultValue={currentDate} required />
+                <input type="date" ref={dateRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none" defaultValue={currentDate} required />
             </div>
             <div className="pb-2">
                 {gc?.source}
@@ -96,7 +96,7 @@ export default function AddIncome() {
                 </div>
                 <div className="flex flex-col w-1/2">
                     {gc?.currency}
-                    <select required ref={currencyRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]">
+                    <select required ref={currencyRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none">
                         {GlobalConfig.currency.currencies.map((currency, index) => (
                             <option key={index} value={currency}>
                                 {currency}
@@ -107,7 +107,7 @@ export default function AddIncome() {
             </div>
             <div className="pb-2">
                 {gc?.category}
-                <select ref={categoryRef} required className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]">
+                <select ref={categoryRef} required className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none">
                     {GlobalConfig.income.incomeCategories.map((category, index) => (
                         <option key={index} value={category}>
                             {category}
@@ -117,7 +117,7 @@ export default function AddIncome() {
             </div>
             <div className="pb-2">
                 {gc?.notes}
-                <textarea ref={notesRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]" rows={1}></textarea>
+                <textarea ref={notesRef} className="w-full bg-[#434343] rounded-md p-2 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none" rows={1}></textarea>
             </div>
             <div className="flex flex-row justify-end">
                 <button
