@@ -25,7 +25,7 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
   // create an array of the total amount of each category, rounded to 2 decimal places
   const datasetsDataYearly = categoriesYearly.map((category, _index) => {
     return convertedIncomeYearly
-      .filter((_income, incomeIndex) => nonConvertedIncomeYearly.incomes[incomeIndex].category === category)
+      .filter((_income: any, incomeIndex: number) => nonConvertedIncomeYearly.incomes[incomeIndex].category === category)
       .reduce((acc, income) => acc + income, 0)
       .toFixed(2);
   });
