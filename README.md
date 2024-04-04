@@ -9,13 +9,13 @@
 ### Contents
 
 - [Overview](#overview)
+- [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [Structure](#structure)
 - [Deployment](#deployment)
-- [Screenshots](#screenshots)
-- [License](#license)
 - [Contact](#contact)
+- [License](#license)
 
 ---
 

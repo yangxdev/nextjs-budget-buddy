@@ -215,7 +215,7 @@ export default function AddIncomeWithFile() {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleDrag = function (e) {
+    const handleDrag = function (e: any) {
         e.preventDefault();
         e.stopPropagation();
         if (e.type === "dragover" || e.type === "dragover") {
@@ -224,7 +224,7 @@ export default function AddIncomeWithFile() {
             setDragActive(false);
         }
     };
-    const handleDrop = function (e) {
+    const handleDrop = function (e: any) {
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
@@ -232,7 +232,7 @@ export default function AddIncomeWithFile() {
             handleFile(e.dataTransfer.files);
         }
     };
-    const handleChange = function (e) {
+    const handleChange = function (e: any) {
         e.preventDefault();
         if (e.target.files && e.target.files[0]) {
             handleFile(e.target.files);

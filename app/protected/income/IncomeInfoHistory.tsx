@@ -32,7 +32,7 @@ export default async function IncomeInfoHistory() {
         <div className="flex flex-col select-none ">
           {incomeData.incomes.length === 0 && <div className="text-left text-sm py-4">{gc?.noIncomeDataAvailable}</div>}
           {incomeData.incomes.map((income, index) => (
-            <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 gap-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
+            <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
               <div>
                 <div className="icon rounded-full p-3 bg-[#08931f]">
                   {income.category === "Job" && <PiSuitcaseBold size={20} />}
