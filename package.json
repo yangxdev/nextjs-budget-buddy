@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^5.11.0",
     "@vercel/postgres": "^0.7.2",
     "chart.js": "^4.4.2",
