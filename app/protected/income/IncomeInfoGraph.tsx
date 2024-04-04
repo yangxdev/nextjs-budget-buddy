@@ -26,7 +26,7 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
   const datasetsDataYearly = categoriesYearly.map((category, _index) => {
     return convertedIncomeYearly
       .filter((_income: any, incomeIndex: number) => nonConvertedIncomeYearly.incomes[incomeIndex].category === category)
-      .reduce((acc, income) => acc + income, 0)
+      .reduce((acc: number, income: number) => acc + income, 0)
       .toFixed(2);
   });
 
