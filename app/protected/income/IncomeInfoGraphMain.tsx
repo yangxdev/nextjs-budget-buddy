@@ -40,20 +40,24 @@ export default function IncomeInfoGraphMain(props: any) {
         <div className="flex gap-2 transition duration-100 justify-evenly">
           <button
             className={` hover:bg-[#434343] rounded-md p-2
+            ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50 hover:bg-[#565656]" : ""}
             ${selectedOption === "doughnutWeekly" ? "bg-[#434343]" : "bg-[#565656]"}
           `}
             disabled={props.datasets[0] === undefined || props.datasets[0].length === 0}
             onClick={() => setSelectedOption("doughnutWeekly")}
+            title={props.datasets[1] === undefined || props.datasets[1].length === 0 ? "There's no available data for this date range" : ""}
           >
             {gc?.buttonThisWeek}
           </button>
           <button
             className={`
          hover:bg-[#434343] rounded-md p-2 
+          ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50 hover:bg-[#565656]" : ""}
           ${selectedOption === "doughnutMonthly" ? "bg-[#434343]" : "bg-[#565656]"}
           `}
             disabled={props.datasets[1] === undefined || props.datasets[1].length === 0}
             onClick={() => setSelectedOption("doughnutMonthly")}
+            title={props.datasets[1] === undefined || props.datasets[1].length === 0 ? "There's no available data for this date range" : ""}
           >
             {gc?.buttonThisMonth}
           </button>
