@@ -32,7 +32,7 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
 
   const convertedIncomeMonthly = await getConvertedIncomes(firstDayOfMonth, today);
   const nonConvertedIncomeMonthly = await getIncomeDataByDateRange(firstDayOfMonth.toISOString(), today.toISOString());
-  const categoriesMonthly = [...new Set(nonConvertedIncomeMonthly.incomes.map((income) => income.category))];
+  const categoriesMonthly = [...new Set(nonConvertedIncomeMonthly.incomes.map((income: { category: any }) => income.category))];
   const datasetsDataMonthly = categoriesMonthly.map((category, _index) => {
     return convertedIncomeMonthly
       .filter((_income: any, incomeIndex: number) => nonConvertedIncomeMonthly.incomes[incomeIndex].category === category)
@@ -42,7 +42,7 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
 
   const convertedIncomeWeekly = await getConvertedIncomes(firstDayOfWeek, today);
   const nonConvertedIncomeWeekly = await getIncomeDataByDateRange(firstDayOfWeek.toISOString(), today.toISOString());
-  const categoriesWeekly = [...new Set(nonConvertedIncomeWeekly.incomes.map((income) => income.category))];
+  const categoriesWeekly = [...new Set(nonConvertedIncomeWeekly.incomes.map((income: { category: any }) => income.category))];
   const datasetsDataWeekly = categoriesWeekly.map((category, _index) => {
     return convertedIncomeWeekly
       .filter((_income: any, incomeIndex: number) => nonConvertedIncomeWeekly.incomes[incomeIndex].category === category)
