@@ -2,7 +2,7 @@ import GlobalConfig from "@/app/app.config";
 import { useSession } from "next-auth/react";
 
 export default function Greetings() {
-  function handleUsername(greeting: string) {
+  function HandleUsername(greeting: string) {
     const { data: session } = useSession();
     const username = session?.user?.name;
     return greeting.replace("{username}", username || "user");
@@ -36,10 +36,10 @@ export default function Greetings() {
   if (random < 0.25) {
     const greetings = GlobalConfig.i8n.greetings[defaultLanguage]?.basic;
     const randomIndex = Math.floor(Math.random() * greetings!.length);
-    return handleUsername(greetings![randomIndex]);
+    return HandleUsername(greetings![randomIndex]);
   } else {
     const greetings = (GlobalConfig.i8n.greetings[defaultLanguage]?.timed as { [key: string]: string[] })?.[timeOfDay];
     const randomIndex = Math.floor(Math.random() * greetings!.length);
-    return handleUsername(greetings![randomIndex]);
+    return HandleUsername(greetings![randomIndex]);
   }
 }
