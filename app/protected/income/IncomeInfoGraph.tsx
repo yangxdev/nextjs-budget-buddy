@@ -21,7 +21,7 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
   // get all the non-converted incomes (from first day of year to today)
   const nonConvertedIncomeYearly = await getIncomeDataByDateRange(firstDayOfYear.toISOString(), today.toISOString());
   // get all the unique categories from the income data
-  const categoriesYearly = [...new Set(nonConvertedIncomeYearly.incomes.map((income) => income.category))];
+  const categoriesYearly = [...new Set(nonConvertedIncomeYearly.incomes.map((income: { category: any }) => income.category))];
   // create an array of the total amount of each category, rounded to 2 decimal places
   const datasetsDataYearly = categoriesYearly.map((category, _index) => {
     return convertedIncomeYearly
