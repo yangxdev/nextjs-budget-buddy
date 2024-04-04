@@ -35,8 +35,8 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
   const categoriesMonthly = [...new Set(nonConvertedIncomeMonthly.incomes.map((income) => income.category))];
   const datasetsDataMonthly = categoriesMonthly.map((category, _index) => {
     return convertedIncomeMonthly
-      .filter((_income, incomeIndex) => nonConvertedIncomeMonthly.incomes[incomeIndex].category === category)
-      .reduce((acc, income) => acc + income, 0)
+      .filter((_income: any, incomeIndex: number) => nonConvertedIncomeMonthly.incomes[incomeIndex].category === category)
+      .reduce((acc: number, income: number) => acc + income, 0)
       .toFixed(2);
   });
 
@@ -45,8 +45,8 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
   const categoriesWeekly = [...new Set(nonConvertedIncomeWeekly.incomes.map((income) => income.category))];
   const datasetsDataWeekly = categoriesWeekly.map((category, _index) => {
     return convertedIncomeWeekly
-      .filter((_income, incomeIndex) => nonConvertedIncomeWeekly.incomes[incomeIndex].category === category)
-      .reduce((acc, income) => acc + income, 0)
+      .filter((_income: any, incomeIndex: number) => nonConvertedIncomeWeekly.incomes[incomeIndex].category === category)
+      .reduce((acc: number, income: number) => acc + income, 0)
       .toFixed(2);
   });
 
