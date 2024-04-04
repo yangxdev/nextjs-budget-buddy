@@ -1,7 +1,6 @@
 import { getConvertedIncomes, getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
 import GlobalConfig from "@/app/app.config";
 import IncomeInfoGraphMain from "./IncomeInfoGraphMain";
-import IncomeInfoGraphSelector from "./IncomeInfoGraphSelector";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
 const gc = GlobalConfig.i8n.translations[defaultLanguage]?.incomeInfoGraph;
@@ -53,7 +52,7 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
 
   return (
     <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
-      <div className="pb-2 justify-between flex flex-row">
+      <div className="mb-2 justify-between flex flex-row">
         <div className="font-bold">{gc?.title}</div>
       </div>
       <IncomeInfoGraphMain datasets={[datasetsDataWeekly, datasetsDataMonthly, datasetsDataYearly]} categories={[categoriesWeekly, categoriesMonthly, categoriesYearly]} />

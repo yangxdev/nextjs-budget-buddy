@@ -24,8 +24,6 @@ module.exports = {
             "Expense reimbursement",
             "Other"
         ],
-
-        incomeDoughnutShowDefault: "Yearly",
     },
 
     i8n: {
@@ -145,10 +143,10 @@ module.exports = {
                             notes: "Notes",
 
                             bottomNote: [
-                                `Note: if the currency is not recognized, it will be imported as "USD".`,
+                                `Note: if the currency is not recognized, it will be imported as the default currency.`,
                                 `If the category is not recognized, it will be imported as "Other".`,
-                                "Invalid or unrecognized entries are ",
-                                "highlighted"
+                                // "Invalid or unrecognized entries are ",
+                                // "highlighted"
                             ],
 
                             selectedCount: "Selected",
@@ -231,10 +229,10 @@ module.exports = {
                             notes: "Note",
                     
                             bottomNote: [
-                                `Nota: se la valuta non è riconosciuta, verrà importata come "USD".`,
+                                `Nota: se la valuta non è riconosciuta, verrà importata come la valuta di default.`,
                                 `Se la categoria non è riconosciuta, verrà importata come "Altro".`,
-                                "Le voci non valide o non riconosciute sono ",
-                                "evidenziate"
+                                // "Le voci non valide o non riconosciute sono ",
+                                // "evidenziate"
                             ],
                     
                             selectedCount: "Selezionato",

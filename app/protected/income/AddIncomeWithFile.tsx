@@ -257,16 +257,9 @@ export default function AddIncomeWithFile() {
             <div className="font-bold pb-3">
                 {gc?.title}
             </div>
-            {/* <input type="file" accept=".csv" className="hidden" ref={fileInputRef} onChange={handleFileUpload} />
-            <button className="w-full" onClick={() => fileInputRef.current?.click()}>
-            <div className="transition duration-100 bg-[#434343] rounded-md hover:bg-[#565656] p-5">
-            <strong>Choose a file</strong>
-            <br></br> or drag it here
-            </div>
-            </button> */}
 
             <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
-                <input className="hidden" ref={inputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
+                <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
                 <label
                     id="label-file-upload"
                     htmlFor="input-file-upload"

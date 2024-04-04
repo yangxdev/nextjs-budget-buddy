@@ -1,4 +1,5 @@
 "use client";
+// TODO: Add new time filters: "All time", "Last 3 years"
 
 import { useEffect, useState } from "react";
 import IncomeDoughnut from "./charts/IncomeDoughnut";
@@ -35,39 +36,41 @@ export default function IncomeInfoGraphMain(props: any) {
 
   return (
     <>
-      <div className="flex gap-2 transition duration-100 justify-evenly">
-        <button
-          className={` hover:bg-[#434343] rounded-md p-2
+      {!checkEmpty() && (
+        <div className="flex gap-2 transition duration-100 justify-evenly">
+          <button
+            className={` hover:bg-[#434343] rounded-md p-2
             ${selectedOption === "doughnutWeekly" ? "bg-[#434343]" : "bg-[#565656]"}
           `}
-          disabled={props.datasets[0] === undefined || props.datasets[0].length === 0}
-          onClick={() => setSelectedOption("doughnutWeekly")}
-        >
-          {gc?.buttonThisWeek}
-        </button>
-        <button
-          className={`
+            disabled={props.datasets[0] === undefined || props.datasets[0].length === 0}
+            onClick={() => setSelectedOption("doughnutWeekly")}
+          >
+            {gc?.buttonThisWeek}
+          </button>
+          <button
+            className={`
          hover:bg-[#434343] rounded-md p-2 
           ${selectedOption === "doughnutMonthly" ? "bg-[#434343]" : "bg-[#565656]"}
           `}
-          disabled={props.datasets[1] === undefined || props.datasets[1].length === 0}
-          onClick={() => setSelectedOption("doughnutMonthly")}
-        >
-          {gc?.buttonThisMonth}
-        </button>
-        <button
-          className={`
+            disabled={props.datasets[1] === undefined || props.datasets[1].length === 0}
+            onClick={() => setSelectedOption("doughnutMonthly")}
+          >
+            {gc?.buttonThisMonth}
+          </button>
+          <button
+            className={`
            hover:bg-[#434343] rounded-md p-2
           ${selectedOption === "doughnutYearly" ? "bg-[#434343]" : "bg-[#565656]"}
           `}
-          disabled={props.datasets[2] === undefined || props.datasets[2].length === 0}
-          onClick={() => setSelectedOption("doughnutYearly")}
-        >
-          {gc?.buttonThisYear}
-        </button>
-      </div>
+            disabled={props.datasets[2] === undefined || props.datasets[2].length === 0}
+            onClick={() => setSelectedOption("doughnutYearly")}
+          >
+            {gc?.buttonThisYear}
+          </button>
+        </div>
+      )}
       {checkEmpty() && <div>{gc?.noIncomeDataAvailable}</div>}
-      <IncomeDoughnut id={selectedOption} categories={categories} datasetsData={datasetsData} />
+      {!checkEmpty() && <IncomeDoughnut id={selectedOption} categories={categories} datasetsData={datasetsData} />}
     </>
   );
 }
