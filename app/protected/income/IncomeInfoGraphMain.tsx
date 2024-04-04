@@ -1,5 +1,6 @@
 "use client";
 // TODO: Add new time filters: "All time", "Last 3 years"
+// BUG: The colors in the legend are not consistent with the colors in the chart
 
 import { useEffect, useState } from "react";
 import IncomeDoughnut from "./charts/IncomeDoughnut";

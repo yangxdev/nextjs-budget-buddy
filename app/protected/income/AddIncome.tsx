@@ -3,6 +3,7 @@ import { useRef } from "react";
 import toast from "react-hot-toast";
 import GlobalConfig from "@/app/app.config";
 import addRandomIncome from "@/app/api/database/add_random_income/addRandomIncome";
+import { useRouter } from "next/navigation";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
 const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addIncome?.addIncomeForm;
@@ -16,8 +17,10 @@ export default function AddIncome() {
     const currencyRef = useRef<HTMLSelectElement>(null);
     const categoryRef = useRef<HTMLSelectElement>(null);
     const notesRef = useRef<HTMLTextAreaElement>(null);
-
+    
+    const router = useRouter();
     const handleSubmit = () => {
+
         const source = sourceRef.current?.value;
         const date = dateRef.current?.value;
         const amount = amountRef.current?.value;
@@ -52,6 +55,7 @@ export default function AddIncome() {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
             }
+            router.refresh();
             return response;
         });
 

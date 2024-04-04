@@ -2,6 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, Key, useEffect, useState } from "react";
 import GlobalConfig from "@/app/app.config";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
 const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addIncome?.addIncomeWithFile?.addIncomeWithFileModal;
@@ -16,6 +17,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
   //     setSelectedEntries(count);
   //   }, [checkboxes]);
 
+  const router = useRouter();
   function handleImport() {
     const updatedIncomeData = props.incomeData.map(
       (
@@ -30,7 +32,11 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
         },
         index: number
       ) => {
-        if (props.incomeData[index].enabled) {
+        if (
+          props.incomeData[index].enabled
+          && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked
+          ) {
+          // const checkbox = (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked;
           const date = `${(document.getElementsByName("month")[index] as HTMLInputElement).value}-${(document.getElementsByName("day")[index] as HTMLInputElement).value}-${(document.getElementsByName("year")[index] as HTMLInputElement).value}`;
           const source = (document.getElementsByName("source")[index] as HTMLInputElement).value;
           const amount = (document.getElementsByName("amount")[index] as HTMLInputElement).value;
@@ -70,6 +76,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
 
       Promise.all(responsePromises)
         .then(() => {
+          router.refresh();
           toast.success("Income(s) added successfully");
         })
         .catch(() => {
@@ -206,6 +213,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                         <td className={`${widths.checkbox} items-center text-center`}>
                                           <input
                                             type="checkbox"
+                                            name="checkbox"
                                             checked={checkboxes[Number(index)]}
                                             onChange={() => {
                                               const newCheckboxes = [...checkboxes];
