@@ -14,8 +14,8 @@
 - [Installation](#installation)
 - [Structure](#structure)
 - [Deployment](#deployment)
-- [License](#license)
 - [Contact](#contact)
+- [License](#license)
 
 ---
 
