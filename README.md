@@ -29,7 +29,7 @@ The user-friendly interface and intuitive features of `nextjs-budget-buddy` make
 
 ### Screenshots
 
-![Website Desktop Income Section Screenshot](./public/nextjs-budget-buddy-preview1.PNG)
+![Website Desktop Income Section Screenshot](./public/nextjs-budget-buddy-preview2.jpg)
 
 <!-- <div class="flex">
     <img src="/public/readme/mobile_portfolio.png" alt="Website Mobile Portfolio Section Screenshot" width="400">&nbsp;&nbsp;
@@ -131,13 +131,13 @@ The project is organized into the following key directories, each serving a spec
 ---
 
 ### Deployment
-The deployment of this project is currently not ready due to authorization issues. Therefore, it is recommended to try running the project locally by following the steps mentioned in the Installation section. This will allow you to explore and test the project in your development environment.
-
-<!-- This project is currently deployed on Vercel for personal use. If you wish to deploy a similar project, follow these steps:
+This project is currently deployed on Vercel for personal use. If you wish to deploy a similar project, follow these steps:
 
 #### Prerequisites:
 
 - **Vercel Account**: Ensure you have an account on [Vercel](https://vercel.com). If not, sign up for a free account.
+
+- **Next-Auth**: This project uses Next-Auth, a library for handling authentication in Next.js applications, please refer to their [documentation](https://next-auth.js.org/deployment) for the deployment on Vercel
 
 #### Deployment Steps:
 
@@ -150,7 +150,12 @@ The deployment of this project is currently not ready due to authorization issue
    - Set the build command to match your project setup (e.g., npm run build).
 3. **Environment Variables:**
    - If your project requires environment variables, configure them in the Vercel dashboard under the project settings.
-4. **Deploy:**
+4. **PostgreSQL Setup:**
+   - My project uses a PostgreSQL database, but you can use whatever database suits you.
+      - Refer to Vercel's [documentation](https://vercel.com/docs/storage/vercel-postgres/quickstart) on how to get started with Vercel's Postgres
+   - Once your server is set up, you'll need to add the connection string as an environment variable in Vercel.
+   - The environment variable should be named `DATABASE_URL` and its value should be the connection string to your PostgreSQL server.
+5. **Deploy:**
    - Click on the "Deploy" button to initiate the deployment process.
 
 #### Accessing the Dashboard:
@@ -162,7 +167,7 @@ To access the dashboard:
 
 #### Updating the Deployment:
 
-For any updates or changes to the project, simply push the changes to the connected branch. Vercel will automatically trigger a new deployment. -->
+For any updates or changes to the project, simply push the changes to the connected branch. Vercel will automatically trigger a new deployment.
 
 ---
 

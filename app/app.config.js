@@ -1,4 +1,7 @@
 module.exports = {
+    debug: {
+        showAddRandomIncomeButton: false,
+    },
 
     currency: {
         baseCurrency: "EUR", // change the base currency here
@@ -268,8 +271,4 @@ module.exports = {
             }
         }
     },
-
-    debug: {
-        showAddRandomIncomeButton: false,
-    }
 }
