@@ -18,7 +18,7 @@ const gc = GlobalConfig.i8n.translations[defaultLanguage]?.incomeInfoHistory;
 export default async function IncomeInfoHistory() {
   const incomeData = await getIncomeDataByQuantity(15);
   const currencies = [...new Set(incomeData.incomes.map((income: { currency: any }) => income.currency))];
-  const conversionRates = await getConversionRatesByArray(currencies, "EUR");
+  const conversionRates = await getConversionRatesByArray(currencies as string[], "EUR");
 
   return (
     <div className="flex flex-col mb-2">
@@ -26,13 +26,11 @@ export default async function IncomeInfoHistory() {
         <div className="text-2xl select-none">{gc?.title}</div>
         <IncomeRefreshButton />
       </div>
-      <div
-        className="w-80 overflow-y-scroll mb-6 scrollbar-hide rounded-lg"
-      >
+      <div className="w-80 overflow-y-scroll mb-6 scrollbar-hide rounded-lg">
         <div className="flex flex-col select-none ">
           {incomeData.incomes.length === 0 && <div className="text-left text-sm py-4">{gc?.noIncomeDataAvailable}</div>}
-          {incomeData.incomes.map((income, index) => (
-            <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 gap-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
+          {incomeData.incomes.map((income: { source: any; category: any; currency: any; amount: any }, index: number) => (
+            <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
               <div>
                 <div className="icon rounded-full p-3 bg-[#08931f]">
                   {income.category === "Job" && <PiSuitcaseBold size={20} />}

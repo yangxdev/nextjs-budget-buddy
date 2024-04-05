@@ -21,32 +21,32 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
   // get all the non-converted incomes (from first day of year to today)
   const nonConvertedIncomeYearly = await getIncomeDataByDateRange(firstDayOfYear.toISOString(), today.toISOString());
   // get all the unique categories from the income data
-  const categoriesYearly = [...new Set(nonConvertedIncomeYearly.incomes.map((income) => income.category))];
+  const categoriesYearly = [...new Set(nonConvertedIncomeYearly.incomes.map((income: { category: any }) => income.category))];
   // create an array of the total amount of each category, rounded to 2 decimal places
   const datasetsDataYearly = categoriesYearly.map((category, _index) => {
     return convertedIncomeYearly
-      .filter((_income, incomeIndex) => nonConvertedIncomeYearly.incomes[incomeIndex].category === category)
-      .reduce((acc, income) => acc + income, 0)
+      .filter((_income: any, incomeIndex: number) => nonConvertedIncomeYearly.incomes[incomeIndex].category === category)
+      .reduce((acc: number, income: number) => acc + income, 0)
       .toFixed(2);
   });
 
   const convertedIncomeMonthly = await getConvertedIncomes(firstDayOfMonth, today);
   const nonConvertedIncomeMonthly = await getIncomeDataByDateRange(firstDayOfMonth.toISOString(), today.toISOString());
-  const categoriesMonthly = [...new Set(nonConvertedIncomeMonthly.incomes.map((income) => income.category))];
+  const categoriesMonthly = [...new Set(nonConvertedIncomeMonthly.incomes.map((income: { category: any }) => income.category))];
   const datasetsDataMonthly = categoriesMonthly.map((category, _index) => {
     return convertedIncomeMonthly
-      .filter((_income, incomeIndex) => nonConvertedIncomeMonthly.incomes[incomeIndex].category === category)
-      .reduce((acc, income) => acc + income, 0)
+      .filter((_income: any, incomeIndex: number) => nonConvertedIncomeMonthly.incomes[incomeIndex].category === category)
+      .reduce((acc: number, income: number) => acc + income, 0)
       .toFixed(2);
   });
 
   const convertedIncomeWeekly = await getConvertedIncomes(firstDayOfWeek, today);
   const nonConvertedIncomeWeekly = await getIncomeDataByDateRange(firstDayOfWeek.toISOString(), today.toISOString());
-  const categoriesWeekly = [...new Set(nonConvertedIncomeWeekly.incomes.map((income) => income.category))];
+  const categoriesWeekly = [...new Set(nonConvertedIncomeWeekly.incomes.map((income: { category: any }) => income.category))];
   const datasetsDataWeekly = categoriesWeekly.map((category, _index) => {
     return convertedIncomeWeekly
-      .filter((_income, incomeIndex) => nonConvertedIncomeWeekly.incomes[incomeIndex].category === category)
-      .reduce((acc, income) => acc + income, 0)
+      .filter((_income: any, incomeIndex: number) => nonConvertedIncomeWeekly.incomes[incomeIndex].category === category)
+      .reduce((acc: number, income: number) => acc + income, 0)
       .toFixed(2);
   });
 

@@ -4,17 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build && prisma db push",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^5.11.0",
     "@vercel/postgres": "^0.7.2",
     "chart.js": "^4.4.2",
     "classnames": "^2.5.1",
-    "cuid": "^3.0.0",
     "currency-codes-ts": "^3.0.0",
     "dompurify": "^3.0.11",
     "next": "14.1.3",
