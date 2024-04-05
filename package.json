@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && next build && prisma db push",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma db push"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
