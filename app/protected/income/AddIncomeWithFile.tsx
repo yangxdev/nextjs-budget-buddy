@@ -185,8 +185,10 @@ export default function AddIncomeWithFile() {
                     const date = data[1];
                     const source = data[2];
                     const amount = data[3].replace(/[^0-9.]/g, "");
-                    const currencyMatch = data[3].match(/^\D+/);
-                    const currencySymbol = currencyMatch ? currencyMatch[0] : "";
+
+                    const currencyMatch = data[3].match(/^\D+/); // matches the first non-digit character
+                    const currencyMatch2 = currencyMatch?.[0]?.replace(/[\\"']/g, '') || ""; // removes backslashes and double quotes
+                    const currencySymbol = currencyMatch2 ? currencyMatch2[0] : "";
                     const currency = currencySymbol === "$" ? "USD" : "EUR";
                     const category = data[4];
                     const notes = data[5];
