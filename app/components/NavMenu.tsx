@@ -47,12 +47,12 @@ function BottomButtons() {
 
   if (session) {
     return (
-      <div className="my-6">
+      <div className="my-6 w-full text-lg">
         <NavLink to="/p/settings" icon={IoSettingsOutline}>
           {gc?.settings}
         </NavLink>
-        <button className="transition duration-100 py-1 w-full hover:text-gray-300 hover:bg-[#424242] text-left px-padding" onClick={() => signOut()}>
-          <div className="flex flex-row items-center gap-2">
+        <button className="transition rounded-lg duration-100 mx-6 w-fit dark:bg-lightGrayCustom2 dark:opacity-60 dark:hover:opacity-100 text-left" onClick={() => signOut()}>
+          <div className="flex flex-row items-center gap-2 px-[1rem] py-2">
             <RiLogoutBoxLine />
             <div>{gc?.signOut}</div>
           </div>
@@ -92,9 +92,9 @@ export default function NavMenu() {
           <NavLink to="/p/savings" icon={MdOutlineSavings}>
             {gc?.savings}
           </NavLink>
-          <NavLink to="/p/crypto" icon={MdOutlineSavings}>
+          {/* <NavLink to="/p/crypto" icon={MdOutlineSavings}>
             {gc?.crypto}
-          </NavLink>
+          </NavLink> */}
         </ul>
       </div>
       <div>

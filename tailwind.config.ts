@@ -13,7 +13,7 @@ const config: Config = {
         darkGrayCustom: "#1a1b1d", // nav menu background
         darkGrayCustom2: "#1d2123", // main view background
         lightGrayCustom: "#2d2d2d", // hover 
-        lightGrayCustom2: "#616b71", // logout button  
+        lightGrayCustom2: "#353a3d", // logout button  
         textColor: "#fff", // main text 
         accentGreen: "#06c879",
         accentRed: "#ca3249",

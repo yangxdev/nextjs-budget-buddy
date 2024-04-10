@@ -30,7 +30,7 @@ export default async function RootLayout({
       <Head>
         <link href="https://fonts.cdnfonts.com/css/nexa" rel="stylesheet" />
       </Head>
-      <body className={`dark`}>
+      <body className="dark">
         <SessionProvider session={session}>
           <main className="flex flex-row">
             <NavMenu />
