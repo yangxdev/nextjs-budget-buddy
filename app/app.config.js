@@ -61,7 +61,7 @@ module.exports = {
                     ],
                     night: [
                         "Good night, {username}!",
-                        "Night, {username}!",
+                        "'night, {username}!",
                         "Sleep well, {username}!"
                     ]
                 }
