@@ -4,11 +4,10 @@ import { getConversionRatesByArray } from "@/app/api/currency/currencies";
 import { prisma } from "@/app/api/_base";
 
 export async function getIncomeDataByQuantity(quantity: number) {
-  //   const prisma = new PrismaClient();
   const incomes = await prisma.income.findMany({
     take: quantity,
     orderBy: {
-      id: "desc",
+      date: "desc",
     },
   });
 
@@ -18,7 +17,6 @@ export async function getIncomeDataByQuantity(quantity: number) {
 }
 
 export async function getIncomeDataByDateRange(startDate: string, endDate: string) {
-  //   const prisma = new PrismaClient();
   const incomes = await prisma.income.findMany({
     where: {
       date: {

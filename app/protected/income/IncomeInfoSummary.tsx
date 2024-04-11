@@ -25,6 +25,10 @@ export default async function IncomeInfoSummary() {
     return convertedIncomesThisWeek.length === 0 && convertedIncomesThisMonth.length === 0 && convertedIncomesThisYear.length === 0;
   }
 
+  const sumThisYear = convertedIncomesThisYear.reduce((acc: number, income: number) => acc + income, 0);
+  const sumThisMonth = convertedIncomesThisMonth.reduce((acc: number, income: number) => acc + income, 0);
+  const sumThisWeek = convertedIncomesThisWeek.reduce((acc: number, income: number) => acc + income, 0);
+
   return (
     <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
       <div className="text-sm font-bold select-none mb-2">{gc?.title}</div>
@@ -34,26 +38,26 @@ export default async function IncomeInfoSummary() {
         <div className="flex flex-col gap-2">
           <div className="flex flex-row justify-between items-center gap-4">
             <div className="font-normal">{gc?.thisYear}</div>
-            <div className="flex flex-row font-semibold">
+            <div className={`flex flex-row font-semibold ${sumThisYear > 0 ? "text-accentGreen" : ""}`}>
               {"+"}
               <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
-              <div>{convertedIncomesThisYear.reduce((acc: number, income: number) => acc + income, 0).toFixed(2)}</div>
+              <div>{sumThisYear.toFixed(2)}</div>
             </div>
           </div>
           <div className="flex flex-row justify-between items-center gap-4">
             <div className="font-normal">{gc?.thisMonth}</div>
-            <div className="flex flex-row font-semibold">
+            <div className={`flex flex-row font-semibold ${sumThisMonth > 0 ? "text-accentGreen" : ""}`}>
               {"+"}
               <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
-              <div>{convertedIncomesThisMonth.reduce((acc: number, income: number) => acc + income, 0).toFixed(2)}</div>
+              <div>{sumThisMonth.toFixed(2)}</div>
             </div>
           </div>
           <div className="flex flex-row justify-between items-center gap-4">
             <div className="font-normal">{gc?.thisWeek}</div>
-            <div className="flex flex-row font-semibold">
+            <div className={`flex flex-row font-semibold ${sumThisWeek > 0 ? "text-accentGreen" : ""}`}>
               {"+"}
               <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
-              <div>{convertedIncomesThisWeek.reduce((acc: number, income: number) => acc + income, 0).toFixed(2)}</div>
+              <div>{sumThisWeek.toFixed(2)}</div>
             </div>
           </div>
         </div>

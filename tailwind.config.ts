@@ -12,13 +12,14 @@ const config: Config = {
       colors: {
         darkGrayCustom: "#1a1b1d", // nav menu background
         darkGrayCustom2: "#1d2123", // main view background
-        lightGrayCustom: "#2d2d2d", // hover 
-        lightGrayCustom2: "#353a3d", // logout button  
+        lightGrayCustom: "#2d2d2d", // hover
+        lightGrayCustom2: "#353a3d", // logout button
         lightGrayCustom3: "#26292e", // cards background
         lightGrayCustom4: "#434343", // background color of input boxes inside cards for dark theme
-        textColor: "#fff", // main text 
+        textColor: "#fff", // main text
         accentGreen: "#06c879",
-        accentGreenDarker: "#0a9e5f",
+        accentGreenDarker: "#08B36C",
+        accentGreenDarkerer: "#0A9D5F",
         accentRed: "#ca3249",
         accentYellow: "#dab85f",
         accentBlue: "#144999",
