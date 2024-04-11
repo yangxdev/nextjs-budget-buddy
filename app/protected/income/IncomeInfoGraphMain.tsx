@@ -40,9 +40,9 @@ export default function IncomeInfoGraphMain(props: any) {
       {!checkEmpty() && (
         <div className="flex gap-2 transition duration-100 justify-evenly">
           <button
-            className={` hover:bg-[#434343] rounded-md p-2
-            ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50 hover:bg-[#565656]" : ""}
-            ${selectedOption === "doughnutWeekly" ? "bg-[#434343]" : "bg-[#565656]"}
+            className={`hover:bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2
+            ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50 hover:bg-lightGrayCustom" : ""}
+            ${selectedOption === "doughnutWeekly" ? "bg-darkGrayCustom2" : "bg-lightGrayCustom"}
           `}
             disabled={props.datasets[0] === undefined || props.datasets[0].length === 0}
             onClick={() => setSelectedOption("doughnutWeekly")}
@@ -52,9 +52,9 @@ export default function IncomeInfoGraphMain(props: any) {
           </button>
           <button
             className={`
-         hover:bg-[#434343] rounded-md p-2 
-          ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50 hover:bg-[#565656]" : ""}
-          ${selectedOption === "doughnutMonthly" ? "bg-[#434343]" : "bg-[#565656]"}
+            hover:bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 
+          ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50 hover:bg-lightGrayCustom" : ""}
+          ${selectedOption === "doughnutMonthly" ? "bg-darkGrayCustom2" : "bg-lightGrayCustom"}
           `}
             disabled={props.datasets[1] === undefined || props.datasets[1].length === 0}
             onClick={() => setSelectedOption("doughnutMonthly")}
@@ -64,8 +64,8 @@ export default function IncomeInfoGraphMain(props: any) {
           </button>
           <button
             className={`
-           hover:bg-[#434343] rounded-md p-2
-          ${selectedOption === "doughnutYearly" ? "bg-[#434343]" : "bg-[#565656]"}
+            hover:bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2
+          ${selectedOption === "doughnutYearly" ? "bg-darkGrayCustom2" : "bg-lightGrayCustom"}
           `}
             disabled={props.datasets[2] === undefined || props.datasets[2].length === 0}
             onClick={() => setSelectedOption("doughnutYearly")}

@@ -32,10 +32,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
         },
         index: number
       ) => {
-        if (
-          props.incomeData[index].enabled
-          && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked
-          ) {
+        if (props.incomeData[index].enabled && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked) {
           // const checkbox = (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked;
           const date = `${(document.getElementsByName("month")[index] as HTMLInputElement).value}-${(document.getElementsByName("day")[index] as HTMLInputElement).value}-${(document.getElementsByName("year")[index] as HTMLInputElement).value}`;
           const source = (document.getElementsByName("source")[index] as HTMLInputElement).value;
@@ -214,7 +211,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                           <input
                                             type="checkbox"
                                             name="checkbox"
-                                            checked={checkboxes[Number(index)]}
+                                            checked={checkboxes[Number(index)] || false}
                                             onChange={() => {
                                               const newCheckboxes = [...checkboxes];
                                               newCheckboxes[Number(index)] = !newCheckboxes[Number(index)];
@@ -329,7 +326,9 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                   <table className="w-full text-left text-orange-500 line-through">
                                     <tbody>
                                       <tr>
-                                        <td className={`${widths.checkbox} text-center`}>{/* <input type="checkbox" className="h-[1.1rem] w-[1.1rem]" /> */}</td>
+                                        <td className={`${widths.checkbox} text-center`}>
+                                          <input type="checkbox" name="checkbox" disabled className="h-[1.1rem] w-[1.1rem]" />
+                                        </td>
                                         <td className={`${widths.date}`}>
                                           <div className="hidden">
                                             <input name="month" />

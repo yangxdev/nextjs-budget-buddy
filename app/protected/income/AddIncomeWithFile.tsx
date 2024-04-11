@@ -185,8 +185,10 @@ export default function AddIncomeWithFile() {
                     const date = data[1];
                     const source = data[2];
                     const amount = data[3].replace(/[^0-9.]/g, "");
-                    const currencyMatch = data[3].match(/^\D+/);
-                    const currencySymbol = currencyMatch ? currencyMatch[0] : "";
+
+                    const currencyMatch = data[3].match(/^\D+/); // matches the first non-digit character
+                    const currencyMatch2 = currencyMatch?.[0]?.replace(/[\\"']/g, '') || ""; // removes backslashes and double quotes
+                    const currencySymbol = currencyMatch2 ? currencyMatch2[0] : "";
                     const currency = currencySymbol === "$" ? "USD" : "EUR";
                     const category = data[4];
                     const notes = data[5];
@@ -243,7 +245,7 @@ export default function AddIncomeWithFile() {
     };
 
     return (
-        <div className="p-5 bg-[#313131] max-w-80 rounded-2xl text-sm select-none h-min">
+        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 rounded-2xl text-sm select-none h-min">
             <AddIncomeWithFileModal
                 isOpen={openDialog}
                 incomeData={incomeData}
@@ -267,7 +269,7 @@ export default function AddIncomeWithFile() {
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={handleDrop}
                 >
-                    <div className="transition duration-100 bg-[#434343] rounded-md hover:bg-[#565656] p-5 cursor-pointer text-center">
+                    <div className="transition duration-100 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md hover:bg-lightGrayCustom3 p-5 cursor-pointer text-center">
                         <button className="upload-button font-bold" onClick={onButtonClick}>
                             {gc?.chooseFile}
                         </button>

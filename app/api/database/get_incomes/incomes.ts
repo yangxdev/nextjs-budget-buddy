@@ -36,8 +36,8 @@ export async function getIncomeDataByDateRange(startDate: string, endDate: strin
 export async function getConvertedIncomes(startDate: Date, endDate: Date) {
   const incomeData = await getIncomeDataByDateRange(startDate.toISOString(), endDate.toISOString());
   const currencies = [...new Set(incomeData.incomes.map((income: { currency: any }) => income.currency))];
-  const conversionRates = await getConversionRatesByArray(currencies, GlobalConfig.currency.baseCurrency);
-  return incomeData.incomes.map((income) => {
+  const conversionRates = await getConversionRatesByArray(currencies as string[], GlobalConfig.currency.baseCurrency);
+  return incomeData.incomes.map((income: { amount: number; currency: string }) => {
     if (income.currency === GlobalConfig.currency.baseCurrency) {
       return income.amount;
     } else {

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build && prisma db push",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
@@ -27,7 +27,8 @@
     "react-icons": "^5.0.1",
     "tailwind-datepicker-react": "^1.4.3",
     "tailwind-scrollbar": "^3.1.0",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",

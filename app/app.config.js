@@ -1,4 +1,7 @@
 module.exports = {
+    debug: {
+        showAddRandomIncomeButton: false,
+    },
 
     currency: {
         baseCurrency: "EUR", // change the base currency here
@@ -43,22 +46,19 @@ module.exports = {
                 timed: {
                     morning: [
                         "Good morning, {username}!",
-                        "Morning, {username}!",
                         "Rise and shine, {username}!"
                     ],
                     afternoon: [
                         "Good afternoon, {username}!",
-                        "Afternoon, {username}!",
                         "How's your day going, {username}?"
                     ],
                     evening: [
                         "Good evening, {username}!",
-                        "Evening, {username}!",
                         "How was your day, {username}?"
                     ],
                     night: [
                         "Good night, {username}!",
-                        "Night, {username}!",
+                        "'night, {username}!",
                         "Sleep well, {username}!"
                     ]
                 }
@@ -268,8 +268,4 @@ module.exports = {
             }
         }
     },
-
-    debug: {
-        showAddRandomIncomeButton: false,
-    }
 }
