@@ -32,7 +32,7 @@ export default async function IncomeInfoHistory() {
           {incomeData.incomes.map((income: { source: any; category: any; currency: any; amount: any }, index: number) => (
             <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
               <div>
-                <div className="icon rounded-full p-3 bg-[#08931f]">
+                <div className="icon rounded-full p-3 bg-accentGreenDarker">
                   {income.category === "Job" && <PiSuitcaseBold size={20} />}
                   {income.category === "Crypto" && <MdCurrencyBitcoin size={20} />}
                   {income.category === "Reward" && <PiMedal size={20} />}

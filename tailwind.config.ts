@@ -14,8 +14,11 @@ const config: Config = {
         darkGrayCustom2: "#1d2123", // main view background
         lightGrayCustom: "#2d2d2d", // hover 
         lightGrayCustom2: "#353a3d", // logout button  
+        lightGrayCustom3: "#26292e", // cards background
+        lightGrayCustom4: "#434343", // background color of input boxes inside cards for dark theme
         textColor: "#fff", // main text 
         accentGreen: "#06c879",
+        accentGreenDarker: "#0a9e5f",
         accentRed: "#ca3249",
         accentYellow: "#dab85f",
         accentBlue: "#144999",

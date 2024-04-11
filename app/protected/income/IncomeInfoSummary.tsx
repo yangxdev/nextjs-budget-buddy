@@ -26,7 +26,7 @@ export default async function IncomeInfoSummary() {
   }
 
   return (
-    <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
+    <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
       <div className="text-sm font-bold select-none mb-2">{gc?.title}</div>
       {checkIfIncomesAreEmpty() ? (
         <div className="text-left text-sm">{gc?.noIncomeDataAvailable}</div>

@@ -51,7 +51,7 @@ export default async function IncomeInfoGraph(): Promise<JSX.Element> {
   });
 
   return (
-    <div className="p-5 bg-[#313131] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
+    <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
       <div className="mb-2 justify-between flex flex-row">
         <div className="font-bold">{gc?.title}</div>
       </div>
