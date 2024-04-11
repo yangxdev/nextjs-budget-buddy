@@ -269,7 +269,8 @@ export default function AddIncomeWithFile() {
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={handleDrop}
                 >
-                    <div className="transition duration-100 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md hover:bg-lightGrayCustom3 p-5 cursor-pointer text-center">
+                    <div className="transition ease-in-out duration-200 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md 
+                        hover:bg-accentGreenDarkerer p-5 cursor-pointer text-center">
                         <button className="upload-button font-bold" onClick={onButtonClick}>
                             {gc?.chooseFile}
                         </button>
@@ -286,3 +287,5 @@ export default function AddIncomeWithFile() {
 
 // Credits:
 // https://www.codemzy.com/blog/react-drag-drop-file-upload
+
+// TODO: recolor the import csv modal
