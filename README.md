@@ -29,7 +29,7 @@ The user-friendly interface and intuitive features of `nextjs-budget-buddy` make
 
 ### Screenshots
 
-![Website Desktop Income Section Screenshot](./public/nextjs-budget-buddy-preview2.jpg)
+![Website Desktop Income Section Screenshot](./public/nextjs-budget-buddy-preview3.jpg)
 
 <!-- <div class="flex">
     <img src="/public/readme/mobile_portfolio.png" alt="Website Mobile Portfolio Section Screenshot" width="400">&nbsp;&nbsp;

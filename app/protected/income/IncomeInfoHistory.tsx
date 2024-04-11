@@ -89,3 +89,6 @@ export default async function IncomeInfoHistory() {
     </div>
   );
 }
+
+// TODO: Add a loading spinner
+// TODO: Load more when scrolling to the bottom
