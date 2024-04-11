@@ -54,6 +54,7 @@ export default function IncomeDoughnut(incomeData: { id: string; categories: any
         options={{
           radius: "80%",
           devicePixelRatio: 2,
+          borderColor: "rgba(255, 255, 255, 1)",
         }}
       />
       <div>

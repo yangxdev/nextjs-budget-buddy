@@ -18,7 +18,7 @@ export default async function Income() {
 
     return (
         <>
-            <div className="font-bold text-2xl pb-6 select-none">Income</div>
+            <div className="font-bold text-3xl pb-6 select-none">Income</div>
             <div className="flex flex-row gap-8 justify-between h-full">
                 <div className="flex flex-row gap-8">
                     <div className="flex flex-col gap-8 min-w-72">

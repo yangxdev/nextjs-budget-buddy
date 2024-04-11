@@ -245,7 +245,7 @@ export default function AddIncomeWithFile() {
     };
 
     return (
-        <div className="p-5 bg-[#313131] max-w-80 rounded-2xl text-sm select-none h-min">
+        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 rounded-2xl text-sm select-none h-min">
             <AddIncomeWithFileModal
                 isOpen={openDialog}
                 incomeData={incomeData}
@@ -269,7 +269,7 @@ export default function AddIncomeWithFile() {
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={handleDrop}
                 >
-                    <div className="transition duration-100 bg-[#434343] rounded-md hover:bg-[#565656] p-5 cursor-pointer text-center">
+                    <div className="transition duration-100 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md hover:bg-lightGrayCustom3 p-5 cursor-pointer text-center">
                         <button className="upload-button font-bold" onClick={onButtonClick}>
                             {gc?.chooseFile}
                         </button>
