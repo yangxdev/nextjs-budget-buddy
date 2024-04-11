@@ -1,6 +1,6 @@
 module.exports = {
     debug: {
-        showAddRandomIncomeButton: true,
+        showAddRandomIncomeButton: false,
     },
 
     currency: {
