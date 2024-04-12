@@ -1,6 +1,6 @@
 module.exports = {
     debug: {
-        showAddRandomIncomeButton: true,
+        showAddRandomEntriesButton: false,
     },
 
     currency: {
@@ -26,6 +26,49 @@ module.exports = {
             "Financial assistance",
             "Expense reimbursement",
             "Other"
+        ],
+    },
+
+    payment: {
+        paymentCategories: [
+            "Groceries",
+            "Car maintenance",
+            "Car payment",
+            "Car insurance",
+            "Clothing",
+            "Condo fees",
+            "Debt",
+            "Electronics",
+            "Entertainment",
+            "Gas",
+            "Gifts",
+            "Going out",
+            "Gym",
+            "Home maintenance",
+            "Insurance",
+            "Medical",
+            "Mortgage",
+            "Other",
+            "Public transportation",
+            "Rent",
+            "Restaurant",
+            "Phone bills",
+            "Travel",
+            "Utilities",
+            "Work",
+            "Lunch/Dinner outside",
+            "Personal care",
+            "Sport",
+            "Café",
+            "Snacks",
+            "Car rent",
+            "Fees",
+            "Savings",
+            "Amazon",
+            "Pension",
+            "Cash",
+            "Home Bills",
+            "ETF",
         ],
     },
 
@@ -107,6 +150,7 @@ module.exports = {
                     settings: "Settings",
                     signOut: "Sign out",
                 },
+
                 addIncome: {
                     title: "Income",
 
@@ -179,7 +223,56 @@ module.exports = {
                     title: "History",
 
                     noIncomeDataAvailable: "No income data available",
-                }
+                },
+
+                addPayment: {
+                    title: "Payment",
+
+                    addPaymentForm: {
+                        title: "Add payment",
+                        date: "Date",
+                        source: "Source",
+                        amount: "Amount",
+                        currency: "Currency",
+                        category: "Category",
+                        notes: "Notes (optional)",
+
+                        reset: "Reset",
+                        add: "Add",
+                        addRandom: "Add 10 random payments"
+                    },
+
+                    addPaymentWithFile: {
+                        title: "Import CSV",
+                        chooseFile: "Choose a file",
+                        dragHere: "or drag it here",
+
+                        addPaymentWithFileModal: {
+                            title: "Import payment data",
+                            question: "Do you want to import the following payment data?",
+
+                            selectAll: "Select all",
+                            unselectAll: "Unselect all",
+                            date: "Date",
+                            source: "Source",
+                            amount: "Amount",
+                            currency: "Currency",
+                            category: "Category",
+                            notes: "Notes",
+
+                            bottomNote: [
+                                `Note: if the currency is not recognized, it will be imported as the default currency.`,
+                                `If the category is not recognized, it will be imported as "Other".`,
+                                // "Invalid or unrecognized entries are ",
+                                // "highlighted"
+                            ],
+
+                            selectedCount: "Selected",
+                            cancelButton: "Cancel",
+                            importButton: "Import"
+                        }
+                    }
+                },
             },
             it: {
                 navMenu: {
@@ -264,7 +357,56 @@ module.exports = {
                     title: "Cronologia",
                 
                     noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
-                }
+                },
+
+                addPayment: {
+                    title: "Pagamento",
+
+                    addPaymentForm: {
+                        title: "Aggiungi pagamento",
+                        date: "Data",
+                        source: "Fonte",
+                        amount: "Importo",
+                        currency: "Valuta",
+                        category: "Categoria",
+                        notes: "Note (opzionale)",
+
+                        reset: "Annulla",
+                        add: "Aggiungi",
+                        addRandom: "Aggiungi 10 pagamenti casuali"
+                    },
+
+                    addPaymentWithFile: {
+                        title: "Carica CSV",
+                        chooseFile: "Scegli un file",
+                        dragHere: "o trascinalo qui",
+                    
+                        addPaymentWithFileModal: {
+                            title: "Caricamento CSV",
+                            question: "Vuoi importare i seguenti dati?",
+                    
+                            selectAll: "Seleziona",
+                            unselectAll: "Deseleziona",
+                            date: "Data",
+                            source: "Fonte",
+                            amount: "Importo",
+                            currency: "Valuta",
+                            category: "Categoria",
+                            notes: "Note",
+                    
+                            bottomNote: [
+                                `Nota: se la valuta non è riconosciuta, verrà importata come la valuta di default.`,
+                                `Se la categoria non è riconosciuta, verrà importata come "Altro".`,
+                                // "Le voci non valide o non riconosciute sono ",
+                                // "evidenziate"
+                            ],
+                    
+                            selectedCount: "Selezionato",
+                            cancelButton: "Annulla",
+                            importButton: "Importa"
+                        }
+                    }
+                },
             }
         }
     },
