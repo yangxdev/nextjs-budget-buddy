@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { HiOutlineRefresh } from "react-icons/hi";
 
-export default function IncomeRefreshButton() {
+export default function HistoryRefreshButton() {
     const router = useRouter();
 
     const handleRefreshClick = () => {

@@ -4,10 +4,10 @@ import DatePicker from "tailwind-datepicker-react";
 import { IOptions } from "tailwind-datepicker-react/types/Options";
 import { useState } from "react";
 import AddPayment from "./AddPayment";
-// import PaymentInfoHistory from "./PaymentInfoHistory";
+import PaymentInfoHistory from "./PaymentInfoHistory";
 import prisma from "@/lib/prisma";
-// import PaymentInfoSummary from "./PaymentInfoSummary";
-// import PaymentInfoGraph from "./PaymentInfoGraph";
+import PaymentInfoSummary from "./PaymentInfoSummary";
+import PaymentInfoGraph from "./PaymentInfoGraph";
 import AddPaymentWithFile from "./AddPaymentWithFile";
 
 export default async function Payment() {
@@ -17,7 +17,7 @@ export default async function Payment() {
     }
 
     return (
-        <div>
+        <>
             <div className="font-bold text-3xl pb-6 select-none">Payment</div>
             <div className="flex flex-row gap-8 justify-between h-full">
                 <div className="flex flex-row gap-8">
@@ -26,12 +26,12 @@ export default async function Payment() {
                         <AddPaymentWithFile />
                     </div>
                     <div className="flex flex-col gap-8">
-                        {/* <PaymentInfoSummary />
-                        <PaymentInfoGraph /> */}
+                        <PaymentInfoSummary />
+                        <PaymentInfoGraph />
                     </div>
                 </div>
-                {/* <PaymentInfoHistory /> */}
+                <PaymentInfoHistory />
             </div>
-        </div>
+        </>
     );
 }

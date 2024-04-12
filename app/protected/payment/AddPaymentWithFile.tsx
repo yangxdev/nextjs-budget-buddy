@@ -196,7 +196,7 @@ export default function AddPaymentWithFile() {
             const enabled = true;
             paymentData.push({ enabled, date, source, amount, currency, category, notes });
           } else {
-            console.log("Invalid input: " + line);
+            // console.log("Invalid input: " + line);
             const enabled = false;
             paymentData.push({ enabled, date, source, amount, currency, category, notes });
           }
@@ -263,7 +263,7 @@ export default function AddPaymentWithFile() {
         <label id="label-file-upload" htmlFor="input-file-upload" className={` w-full ${dragActive ? "drag-active" : ""}`} onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
           <div
             className="transition ease-in-out duration-200 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md 
-                        hover:bg-accentGreenDarkerer p-5 cursor-pointer text-center"
+                        hover:bg-accentRedDarker p-5 cursor-pointer text-center"
           >
             <button className="upload-button font-bold" onClick={onButtonClick}>
               {gc?.chooseFile}

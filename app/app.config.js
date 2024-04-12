@@ -273,6 +273,31 @@ module.exports = {
                         }
                     }
                 },
+                paymentInfoSummary: {
+                    title: "Summary",
+
+                    noPaymentDataAvailable: "No payment data available",
+
+                    thisYear: "This year",
+                    thisMonth: "This month",
+                    thisWeek: "This week"
+                },
+                paymentInfoGraph: {
+                    title: "Categories",
+
+                    noPaymentDataAvailable: "No payment data available",
+
+                    buttonThisWeek: "This week",
+                    buttonThisMonth: "This month",
+                    buttonThisYear: "This year",
+
+                    buttonDefault: "doughnutYearly"
+                },
+                paymentInfoHistory: {
+                    title: "History",
+
+                    noPaymentDataAvailable: "No payment data available",
+                }
             },
             it: {
                 navMenu: {
@@ -407,6 +432,29 @@ module.exports = {
                         }
                     }
                 },
+                paymentInfoSummary: {
+                    title: "Sommario",
+                
+                    noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
+                
+                    thisYear: "Quest'anno",
+                    thisMonth: "Questo mese",
+                    thisWeek: "Questa settimana"
+                },
+                paymentInfoGraph: {
+                    title: "Categorie",
+                
+                    noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
+
+                    buttonThisWeek: "Questa sett.",
+                    buttonThisMonth: "Questo mese",
+                    buttonThisYear: "Quest'anno",
+                },
+                paymentInfoHistory: {
+                    title: "Cronologia",
+                
+                    noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
+                }
             }
         }
     },

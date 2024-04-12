@@ -156,8 +156,8 @@ export default function AddPayment() {
         </button>
         <button
           onClick={handleSubmit}
-          className="transition duration-100 bg-accentGreen rounded-md p-2
-          hover:bg-[#2e8b57]
+          className="transition duration-100 bg-accentRed rounded-md p-2
+          hover:bg-[#b02e2e]
         "
         >
           {gc?.add}

@@ -2,7 +2,9 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/client"
+
+  // IMPORTANT: uncomment the following line when deploying to production
+  // output   = "../src/generated/client"
 }
 
 datasource db {

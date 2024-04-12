@@ -12,10 +12,10 @@ export async function POST(request: Request) {
         const result = await sql`
             INSERT INTO payments (id, date, source, amount, currency, category, notes, created_at, updated_at, user_id) 
             VALUES (${id}, ${date}, ${source}, ${amount}, ${currency}, ${category}, ${notes}, ${createdAt}, ${updatedAt}, ${userId})`;
-        console.log(result);
+        // console.log(result);
         return NextResponse.json({ result }, { status: 200 });
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return NextResponse.json({ error }, { status: 500 });
     }
 }

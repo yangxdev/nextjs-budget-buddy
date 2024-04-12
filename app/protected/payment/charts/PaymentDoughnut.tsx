@@ -4,13 +4,13 @@ import { Chart, ArcElement, Tooltip } from "chart.js";
 import GlobalConfig from "@/app/app.config";
 Chart.register(ArcElement, Tooltip);
 
-export default function IncomeDoughnut(incomeData: { id: string; categories: any; datasetsData: any }) {
+export default function PaymentDoughnut(paymentData: { id: string; categories: any; datasetsData: any }) {
   const data = {
-    labels: incomeData.categories,
+    labels: paymentData.categories,
     datasets: [
       {
         label: GlobalConfig.currency.baseCurrency,
-        data: incomeData.datasetsData,
+        data: paymentData.datasetsData,
         backgroundColor: [
           "rgba(255, 99, 132, 0.5)", // hex: #FF6384 - brink pink
           "rgba(54, 162, 235, 0.5)", // hex: #36A2EB - rockman blue
@@ -45,10 +45,10 @@ export default function IncomeDoughnut(incomeData: { id: string; categories: any
     "#FF9F84", // orchidOrange
   ];
 
-  const totalIncome = incomeData.datasetsData.reduce((acc: number, income: string) => acc + Number(income), 0);
+  const totalPayment = paymentData.datasetsData.reduce((acc: number, payment: string) => acc + Number(payment), 0);
 
   return (
-    <div id={incomeData.id}>
+    <div id={paymentData.id}>
       <Doughnut
         data={data}
         options={{
@@ -58,14 +58,14 @@ export default function IncomeDoughnut(incomeData: { id: string; categories: any
         }}
       />
       <div className="overflow-y-scroll max-h-[10rem] scrollbar-thin scrollbar-thumb-accentGray scrollbar-track-transparent pr-1">
-        {/* <div className="font-semibold pb-2">{incomeData.id}</div> */}
-        {incomeData.categories
+        {/* <div className="font-semibold pb-2">{paymentData.id}</div> */}
+        {paymentData.categories
           .map((category: any, index: number) => {
-            const categoryIncome = incomeData.datasetsData[index];
-            const categoryPercentage = (categoryIncome / totalIncome) * 100;
+            const categoryPayment = paymentData.datasetsData[index];
+            const categoryPercentage = (categoryPayment / totalPayment) * 100;
             const color = colors[index];
 
-            return { category, categoryIncome, categoryPercentage, color };
+            return { category, categoryPayment, categoryPercentage, color };
           })
           .sort((a: { categoryPercentage: number }, b: { categoryPercentage: number }) => b.categoryPercentage - a.categoryPercentage)
           .map(

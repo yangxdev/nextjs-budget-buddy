@@ -26,6 +26,7 @@ const config: Config = {
         accentBlue: "#144999",
         accentOrange: "#e67e22",
         accentOrangeDarkerer: "#d16f1f",
+        accentGray: "#b3b3b3",
       },
       spacing: {
         sidebar: SIDEBAR_MIN_WIDTH,
