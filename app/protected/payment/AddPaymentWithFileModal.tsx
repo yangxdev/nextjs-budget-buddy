@@ -4,8 +4,8 @@ import GlobalConfig from "@/app/app.config";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentWithFile?.addPaymentWithFileModal;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentWithFile?.addPaymentWithFileModal;
 
 export default function AddPaymentWithFileModal(props: { paymentData: any; isOpen?: any; handleClose?: any }) {
   const { isOpen, handleClose } = props;
@@ -74,10 +74,20 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
       Promise.all(responsePromises)
         .then(() => {
           router.refresh();
-          toast.success("Payment(s) added successfully");
+          toast.success("Payment(s) added successfully", {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
         })
         .catch(() => {
-          toast.error("Error when adding payment(s)");
+          toast.error("Error when adding payment(s)", {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
         });
     } catch {
       toast.error("An error occurred while importing the data", {

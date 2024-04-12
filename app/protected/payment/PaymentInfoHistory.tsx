@@ -12,9 +12,10 @@ import { getConversionRatesByArray, getCurrenciesFromArray } from "@/app/api/cur
 import { FaExchangeAlt, FaHandsHelping } from "react-icons/fa";
 import { RiRefund2Line } from "react-icons/ri";
 import { parse, format } from "date-fns";
+import { enUS, it } from "date-fns/locale";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoHistory;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoHistory;
 
 export default async function PaymentInfoHistory() {
   const paymentData = await getPaymentDataByQuantity(15);
@@ -30,6 +31,9 @@ export default async function PaymentInfoHistory() {
     return groups;
   }, {});
 
+  let locale = defaultLanguage === "it" ? it : enUS;
+  let dateFormat = defaultLanguage === "it" ? "do MMMM yyyy" : "MMMM do yyyy";
+
   return (
     <div className="flex flex-col mb-2">
       <div className="flex flex-row justify-between items-center pb-2">
@@ -42,7 +46,7 @@ export default async function PaymentInfoHistory() {
 
           {Object.entries(groupedPaymentsByDay).map(([date, payments]) => (
             <div key={date}>
-              <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">{format(parse(date, "dd/MM/yyyy", new Date()), "MMMM do yyyy")}</div>
+              <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">{format(parse(date, "dd/MM/yyyy", new Date()), dateFormat, { locale })}</div>
               {payments.map((payment: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
                 <div key={index} className={`rounded-2xl hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== paymentData.payments.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
                   <div className="icon rounded-full p-3 bg-accentRed">

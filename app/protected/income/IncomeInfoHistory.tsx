@@ -13,8 +13,8 @@ import { FaExchangeAlt, FaHandsHelping } from "react-icons/fa";
 import { RiRefund2Line } from "react-icons/ri";
 import { parse, format } from "date-fns";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.income?.incomeInfoHistory;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.income?.incomeInfoHistory;
 
 export default async function IncomeInfoHistory() {
   const incomeData = await getIncomeDataByQuantity(15);

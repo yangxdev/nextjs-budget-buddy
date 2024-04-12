@@ -14,7 +14,7 @@ export default function Greetings() {
     return greeting;
   }
 
-  const gc = GlobalConfig.i8n;
+  const gc = GlobalConfig.i18n;
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
 
@@ -34,11 +34,11 @@ export default function Greetings() {
   // each greeting has 4 variations, pick a random one
   const random = Math.random();
   if (random < 0.25) {
-    const greetings = GlobalConfig.i8n.greetings[defaultLanguage]?.basic;
+    const greetings = GlobalConfig.i18n.greetings[defaultLanguage]?.basic;
     const randomIndex = Math.floor(Math.random() * greetings!.length);
     return HandleUsername(greetings![randomIndex]);
   } else {
-    const greetings = (GlobalConfig.i8n.greetings[defaultLanguage]?.timed as { [key: string]: string[] })?.[timeOfDay];
+    const greetings = (GlobalConfig.i18n.greetings[defaultLanguage]?.timed as { [key: string]: string[] })?.[timeOfDay];
     const randomIndex = Math.floor(Math.random() * greetings!.length);
     return HandleUsername(greetings![randomIndex]);
   }

@@ -6,8 +6,8 @@ import addRandomPayments from "@/app/api/database/add_random_payments/addRandomP
 import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentForm;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentForm;
 
 export default function AddPayment() {
   const currentDate = new Date().toISOString().substring(0, 10);

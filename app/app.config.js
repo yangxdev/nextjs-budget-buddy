@@ -1,6 +1,6 @@
 module.exports = {
   debug: {
-    showAddRandomEntriesButton: true,
+    showAddRandomEntriesButton: false,
   },
 
   currency: {
@@ -101,9 +101,10 @@ module.exports = {
     ],
   },
 
-  i8n: {
-    defaultLanguage: "en", // change the default language here
-    languages: ["en", "fr", "de", "es", "it", "pt", "ru", "zh", "ja", "ko"],
+  i18n: {
+    defaultLanguage: "it", // <<< change the default language here, remember to refresh the page after changing it
+
+    languages: ["en", "it"],
     greetings: {
       en: {
         basic: ["Hi, {username}!", "Hello, {username}!", "Greetings, {username}!", "Welcome back, {username}!", "Hey, {username}!"],
@@ -139,9 +140,8 @@ module.exports = {
         },
 
         income: {
+          title: "Income",
           addIncome: {
-            title: "Income",
-
             addIncomeForm: {
               title: "Add income",
               date: "Date",
@@ -215,9 +215,8 @@ module.exports = {
         },
 
         payment: {
+          title: "Payments",
           addPayment: {
-            title: "Payment",
-
             addPaymentForm: {
               title: "Add payment",
               date: "Date",
@@ -300,7 +299,7 @@ module.exports = {
 
             at: "@",
             times: "times",
-            total: "total",
+            spent: "spent",
             payments: "payments",
 
             noPaymentDataAvailable: "No payment data available",
@@ -321,6 +320,7 @@ module.exports = {
         },
 
         income: {
+          title: "Entrate",
           addIncome: {
             title: "Entrate",
 
@@ -347,8 +347,8 @@ module.exports = {
                 title: "Caricamento CSV",
                 question: "Vuoi importare i seguenti dati?",
 
-                selectAll: "Seleziona",
-                unselectAll: "Deseleziona",
+                selectAll: "Seleziona tutto",
+                unselectAll: "Deseleziona tutto",
                 date: "Data",
                 source: "Fonte",
                 amount: "Importo",
@@ -363,7 +363,7 @@ module.exports = {
                   // "evidenziate"
                 ],
 
-                selectedCount: "Selezionato",
+                selectedCount: "Selezionati",
                 cancelButton: "Annulla",
                 importButton: "Importa",
               },
@@ -395,6 +395,7 @@ module.exports = {
         },
 
         payment: {
+          title: "Pagamenti",
           addPayment: {
             title: "Pagamento",
 
@@ -421,8 +422,8 @@ module.exports = {
                 title: "Caricamento CSV",
                 question: "Vuoi importare i seguenti dati?",
 
-                selectAll: "Seleziona",
-                unselectAll: "Deseleziona",
+                selectAll: "Seleziona tutto",
+                unselectAll: "Deseleziona tutto",
                 date: "Data",
                 source: "Negozio / Venditore",
                 amount: "Importo",
@@ -437,7 +438,7 @@ module.exports = {
                   // "evidenziate"
                 ],
 
-                selectedCount: "Selezionato",
+                selectedCount: "Selezionati",
                 cancelButton: "Annulla",
                 importButton: "Importa",
               },
@@ -478,7 +479,7 @@ module.exports = {
 
             at: "@",
             times: "volte",
-            total: "totale",
+            spent: "spesi",
             payments: "pagamenti",
 
             noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",

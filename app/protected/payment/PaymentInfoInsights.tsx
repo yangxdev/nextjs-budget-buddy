@@ -14,8 +14,8 @@ import {
 } from "@/app/api/database/get_payments/payments";
 import GlobalConfig from "@/app/app.config";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoInsights;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoInsights;
 
 export default async function PaymentInfoInsights() {
   const today = new Date();
@@ -68,7 +68,7 @@ export default async function PaymentInfoInsights() {
                         {GlobalConfig.currency.baseCurrency}
                       </div>
                       <div>
-                        {await getMostExpensiveCategorySum(paymentData)} {GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoInsights?.total}
+                        {await getMostExpensiveCategorySum(paymentData)} {" " + gc?.spent}
                         {")"}
                       </div>
                     </>

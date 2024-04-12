@@ -1,8 +1,8 @@
 import { getConvertedPaymentsByDateRange } from "@/app/api/database/get_payments/payments";
 import GlobalConfig from "@/app/app.config";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoSummary;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoSummary;
 
 export default async function PaymentInfoSummary() {
   const today = new Date();

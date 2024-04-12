@@ -2,8 +2,8 @@ import { getConvertedPaymentsByDateRange, getPaymentDataByDateRange } from "@/ap
 import GlobalConfig from "@/app/app.config";
 import PaymentInfoGraphMain from "./PaymentInfoGraphMain";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoGraph;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoGraph;
 
 /**
  * Payment information graph component

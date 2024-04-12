@@ -8,8 +8,8 @@ import Greetings from "./Greetings";
 import BudgetBuddyLogo from "@/public/nextjs-budget-buddy-logo-white.jsx";
 // https://www.logoai.com/logo/3487038
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.navMenu;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.navMenu;
 
 function AuthButton() {
   const { data: session } = useSession();

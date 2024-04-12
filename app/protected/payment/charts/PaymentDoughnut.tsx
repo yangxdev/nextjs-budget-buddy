@@ -24,6 +24,7 @@ export default function PaymentDoughnut(paymentData: { id: string; categories: a
           "rgba(75, 192, 255, 0.5)", // hex: #4BC0FF - glitter lake blue
           "rgba(153, 102, 64, 0.5)", // hex: #996640 - frappé au chocolat brown
           "rgba(255, 159, 132, 0.5)", // hex: #FF9F84 - orchid orange
+          // TODO: Adaptive color scheme based on the number of categories
         ],
         hoverOffset: 25,
       },

@@ -2,8 +2,8 @@ import { getConvertedIncomes, getIncomeDataByDateRange } from "@/app/api/databas
 import { getConversionRatesByArray } from "@/app/api/currency/currencies";
 import GlobalConfig from "@/app/app.config";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.income?.incomeInfoSummary;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.income?.incomeInfoSummary;
 
 export default async function IncomeInfoSummary() {
   const today = new Date();

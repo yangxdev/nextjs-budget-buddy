@@ -4,8 +4,8 @@ import AddIncomeWithFileModal from "./AddIncomeWithFileModal";
 import DOMPurify from "dompurify";
 import GlobalConfig from "@/app/app.config";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.income?.addIncome?.addIncomeWithFile;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.income?.addIncome?.addIncomeWithFile;
 
 export default function AddIncomeWithFile() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -288,4 +288,4 @@ export default function AddIncomeWithFile() {
 // Credits:
 // https://www.codemzy.com/blog/react-drag-drop-file-upload
 
-// TODO: recolor the import csv modal
+// DONE: recolor the import csv modal

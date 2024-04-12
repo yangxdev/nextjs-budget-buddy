@@ -15,7 +15,7 @@ export default async function Settings() {
                 <div className="font-bold pb-2">Currency</div>
                 <div className="pb-2 flex flex-row justify-between">
                     <div className="">Base currency: </div>
-                    <select className="bg-[#434343] rounded-md p-1 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none dark:[color-scheme:dark]">
+                    <select className="bg-[#434343] rounded-md p-1 cursor-pointer hover:bg-[#565656] transition duration-100 dark:[color-scheme:dark] focus:outline-none">
                         {GlobalConfig.currency.currencies.map((currency, index) => (
                             <option key={index} value={currency}>
                                 {currency}

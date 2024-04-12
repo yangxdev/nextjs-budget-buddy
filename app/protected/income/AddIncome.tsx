@@ -6,8 +6,8 @@ import addRandomIncome from "@/app/api/database/add_random_income/addRandomIncom
 import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.income?.addIncome?.addIncomeForm;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.income?.addIncome?.addIncomeForm;
 
 export default function AddIncome() {
   const currentDate = new Date().toISOString().substring(0, 10);

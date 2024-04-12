@@ -4,8 +4,8 @@ import GlobalConfig from "@/app/app.config";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.income?.addIncome?.addIncomeWithFile?.addIncomeWithFileModal;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.income?.addIncome?.addIncomeWithFile?.addIncomeWithFileModal;
 
 export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?: any; handleClose?: any }) {
   const { isOpen, handleClose } = props;
@@ -74,10 +74,20 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
       Promise.all(responsePromises)
         .then(() => {
           router.refresh();
-          toast.success("Income(s) added successfully");
+          toast.success("Income(s) added successfully", {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
         })
         .catch(() => {
-          toast.error("Error when adding income(s)");
+          toast.error("Error when adding income(s)", {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
         });
     } catch {
       toast.error("An error occurred while importing the data", {

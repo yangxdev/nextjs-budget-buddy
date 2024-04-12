@@ -7,8 +7,8 @@ import PaymentDoughnut from "./charts/PaymentDoughnut";
 import GlobalConfig from "@/app/app.config";
 import classNames from "classnames";
 
-const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoGraph;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoGraph;
 
 export default function PaymentInfoGraphMain(props: any) {
   function checkEmpty(): boolean {
