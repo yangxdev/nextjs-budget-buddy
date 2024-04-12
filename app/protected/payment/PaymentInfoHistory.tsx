@@ -14,7 +14,7 @@ import { RiRefund2Line } from "react-icons/ri";
 import { parse, format } from "date-fns";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.paymentInfoHistory;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoHistory;
 
 export default async function PaymentInfoHistory() {
   const paymentData = await getPaymentDataByQuantity(15);

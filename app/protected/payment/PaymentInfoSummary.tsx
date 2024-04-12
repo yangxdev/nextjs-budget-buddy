@@ -1,9 +1,8 @@
-import { getConvertedPayments, getPaymentDataByDateRange } from "@/app/api/database/get_payments/payments";
-import { getConversionRatesByArray } from "@/app/api/currency/currencies";
+import { getConvertedPaymentsByDateRange } from "@/app/api/database/get_payments/payments";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.paymentInfoSummary;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoSummary;
 
 export default async function PaymentInfoSummary() {
   const today = new Date();
@@ -15,11 +14,9 @@ export default async function PaymentInfoSummary() {
   const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
 
-  const convertedPaymentsThisWeek = await getConvertedPayments(firstDayOfWeek, today);
-
-  const convertedPaymentsThisMonth = await getConvertedPayments(firstDayOfMonth, today);
-
-  const convertedPaymentsThisYear = await getConvertedPayments(firstDayOfYear, today);
+  const convertedPaymentsThisWeek = await getConvertedPaymentsByDateRange(firstDayOfWeek, today);
+  const convertedPaymentsThisMonth = await getConvertedPaymentsByDateRange(firstDayOfMonth, today);
+  const convertedPaymentsThisYear = await getConvertedPaymentsByDateRange(firstDayOfYear, today);
 
   function checkIfPaymentsAreEmpty() {
     return convertedPaymentsThisWeek.length === 0 && convertedPaymentsThisMonth.length === 0 && convertedPaymentsThisYear.length === 0;
@@ -38,7 +35,7 @@ export default async function PaymentInfoSummary() {
         <div className="flex flex-col gap-2">
           <div className="flex flex-row justify-between items-center gap-4">
             <div className="font-normal">{gc?.thisYear}</div>
-            <div className={`flex flex-row font-semibold ${sumThisYear > 0 ? "text-accentRed" : ""}`}>
+            <div className={`flex flex-row font-semibold text-base ${sumThisYear > 0 ? "text-accentRed" : ""}`}>
               {"-"}
               <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
               <div>{sumThisYear.toFixed(2)}</div>
@@ -46,7 +43,7 @@ export default async function PaymentInfoSummary() {
           </div>
           <div className="flex flex-row justify-between items-center gap-4">
             <div className="font-normal">{gc?.thisMonth}</div>
-            <div className={`flex flex-row font-semibold ${sumThisMonth > 0 ? "text-accentRed" : ""}`}>
+            <div className={`flex flex-row font-semibold text-base ${sumThisMonth > 0 ? "text-accentRed" : ""}`}>
               {"-"}
               <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
               <div>{sumThisMonth.toFixed(2)}</div>
@@ -54,7 +51,7 @@ export default async function PaymentInfoSummary() {
           </div>
           <div className="flex flex-row justify-between items-center gap-4">
             <div className="font-normal">{gc?.thisWeek}</div>
-            <div className={`flex flex-row font-semibold ${sumThisWeek > 0 ? "text-accentRed" : ""}`}>
+            <div className={`flex flex-row font-semibold text-base ${sumThisWeek > 0 ? "text-accentRed" : ""}`}>
               {"-"}
               <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
               <div>{sumThisWeek.toFixed(2)}</div>

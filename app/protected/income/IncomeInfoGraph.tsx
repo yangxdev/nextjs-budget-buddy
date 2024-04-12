@@ -3,7 +3,7 @@ import GlobalConfig from "@/app/app.config";
 import IncomeInfoGraphMain from "./IncomeInfoGraphMain";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.incomeInfoGraph;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.income?.incomeInfoGraph;
 
 /**
  * Income information graph component

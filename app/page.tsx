@@ -11,7 +11,7 @@ export default async function Home() {
 
     return (
         <>
-            <div className="font-bold text-2xl pb-6 select-none">Dashboard</div>
+            <div className="font-bold text-2xl mb-6 select-none">Dashboard</div>
             <Balance />
         </>
     );

@@ -21,8 +21,8 @@ function AuthButton() {
           <BudgetBuddyLogo className="w-12 h-12 mr-[0.125rem]" />
           {/* Budget Buddy <br /> */}
           <div className="flex flex-col leading-none h-12 justify-between tracking-wider">
-            <div className="text-[1.43rem] -mb-[0rem]">BUDGET </div>
-            <div className="text-[1.67rem]">BUDDY</div>
+            <div className="text-[1.39rem]">BUDGET</div>
+            <div className="text-[1.72rem] -mb-[0.15rem]">BUDDY</div>
           </div>
         </div>
         <div className="text-lg greeting mt-2 opacity-80">

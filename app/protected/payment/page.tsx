@@ -9,6 +9,7 @@ import prisma from "@/lib/prisma";
 import PaymentInfoSummary from "./PaymentInfoSummary";
 import PaymentInfoGraph from "./PaymentInfoGraph";
 import AddPaymentWithFile from "./AddPaymentWithFile";
+import PaymentInfoInsights from "./PaymentInfoInsights";
 
 export default async function Payment() {
     const session = await getServerSession();
@@ -28,6 +29,9 @@ export default async function Payment() {
                     <div className="flex flex-col gap-8">
                         <PaymentInfoSummary />
                         <PaymentInfoGraph />
+                    </div>
+                    <div className="flex flex-col gap-8">
+                        <PaymentInfoInsights />
                     </div>
                 </div>
                 <PaymentInfoHistory />

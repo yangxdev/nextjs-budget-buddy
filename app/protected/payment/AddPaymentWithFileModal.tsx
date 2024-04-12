@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addPayment?.addPaymentWithFile?.addPaymentWithFileModal;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentWithFile?.addPaymentWithFileModal;
 
 export default function AddPaymentWithFileModal(props: { paymentData: any; isOpen?: any; handleClose?: any }) {
   const { isOpen, handleClose } = props;

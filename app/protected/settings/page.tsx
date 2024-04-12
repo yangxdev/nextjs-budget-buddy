@@ -10,7 +10,7 @@ export default async function Settings() {
 
     return (
         <>
-            <div className="font-bold text-2xl pb-6 select-none">Settings</div>
+            <div className="font-bold text-2xl mb-6 select-none">Settings</div>
             <div className="p-5 bg-[#313131] max-w-80 rounded-2xl text-normal select-none h-min">
                 <div className="font-bold pb-2">Currency</div>
                 <div className="pb-2 flex flex-row justify-between">

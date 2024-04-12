@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addPayment?.addPaymentForm;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentForm;
 
 export default function AddPayment() {
   const currentDate = new Date().toISOString().substring(0, 10);

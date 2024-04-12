@@ -1,9 +1,9 @@
-import { getConvertedPayments, getPaymentDataByDateRange } from "@/app/api/database/get_payments/payments";
+import { getConvertedPaymentsByDateRange, getPaymentDataByDateRange } from "@/app/api/database/get_payments/payments";
 import GlobalConfig from "@/app/app.config";
 import PaymentInfoGraphMain from "./PaymentInfoGraphMain";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.paymentInfoGraph;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.payment?.paymentInfoGraph;
 
 /**
  * Payment information graph component
@@ -17,7 +17,7 @@ export default async function PaymentInfoGraph(): Promise<JSX.Element> {
   const firstDayOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay());
 
   // get all the already converted payments (from first day of year to today)
-  const convertedPaymentYearly = await getConvertedPayments(firstDayOfYear, today);
+  const convertedPaymentYearly = await getConvertedPaymentsByDateRange(firstDayOfYear, today);
   // get all the non-converted payments (from first day of year to today)
   const nonConvertedPaymentYearly = await getPaymentDataByDateRange(firstDayOfYear.toISOString(), today.toISOString());
   // get all the unique categories from the payment data
@@ -30,7 +30,7 @@ export default async function PaymentInfoGraph(): Promise<JSX.Element> {
       .toFixed(2);
   });
 
-  const convertedPaymentMonthly = await getConvertedPayments(firstDayOfMonth, today);
+  const convertedPaymentMonthly = await getConvertedPaymentsByDateRange(firstDayOfMonth, today);
   const nonConvertedPaymentMonthly = await getPaymentDataByDateRange(firstDayOfMonth.toISOString(), today.toISOString());
   const categoriesMonthly = [...new Set(nonConvertedPaymentMonthly.payments.map((payment: { category: any }) => payment.category))];
   const datasetsDataMonthly = categoriesMonthly.map((category, _index) => {
@@ -40,7 +40,7 @@ export default async function PaymentInfoGraph(): Promise<JSX.Element> {
       .toFixed(2);
   });
 
-  const convertedPaymentWeekly = await getConvertedPayments(firstDayOfWeek, today);
+  const convertedPaymentWeekly = await getConvertedPaymentsByDateRange(firstDayOfWeek, today);
   const nonConvertedPaymentWeekly = await getPaymentDataByDateRange(firstDayOfWeek.toISOString(), today.toISOString());
   const categoriesWeekly = [...new Set(nonConvertedPaymentWeekly.payments.map((payment: { category: any }) => payment.category))];
   const datasetsDataWeekly = categoriesWeekly.map((category, _index) => {

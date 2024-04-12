@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addIncome?.addIncomeWithFile;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.income?.addIncome?.addIncomeWithFile;
 
 export default function AddIncomeWithFile() {
     const fileInputRef = useRef<HTMLInputElement>(null);
