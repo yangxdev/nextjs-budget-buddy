@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addIncome?.addIncomeWithFile?.addIncomeWithFileModal;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addPayment?.addPaymentWithFile?.addPaymentWithFileModal;
 
-export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?: any; handleClose?: any }) {
+export default function AddPaymentWithFileModal(props: { paymentData: any; isOpen?: any; handleClose?: any }) {
   const { isOpen, handleClose } = props;
-  const [checkboxes, setCheckboxes] = useState(new Array(props.incomeData.length).fill(false));
+  const [checkboxes, setCheckboxes] = useState(new Array(props.paymentData.length).fill(false));
   const [selectedEntries, setSelectedEntries] = useState(0);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
 
   const router = useRouter();
   function handleImport() {
-    const updatedIncomeData = props.incomeData.map(
+    const updatedPaymentData = props.paymentData.map(
       (
         _data: {
           enabled: boolean;
@@ -32,7 +32,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
         },
         index: number
       ) => {
-        if (props.incomeData[index].enabled && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked) {
+        if (props.paymentData[index].enabled && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked) {
           // const checkbox = (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked;
           const date = `${(document.getElementsByName("month")[index] as HTMLInputElement).value}-${(document.getElementsByName("day")[index] as HTMLInputElement).value}-${(document.getElementsByName("year")[index] as HTMLInputElement).value}`;
           const source = (document.getElementsByName("source")[index] as HTMLInputElement).value;
@@ -53,11 +53,11 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
         }
       }
     );
-    const filteredIncomeData = updatedIncomeData.filter((data: any) => data !== null);
+    const filteredPaymentData = updatedPaymentData.filter((data: any) => data !== null);
 
     try {
-      const responsePromises = filteredIncomeData.map((data: any) =>
-        fetch("/api/database/add_income", {
+      const responsePromises = filteredPaymentData.map((data: any) =>
+        fetch("/api/database/add_payment", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -74,10 +74,10 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
       Promise.all(responsePromises)
         .then(() => {
           router.refresh();
-          toast.success("Income(s) added successfully");
+          toast.success("Payment(s) added successfully");
         })
         .catch(() => {
-          toast.error("Error when adding income(s)");
+          toast.error("Error when adding payment(s)");
         });
     } catch {
       toast.error("An error occurred while importing the data", {
@@ -129,7 +129,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                             transition duration-100
                           "
                             onClick={() => {
-                              setCheckboxes(new Array(props.incomeData.length).fill(true));
+                              setCheckboxes(new Array(props.paymentData.length).fill(true));
                               toast.success("All entries selected", {
                                 style: {
                                   background: "#333",
@@ -154,7 +154,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                 transition duration-100
                                 "
                             onClick={() => {
-                              setCheckboxes(new Array(props.incomeData.length).fill(false));
+                              setCheckboxes(new Array(props.paymentData.length).fill(false));
                               toast.error("All entries unselected", {
                                 style: {
                                   background: "#333",
@@ -183,7 +183,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                         </thead>
                       </table>
                       <div className="max-h-[70vh] transition duration-100">
-                        {props.incomeData.map(
+                        {props.paymentData.map(
                           (
                             data: {
                               enabled: boolean;
@@ -285,10 +285,10 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                                 e.target.classList.add("text-white");
                                               }
                                             }}
-                                            defaultValue={GlobalConfig.income.incomeCategories.includes(data.category) ? data.category : "Other"}
-                                            className={`${widths.category} bg-transparent focus:outline-none dark:[color-scheme:dark] ${!GlobalConfig.income.incomeCategories.includes(data.category) ? "text-accentOrange" : "text-white"}`}
+                                            defaultValue={GlobalConfig.payment.paymentCategories.includes(data.category) ? data.category : "Other"}
+                                            className={`${widths.category} bg-transparent focus:outline-none dark:[color-scheme:dark] ${!GlobalConfig.payment.paymentCategories.includes(data.category) ? "text-accentOrange" : "text-white"}`}
                                           >
-                                            {GlobalConfig.income.incomeCategories.map((category, index) => {
+                                            {GlobalConfig.payment.paymentCategories.map((category, index) => {
                                               return (
                                                 <option key={index} value={category} className={`bg-[#313131] dark:[color-scheme:dark]`}>
                                                   {category}
