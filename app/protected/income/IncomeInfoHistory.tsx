@@ -44,7 +44,7 @@ export default async function IncomeInfoHistory() {
             <div key={date}>
               <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">{format(parse(date, "dd/MM/yyyy", new Date()), "MMMM do yyyy")}</div>
               {incomes.map((income: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
-                <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
+                <div key={index} className={`rounded-2xl hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
                   <div className="icon rounded-full p-3 bg-accentGreenDarker">
                     {income.category === "Job" && <PiSuitcaseBold size={20} />}
                     {income.category === "Crypto" && <MdCurrencyBitcoin size={20} />}

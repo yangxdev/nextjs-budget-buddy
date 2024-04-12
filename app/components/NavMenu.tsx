@@ -16,7 +16,7 @@ function AuthButton() {
 
   if (session) {
     return (
-      <div className="flex flex-col gap">
+      <div className="flex flex-col gap ml-2">
         <div className="text-2xl flex flex-row items-center mt-4 -ml-[0.25rem]">
           <BudgetBuddyLogo className="w-12 h-12 mr-[0.125rem]" />
           {/* Budget Buddy <br /> */}

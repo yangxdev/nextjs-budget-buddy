@@ -7,7 +7,10 @@ import SessionProvider from "./components/SessionProvider";
 import NavMenu from "./components/NavMenu";
 import { getServers } from "dns";
 import { Toaster } from "react-hot-toast";
-import Head from "next/head";
+
+import localFont from "next/font/local";
+
+const myFont = localFont({ src: "./fonts/Avenir Book.ttf" });
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,10 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <Head>
-        <link href="https://fonts.cdnfonts.com/css/nexa" rel="stylesheet" />
-      </Head>
-      <body className="dark">
+      <body className={`dark ${myFont.className}`}>
         <SessionProvider session={session}>
           <main className="flex flex-row">
             <NavMenu />
