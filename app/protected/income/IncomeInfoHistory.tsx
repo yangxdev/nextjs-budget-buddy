@@ -1,6 +1,6 @@
 import GlobalConfig from "@/app/app.config";
 import { getIncomeDataByQuantity } from "@/app/api/database/get_incomes/incomes";
-import IncomeRefreshButton from "./IncomeRefreshButton";
+import HistoryRefreshButton from "../../components/HistoryRefreshButton";
 import { PiSuitcaseBold } from "react-icons/pi";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { PiGift } from "react-icons/pi";
@@ -21,7 +21,7 @@ export default async function IncomeInfoHistory() {
   const currencies = [...new Set(incomeData.incomes.map((income: { currency: any }) => income.currency))];
   const conversionRates = await getConversionRatesByArray(currencies as string[], "EUR");
 
-  const groupedIncomesByDay: { [key: string]: any[] } = incomeData.incomes.reduce((groups: { [key: string]: any[] }, income) => {
+  const groupedIncomesByDay: { [key: string]: any[] } = incomeData.incomes.reduce((groups: { [key: string]: any[] }, income: any) => {
     const date = new Date(income.date).toLocaleDateString();
     if (!groups[date]) {
       groups[date] = [];
@@ -34,7 +34,7 @@ export default async function IncomeInfoHistory() {
     <div className="flex flex-col mb-2">
       <div className="flex flex-row justify-between items-center pb-2">
         <div className="text-2xl font-semibold select-none">{gc?.title}</div>
-        <IncomeRefreshButton />
+        <HistoryRefreshButton />
       </div>
       <div className="w-80 overflow-y-scroll mb-6 scrollbar-hide">
         <div className="flex flex-col select-none ">

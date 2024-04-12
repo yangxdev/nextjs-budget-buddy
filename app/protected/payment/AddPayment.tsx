@@ -2,14 +2,14 @@
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import GlobalConfig from "@/app/app.config";
-import addRandomIncome from "@/app/api/database/add_random_income/addRandomIncome";
+import addRandomPayments from "@/app/api/database/add_random_payments/addRandomPayments";
 import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
 
 const defaultLanguage = GlobalConfig.i8n.defaultLanguage || "en";
-const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addIncome?.addIncomeForm;
+const gc = GlobalConfig.i8n.translations[defaultLanguage]?.addPayment?.addPaymentForm;
 
-export default function AddIncome() {
+export default function AddPayment() {
   const currentDate = new Date().toISOString().substring(0, 10);
 
   const sourceRef = useRef<HTMLInputElement>(null);
@@ -38,7 +38,7 @@ export default function AddIncome() {
       return;
     }
 
-    const responsePromise = fetch("/api/database/add_income", {
+    const responsePromise = fetch("/api/database/add_payment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,8 +63,8 @@ export default function AddIncome() {
       responsePromise,
       {
         loading: "Saving...",
-        success: "Income added successfully",
-        error: "Error when adding income",
+        success: "Payment added successfully",
+        error: "Error when adding payment",
       },
       {
         style: {
@@ -123,7 +123,7 @@ export default function AddIncome() {
       <div className="pb-2">
         {gc?.category}
         <select ref={categoryRef} required className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 cursor-pointer hover:bg-lightGrayCustom3 transition duration-100 dark:[color-scheme:dark] focus:outline-none">
-          {GlobalConfig.income.incomeCategories.map((category, index) => (
+          {GlobalConfig.payment.paymentCategories.map((category, index) => (
             <option key={index} value={category}>
               {category}
             </option>
@@ -154,16 +154,19 @@ export default function AddIncome() {
         >
           {gc?.reset}
         </button>
-        <button onClick={handleSubmit} className="transition duration-100 bg-accentGreen rounded-md p-2
-          hover:bg-[#2e8b57]
-        ">
+        <button
+          onClick={handleSubmit}
+          className="transition duration-100 bg-accentRed rounded-md p-2
+          hover:bg-[#b02e2e]
+        "
+        >
           {gc?.add}
         </button>
         {GlobalConfig.debug.showAddRandomEntriesButton && (
           <button
             onClick={() => {
-              addRandomIncome();
-              toast.success("Random Income Added", {
+              addRandomPayments();
+              toast.success("Random Payments Added", {
                 style: {
                   background: "#333",
                   color: "#fff",

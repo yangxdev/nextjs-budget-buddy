@@ -2,7 +2,9 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "../src/generated/client"
+
+  // IMPORTANT: uncomment the following line when deploying to production
+  output   = "../src/generated/client"
 }
 
 datasource db {
@@ -23,17 +25,34 @@ model Income {
   updatedAt DateTime @updatedAt @map(name: "updated_at")
   userId    String   @map(name: "user_id")
   user      User     @relation(fields: [userId], references: [id])
-  
+
   @@map(name: "incomes")
 }
 
-model User {
+model Payment {
   id        String   @id @default(cuid())
-  email     String  @unique
-  name      String?
+  date      DateTime
+  source    String
+  amount    Float
+  currency  String
+  category  String
+  notes     String?
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  incomes    Income[]
+  userId    String   @map(name: "user_id")
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map(name: "payments")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  updatedAt DateTime  @updatedAt @map(name: "updated_at")
+  incomes   Income[]
+  payments  Payment[]
 
   @@map(name: "users")
 }
