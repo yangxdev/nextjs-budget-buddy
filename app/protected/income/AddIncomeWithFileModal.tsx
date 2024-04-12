@@ -12,10 +12,10 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
   const [checkboxes, setCheckboxes] = useState(new Array(props.incomeData.length).fill(false));
   const [selectedEntries, setSelectedEntries] = useState(0);
 
-  //   useEffect(() => {
-  //     const count = checkboxes.filter(Boolean).length;
-  //     setSelectedEntries(count);
-  //   }, [checkboxes]);
+  useEffect(() => {
+    const count = checkboxes.filter(Boolean).length;
+    setSelectedEntries(count);
+  }, [checkboxes]);
 
   const router = useRouter();
   function handleImport() {
@@ -108,12 +108,10 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex items-center min-h-full justify-center p-4 text-center">
             <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
-              <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-[#313131] p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-white select-none">
-                  {/* Import income data */}
+              <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-darkGrayCustom p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Title as="h3" className="text-lg font-semibold leading-6 text-white select-none uppercase">
                   {gc?.title}
                 </Dialog.Title>
-                {/* <Dialog.Description> */}
                 <div className="mt-2">
                   <span className="text-sm text-white opacity-90">
                     <div className="flex flex-row justify-between items-center">
@@ -122,17 +120,22 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                         <div>
                           <button
                             className="
-                            bg-[#434343] 
-                            px-2 py-1 
+                            bg-lightGrayCustom4 
+                            px-3 py-2 
                             rounded-md 
                             text-sm 
                             text-white 
-                            hover:bg-[#565656] 
+                            hover:bg-accentGreenDarker 
                             transition duration-100
                           "
                             onClick={() => {
                               setCheckboxes(new Array(props.incomeData.length).fill(true));
-                              toast.success("All entries selected");
+                              toast.success("All entries selected", {
+                                style: {
+                                  background: "#333",
+                                  color: "#fff",
+                                },
+                              });
                             }}
                           >
                             {gc?.selectAll}
@@ -142,17 +145,22 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                         <div>
                           <button
                             className="
-                                bg-[#434343] 
-                                px-2 py-1 
+                                bg-lightGrayCustom4
+                                px-3 py-2 
                                 rounded-md 
                                 text-sm 
                                 text-white 
-                                hover:bg-[#565656] 
+                                hover:bg-accentRed 
                                 transition duration-100
                                 "
                             onClick={() => {
                               setCheckboxes(new Array(props.incomeData.length).fill(false));
-                              toast.error("All entries unselected");
+                              toast.error("All entries unselected", {
+                                style: {
+                                  background: "#333",
+                                  color: "#fff",
+                                },
+                              });
                             }}
                           >
                             {gc?.unselectAll}
@@ -164,18 +172,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                       <table className="w-full">
                         <thead>
                           <tr className="font-bold select-none">
-                            <td className={`${widths.checkbox} text-center`}>
-                              {/* <button
-                                onClick={() => {
-                                  const areAllChecked = checkboxes.every(Boolean);
-                                  const newCheckboxes = checkboxes.map(() => !areAllChecked);
-                                  setCheckboxes(newCheckboxes);
-                                }}
-                                className="h-[1.1rem] w-fit accent-[#08931f]"
-                              >
-                                {checkboxes.every(Boolean) ? `${gc?.unselectAll}` : `${gc?.selectAll}`}
-                              </button> */}
-                            </td>
+                            <td className={`${widths.checkbox} text-center`}></td>
                             <td className={`${widths.date}`}>{gc?.date}</td>
                             <td className={`${widths.source}`}>{gc?.source}</td>
                             <td className={`${widths.amount}`}>{gc?.amount}</td>
@@ -217,7 +214,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                               newCheckboxes[Number(index)] = !newCheckboxes[Number(index)];
                                               setCheckboxes(newCheckboxes);
                                             }}
-                                            className="h-[1.1rem] w-[1.1rem] mt-1 accent-[#08931f]"
+                                            className="h-[1.1rem] w-[1.1rem] mt-1 accent-accentGreenDarkerer"
                                           />
                                         </td>
 
@@ -263,16 +260,6 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                             defaultValue={data.currency}
                                             className={`${widths.currency} bg-transparent text-white focus:outline-none dark:
                                             [color-scheme:dark]`}
-                                            // onChange={(e) => {
-                                            //   // if the currency is updated, set text to white again
-                                            //   if (e.target.value === "USD") {
-                                            //     e.target.classList.remove("text-orange-500");
-                                            //     e.target.classList.add("text-white");
-                                            //   } else {
-                                            //     e.target.classList.remove("text-white");
-                                            //     e.target.classList.add("text-orange-500");
-                                            //   }
-                                            // }}
                                           >
                                             {GlobalConfig.currency.currencies.map((currency, index) => {
                                               return (
@@ -292,14 +279,14 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                               // if the category is updated, set text to white again
                                               if (e.target.value === "Other") {
                                                 e.target.classList.remove("text-white");
-                                                e.target.classList.add("text-orange-500");
+                                                e.target.classList.add("text-accentOrange");
                                               } else {
-                                                e.target.classList.remove("text-orange-500");
+                                                e.target.classList.remove("text-accentOrange");
                                                 e.target.classList.add("text-white");
                                               }
                                             }}
                                             defaultValue={GlobalConfig.income.incomeCategories.includes(data.category) ? data.category : "Other"}
-                                            className={`${widths.category} bg-transparent focus:outline-none dark:[color-scheme:dark] ${!GlobalConfig.income.incomeCategories.includes(data.category) ? "text-orange-500" : "text-white"}`}
+                                            className={`${widths.category} bg-transparent focus:outline-none dark:[color-scheme:dark] ${!GlobalConfig.income.incomeCategories.includes(data.category) ? "text-accentOrange" : "text-white"}`}
                                           >
                                             {GlobalConfig.income.incomeCategories.map((category, index) => {
                                               return (
@@ -323,7 +310,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                             } else {
                               return (
                                 <li key={index} className="py-1">
-                                  <table className="w-full text-left text-orange-500 line-through">
+                                  <table className="w-full text-left text-accentOrange line-through">
                                     <tbody>
                                       <tr>
                                         <td className={`${widths.checkbox} text-center`}>
@@ -369,7 +356,6 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                     </ul>
                   </span>
                 </div>
-                {/* </Dialog.Description> */}
 
                 <div className="flex mt-4 justify-between">
                   <div className="text-xs opacity-80 select-none">
@@ -379,20 +365,20 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                     {/* If the category is not recognized, it will be imported as &quot;Other&quot;. */}
                     {gc?.bottomNote[1]}
                     <br />
-                    {gc?.bottomNote[2]} <span className="text-orange-500">{gc?.bottomNote[3]}</span>
+                    {gc?.bottomNote[2]} <span className="text-accentOrange">{gc?.bottomNote[3]}</span>
                     {/* {"."} */}
                   </div>
                   <div className="flex flex-row gap-3 items-center">
-                    {/* <div className="select-none text-nowrap">
-                        {gc?.selectedCount}
-                        {":"} <span>{selectedEntries}</span>
-                      </div> */}
+                    <div className="select-none text-nowrap">
+                      {gc?.selectedCount}
+                      {":"} <span className="font-semibold">{selectedEntries}</span>
+                    </div>
                     <div className="flex gap-2">
                       <button className="inline-flex justify-center rounded-md border border-transparent bg-[#434343] px-4 py-2 text-sm font-medium hover:bg-[#565656] transition duration-100 max-h-[2.35rem]" onClick={handleClose}>
                         {gc?.cancelButton}
                       </button>
                       <button
-                        className="inline-flex justify-center rounded-md border border-transparent bg-[#08931f] px-4 py-2 text-sm font-medium hover:bg-[#067414] transition duration-100 max-h-[2.35rem]"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-accentGreen px-4 py-2 text-sm font-medium hover:bg-[#067414] transition duration-100 max-h-[2.35rem]"
                         onClick={() => {
                           handleImport();
                           handleClose();
