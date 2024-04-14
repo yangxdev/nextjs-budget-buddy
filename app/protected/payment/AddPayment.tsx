@@ -154,12 +154,7 @@ export default function AddPayment() {
                 >
                     {gc?.reset}
                 </button>
-                <button
-                    onClick={handleSubmit}
-                    className="transition duration-100 bg-accentRed rounded-md p-2
-          hover:bg-[#b02e2e]
-        "
-                >
+                <button onClick={handleSubmit} className="transition duration-100 bg-accentGreen rounded-md p-2 hover:bg-[#2e8b57]">
                     {gc?.add}
                 </button>
                 {GlobalConfig.debug.showAddRandomEntriesButton && (

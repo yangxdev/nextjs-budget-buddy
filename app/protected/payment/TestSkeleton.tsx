@@ -1,11 +1,8 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function PaymentSkeletonCard() {
+export default async function TestSkeleton() {
     return (
         <>
-            <div className="font-bold text-3xl pb-6 select-none">Payments</div>
-            <div className="flex flex-row gap-8 justify-between h-full">
-            <>
             <div className="flex flex-row gap-8">
                 <div className="flex flex-col gap-8 max-w-80">
                     <Skeleton className="h-[470px] w-80 rounded-xl" />
@@ -82,8 +79,6 @@ export default function PaymentSkeletonCard() {
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
             </div>
         </>
     );

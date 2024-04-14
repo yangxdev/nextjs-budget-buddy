@@ -7,6 +7,7 @@ import PaymentInfoGraph from "./PaymentInfoGraph";
 import AddPaymentWithFile from "./AddPaymentWithFile";
 import PaymentInfoInsights from "./PaymentInfoInsights";
 import GlobalConfig from "@/app/app.config";
+import TestSkeleton from "./TestSkeleton";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment;

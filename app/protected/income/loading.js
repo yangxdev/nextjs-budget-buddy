@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function PaymentSkeletonCard() {
     return (
         <>
-            <div className="font-bold text-3xl pb-6 select-none">Payments</div>
+            <div className="font-bold text-3xl pb-6 select-none">Income</div>
             <div className="flex flex-row gap-8 justify-between h-full">
             <>
             <div className="flex flex-row gap-8">
