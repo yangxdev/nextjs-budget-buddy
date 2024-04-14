@@ -276,9 +276,14 @@ module.exports = {
 
                         noPaymentDataAvailable: "No payment data available",
 
-                        buttonThisWeek: "This week",
-                        buttonThisMonth: "This month",
-                        buttonThisYear: "This year",
+                        // buttonThisWeek: "This week",
+                        // buttonThisMonth: "This month",
+                        // buttonThisYear: "This year",
+                        buttonThisWeek: "1w",
+                        buttonThisMonth: "1M",
+                        buttonThisYear: "1y",
+                        buttonThreeYears: "3y",
+                        buttonAllTime: "All",
 
                         buttonDefault: "doughnutYearly",
                     },
@@ -460,9 +465,14 @@ module.exports = {
 
                         noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
 
-                        buttonThisWeek: "Questa sett.",
-                        buttonThisMonth: "Questo mese",
-                        buttonThisYear: "Quest'anno",
+                        // buttonThisWeek: "Questa sett.",
+                        // buttonThisMonth: "Questo mese",
+                        // buttonThisYear: "Quest'anno",
+                        buttonThisWeek: "1w",
+                        buttonThisMonth: "1M",
+                        buttonThisYear: "1y",
+                        buttonThreeYears: "3y",
+                        buttonAllTime: "Tutto",
                     },
                     paymentInfoHistory: {
                         title: "Cronologia",
