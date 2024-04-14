@@ -88,7 +88,7 @@ export default function AddPayment() {
 
     return (
         <div ref={elementRef} className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 rounded-2xl text-sm select-none h-min">
-            <div className="font-bold pb-2">{gc?.title}</div>
+            <div className="font-bold pb-2 text-lg">{gc?.title}</div>
             <div className="pb-2">
                 {gc?.date}
                 <input type="date" ref={dateRef} className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 cursor-pointer hover:bg-lightGrayCustom3 transition duration-100 dark:[color-scheme:dark] focus:outline-none" defaultValue={currentDate} required />

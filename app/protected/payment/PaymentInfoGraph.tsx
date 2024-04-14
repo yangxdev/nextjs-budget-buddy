@@ -73,7 +73,7 @@ export default async function PaymentInfoGraph(): Promise<JSX.Element> {
     return (
         <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min max-h-[35rem]">
             <div className="mb-2 justify-between flex flex-row">
-                <div className="font-bold">{gc?.title}</div>
+                <div className="font-bold text-lg">{gc?.title}</div>
             </div>
             <PaymentInfoGraphMain datasets={[datasetsDataWeekly, datasetsDataMonthly, datasetsDataYearly, datasetsDataThreeYears, datasetsDataAllTime]} categories={[categoriesWeekly, categoriesMonthly, categoriesYearly, categoriesThreeYears, categoriesAllTime]} />
         </div>

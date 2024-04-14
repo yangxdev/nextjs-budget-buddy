@@ -28,7 +28,7 @@ export default async function PaymentInfoSummary() {
 
     return (
         <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
-            <div className="text-sm font-bold select-none mb-2">{gc?.title}</div>
+            <div className="text-lg font-bold select-none mb-2">{gc?.title}</div>
             {checkIfPaymentsAreEmpty() ? (
                 <div className="text-left text-sm">{gc?.noPaymentDataAvailable}</div>
             ) : (

@@ -256,7 +256,7 @@ export default function AddPaymentWithFile() {
           }
         }}
       />
-      <div className="font-bold pb-3">{gc?.title}</div>
+      <div className="font-bold pb-3 text-lg">{gc?.title}</div>
 
       <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
         <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
