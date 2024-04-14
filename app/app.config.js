@@ -302,6 +302,7 @@ module.exports = {
                         times: "times",
                         spent: "spent",
                         payments: "payments",
+                        payment: "payment",
 
                         noPaymentDataAvailable: "No payment data available",
                     },
@@ -483,6 +484,7 @@ module.exports = {
                         times: "volte",
                         spent: "spesi",
                         payments: "pagamenti",
+                        payment: "pagamento",
 
                         noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
                     },

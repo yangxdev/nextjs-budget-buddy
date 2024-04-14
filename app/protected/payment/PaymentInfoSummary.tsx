@@ -19,7 +19,6 @@ export default async function PaymentInfoSummary() {
     const convertedPaymentsThisYear = await getConvertedPaymentsByDateRange(firstDayOfYear, today);
 
     function checkIfPaymentsAreEmpty() {
-        console.log(convertedPaymentsThisWeek.length, convertedPaymentsThisMonth.length, convertedPaymentsThisYear.length)
         return convertedPaymentsThisWeek.length === 0 && convertedPaymentsThisMonth.length === 0 && convertedPaymentsThisYear.length === 0;
     }
 

@@ -132,7 +132,7 @@ export default async function PaymentInfoInsights() {
                                 <div className="flex flex-row font-semibold text-base justify-start">
                                     <div>
                                         {await getTotalPaymentsMade(paymentData)}
-                                        {" " + gc?.payments}
+                                        {" " + (await getTotalPaymentsMade(paymentData) === 1 ? gc?.payment : gc?.payments)}
                                     </div>
                                 </div>
                             </div>
