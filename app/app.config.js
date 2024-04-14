@@ -292,6 +292,7 @@ module.exports = {
 
                         mostExpensivePayment: "Most expensive payment",
                         mostExpensiveCategory: "Most expensive category",
+                        mostExpensiveMonth: "Most expensive month",
                         mostFrequentPayment: "Most frequent payment",
                         cheapestPayment: "Cheapest payment",
                         averagePaymentAmount: "Average payment amount",
@@ -472,6 +473,7 @@ module.exports = {
 
                         mostExpensivePayment: "Pagamento più costoso",
                         mostExpensiveCategory: "Categoria più costosa",
+                        mostExpensiveMonth: "Mese più costoso",
                         mostFrequentPayment: "Pagamento più frequente",
                         cheapestPayment: "Pagamento meno costoso",
                         averagePaymentAmount: "Media dei pagamenti",

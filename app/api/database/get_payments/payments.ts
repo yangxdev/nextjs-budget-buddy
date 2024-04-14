@@ -105,6 +105,17 @@ export async function getMostExpensiveCategorySum(paymentData: any) {
     return mostExpensivePaymentCategorySum;
 }
 
+export async function getMostExpensiveMonth(paymentData: any) {
+    const paymentMonths = paymentData?.payments?.map((payment: { date: string }) => new Date(payment.date).getMonth());
+    const paymentMonthsCount = paymentMonths.reduce((acc: any, curr: any) => {
+        acc[curr] = (acc[curr] || 0) + 1;
+        return acc;
+    }, {});
+
+    const mostExpensiveMonth = Object.keys(paymentMonthsCount).reduce((a, b) => (paymentMonthsCount[a] > paymentMonthsCount[b] ? a : b));
+    return mostExpensiveMonth;
+}
+
 export async function getMostFrequentPaymentStore(paymentData: any) {
     const paymentSources = paymentData?.payments?.map((payment: { source: string }) => payment.source);
     const paymentSourcesCount = paymentSources.reduce((acc: any, curr: any) => {
