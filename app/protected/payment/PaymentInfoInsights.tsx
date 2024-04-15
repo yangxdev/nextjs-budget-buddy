@@ -61,20 +61,30 @@ export default async function PaymentInfoInsights() {
                             {/* Most Expensive Category */}
                             <div className="flex flex-col">
                                 <div className="font-normal justify-start">{gc?.mostExpensiveCategory}</div>
+                                <div className="flex flex-col font-semibold text-base justify-start">
+                                    <div>{await getMostExpensiveCategory(paymentData)}</div>
+                                    <div className="flex flex-row">
+                                        {(await getMostExpensiveCategorySum(paymentData)) > 1 && (
+                                            <>
+                                                <div className="px-1">
+                                                    {"("}
+                                                    {GlobalConfig.currency.baseCurrency}
+                                                </div>
+                                                <div>
+                                                    {await getMostExpensiveCategorySum(paymentData)} {" " + gc?.spent}
+                                                    {")"}
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Most expensive month */}
+                            <div className="flex flex-col">
+                                <div className="font-normal justify-start">{gc?.mostExpensiveMonth}</div>
                                 <div className="flex flex-row font-semibold text-base justify-start">
-                                    {await getMostExpensiveCategory(paymentData)}
-                                    {(await getMostExpensiveCategorySum(paymentData)) > 1 && (
-                                        <>
-                                            <div className="px-1">
-                                                {"("}
-                                                {GlobalConfig.currency.baseCurrency}
-                                            </div>
-                                            <div>
-                                                {await getMostExpensiveCategorySum(paymentData)} {" " + gc?.spent}
-                                                {")"}
-                                            </div>
-                                        </>
-                                    )}
+                                    {format(new Date(1970, parseInt(await getMostExpensiveMonth(paymentData)), 1), 'MMMM')}
                                 </div>
                             </div>
 
