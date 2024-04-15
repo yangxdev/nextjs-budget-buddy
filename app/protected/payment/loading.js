@@ -1,9 +1,5 @@
-import { Skeleton } from "../../components/ui/skeleton";
+import PaymentSkeleton from "../../components/skeletons/PaymentSkeleton";
 
 export default function SkeletonCard() {
-    return (
-        <div>
-            <Skeleton height="40px" width="100%" />
-        </div>
-    )
+    return <PaymentSkeleton />;
 }

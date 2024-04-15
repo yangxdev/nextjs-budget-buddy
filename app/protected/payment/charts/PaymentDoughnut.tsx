@@ -71,4 +71,4 @@ export default function PaymentDoughnut(paymentData: { id: string; categories: a
     );
 }
 
-// TODO: Adaptive color scheme based on the number of categories
+// DONE: Adaptive color scheme based on the number of categories

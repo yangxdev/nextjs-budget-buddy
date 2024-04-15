@@ -1,5 +1,5 @@
 "use client";
-// TODO: Add new time filters: "All time", "Last 3 years"
+// DONE: Add new time filters: "All time", "Last 3 years"
 // FIXED: The colors in the legend are not consistent with the colors in the chart
 
 import { useEffect, useState } from "react";
@@ -48,7 +48,7 @@ export default function PaymentInfoGraphMain(props: any) {
     return (
         <>
             {!checkEmpty() && (
-                <div className="flex gap-2 transition duration-100 justify-evenly">
+                <div className="flex gap-2 transition duration-100 justify-start">
                     <button
                         className={`
                             hover:bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2
@@ -90,7 +90,7 @@ export default function PaymentInfoGraphMain(props: any) {
                                 hover:bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2
                                 ${selectedOption === "doughtnutThreeYears" ? "bg-darkGrayCustom2" : "bg-lightGrayCustom"}
                             `}
-                            disabled={props.datasets[3] === undefined || props.datasets[3].length === 0}
+                        disabled={props.datasets[3] === undefined || props.datasets[3].length === 0}
                         onClick={() => setSelectedOption("doughtnutThreeYears")}
                     >
                         {gc?.buttonThreeYears}
