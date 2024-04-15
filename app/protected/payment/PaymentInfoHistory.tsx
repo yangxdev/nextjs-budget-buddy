@@ -28,7 +28,7 @@ export default async function PaymentInfoHistory() {
 
     const groupedPaymentsByDay: { [key: string]: any[] } = paymentData.payments.reduce((groups: { [key: string]: any[] }, payment: any) => {
         const date = format(new Date(payment.date), dateFormatInput);
-        
+
         if (!groups[date]) {
             groups[date] = [];
         }
@@ -37,22 +37,19 @@ export default async function PaymentInfoHistory() {
     }, {});
 
     return (
-        <div className="flex flex-col mb-2">
+        <div className="flex flex-col mb-2 h-screen">
             <div className="flex flex-row justify-between items-center pb-2">
                 <div className="text-2xl font-semibold select-none">{gc?.title}</div>
                 <PaymentRefreshButton />
             </div>
-            <div className="w-80 overflow-y-scroll mb-6 scrollbar-hide">
+            <div className="w-80 overflow-y-scroll mb-6 scrollbar-hide h-full relative" id="PaymentInfoHistory">
                 <div className="flex flex-col select-none ">
                     {paymentData.payments.length === 0 && <div className="text-left text-sm py-4">{gc?.noPaymentDataAvailable}</div>}
 
                     {Object.entries(groupedPaymentsByDay).map(([date, payments]) => (
                         <div key={date}>
-                            <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">
-                                {date && isValid(parse(date, dateFormatInput, new Date()))
-                                    ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale })
-                                    : 'Invalid date'}
-                            </div>                            {payments.map((payment: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
+                            <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">{date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}</div>{" "}
+                            {payments.map((payment: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
                                 <div key={index} className={`rounded-2xl hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== paymentData.payments.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
                                     <div className="icon rounded-full p-3 bg-accentRed">
                                         {payment.category === "Job" && <PiSuitcaseBold size={20} />}

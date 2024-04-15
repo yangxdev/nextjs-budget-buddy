@@ -35,7 +35,7 @@ export default async function RootLayout({
           <main className="flex flex-row">
             <NavMenu />
             <div
-              className="flex-grow p-dashboard-padding h-screen"
+              className="flex-grow p-dashboard-padding h-screen relative"
             >
               {children}
               <Toaster position="top-right" reverseOrder={false} />
