@@ -97,5 +97,5 @@ export default async function PaymentInfoHistory() {
     );
 }
 
-// TODO: Add a loading spinner
+// DONE: Add a loading spinner -> Skeleton
 // TODO: Load more when scrolling to the bottom

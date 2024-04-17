@@ -3,12 +3,10 @@ import { getServerSession } from "next-auth";
 import AddPayment from "./AddPayment";
 import PaymentInfoHistory from "./PaymentInfoHistory";
 import PaymentInfoSummary from "./PaymentInfoSummary";
-import PaymentInfoGraph from "./PaymentInfoGraph";
+import PaymentInfoChartDoughnutServer from "./PaymentInfoChartDoughnutServer";
 import AddPaymentWithFile from "./AddPaymentWithFile";
 import PaymentInfoInsights from "./PaymentInfoInsights";
 import GlobalConfig from "@/app/app.config";
-import PaymentSkeleton from "@/app/components/skeletons/PaymentSkeleton";
-import { Suspense } from "react";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment;
@@ -31,7 +29,7 @@ export default async function Payment() {
                         </div>
                         <div className="flex flex-col gap-8">
                             <PaymentInfoSummary />
-                            <PaymentInfoGraph />
+                            <PaymentInfoChartDoughnutServer />
                         </div>
                         <div className="flex flex-col gap-8">
                             <PaymentInfoInsights />

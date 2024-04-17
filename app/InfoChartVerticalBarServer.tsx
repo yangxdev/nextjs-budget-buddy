@@ -37,8 +37,7 @@ export default async function InfoChartVerticalBar() {
 
     return (
         <div>
-            <h1>InfoChartVerticalBar</h1>
-            <div className="w-64 h-64">
+            <div className="w-full">
                 <InfoChartVerticalBarClient labels={labels} datasets={datasets} />
             </div>
         </div>

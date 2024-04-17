@@ -14,7 +14,7 @@ export default function PaymentSkeleton() {
                             <Skeleton className="h-[156px] w-80 rounded-xl" />
                         </div>
 
-                        {/* Second column [PaymentInfoSummary, PaymentInfoGraph] */}
+                        {/* Second column [PaymentInfoSummary, PaymentInfoChartDoughnut] */}
                         <div className="flex flex-col gap-8">
                             <Skeleton className="h-[158px] w-80 rounded-xl" />
                             <Skeleton className="h-[500px] w-80 rounded-xl" />
