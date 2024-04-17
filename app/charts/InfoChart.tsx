@@ -5,18 +5,16 @@ Chart.register(...registerables);
 
 export default function InfoChart(props: any) {
     const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top' as const,
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Bar Chart',
-            },
-        }
-        
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top' as const,
+        },
+        title: {
+            display: false,
+        },
     }
+}
 
     const data = {
         labels: props.labels,
