@@ -11,7 +11,8 @@ const addRandomPayments = async () => {
     const categories = GlobalConfig.payment.paymentCategories;
     const currencies = ["USD", "EUR"];
     for (let i = 0; i < 10; i++) {
-        const source = sources[Math.floor(Math.random() * sources.length)];
+        const sourcePre = sources[Math.floor(Math.random() * sources.length)];
+        const source = sourcePre.charAt(0).toUpperCase() + sourcePre.slice(1);
 
         const startDate = new Date(2024, 0, 1); // January 1, 2024
         const endDate = new Date(); // Today

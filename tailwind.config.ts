@@ -20,9 +20,11 @@ const config: Config = {
         lightGrayCustom3: "#26292e", // cards background
         lightGrayCustom4: "#434343", // background color of input boxes inside cards for dark theme
         textColor: "#fff", // main text
+        accentGreenLighter: "#76E0B5",
         accentGreen: "#06c879",
         accentGreenDarker: "#08B36C",
         accentGreenDarkerer: "#0A9D5F",
+        accentRedLighter: "#D55B6D",
         accentRed: "#ca3249",
         accentRedDarker: "#b02a3b",
         accentYellow: "#dab85f",

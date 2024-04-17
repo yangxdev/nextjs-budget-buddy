@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import GlobalConfig from "@/app/app.config";
 import { getConversionRatesByArray } from "@/app/api/currency/currencies";
 import { prisma } from "@/app/api/_base";

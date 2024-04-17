@@ -139,6 +139,11 @@ module.exports = {
                     signOut: "Sign out",
                 },
 
+                dashboard: {
+                    title: "Dashboard",
+                    subtitle: "Summary of your data in the last month",
+                },
+
                 income: {
                     title: "Income",
                     addIncome: {
@@ -324,6 +329,11 @@ module.exports = {
 
                     settings: "Impostazioni",
                     signOut: "Esci",
+                },
+
+                dashboard: {
+                    title: "Dashboard",
+                    subtitle: "Sommario dei tuoi dati nell'ultimo mese",
                 },
 
                 income: {
