@@ -48,7 +48,10 @@ export default async function PaymentInfoHistory() {
 
                     {Object.entries(groupedPaymentsByDay).map(([date, payments]) => (
                         <div key={date}>
-                            <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">{date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}</div>{" "}
+                            <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">
+                                {date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}
+                            </div>
+                            {" "}
                             {payments.map((payment: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
                                 <div key={index} className={`rounded-2xl hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== paymentData.payments.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
                                     <div className="icon rounded-full p-3 bg-accentRed">

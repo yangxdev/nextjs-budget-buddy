@@ -35,6 +35,11 @@ export default function PaymentDoughnut(paymentData: { id: string; categories: a
                     radius: "80%",
                     devicePixelRatio: 2,
                     borderColor: "rgba(255, 255, 255, 1)",
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                    },
                 }}
             />
             <div className="overflow-y-scroll max-h-[10rem] scrollbar-thin scrollbar-thumb-accentGray scrollbar-track-transparent pr-1">
