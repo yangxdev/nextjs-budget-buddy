@@ -27,7 +27,7 @@ export default async function IncomeInfoHistory() {
     let dateFormatInput = defaultLanguage === "it" ? "dd/MM/yyyy" : "MM/dd/yyyy";
 
     const groupedIncomesByDay: { [key: string]: any[] } = incomeData.incomes.reduce((groups: { [key: string]: any[] }, income: any) => {
-        const date = new Date(income.date).toLocaleDateString();
+        const date = format(new Date(income.date), dateFormatInput);
 
         if (!groups[date]) {
             groups[date] = [];

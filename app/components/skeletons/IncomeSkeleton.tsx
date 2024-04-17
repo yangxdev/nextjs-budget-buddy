@@ -1,13 +1,15 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import GlobalConfig from "@/app/app.config";
+
+const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.income;
 
 export default function IncomeSkeleton() {
     return (
         <>
-            <div className="font-bold text-3xl pb-6 select-none">Incomes</div>
+            <div className="font-bold text-3xl pb-6 select-none">{gc?.title}</div>
             <div className="flex flex-row gap-8 justify-between h-full">
                 <>
                     <div className="flex flex-row gap-8">
-
                         {/* First column [AddIncome, AddIncomeWithFile] */}
                         <div className="flex flex-col gap-8 max-w-80">
                             <Skeleton className="h-[470px] w-80 rounded-xl" />

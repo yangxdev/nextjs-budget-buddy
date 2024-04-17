@@ -42,7 +42,7 @@ export default async function InfoChartVerticalBar() {
     ]
 
     return (
-        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] rounded-2xl text-sm select-none">
+        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] rounded-2xl text-sm select-none h-fit">
             <div className="mb-2 justify-between flex flex-row">
                 <div className="font-bold text-lg">
                     Income and expenses
