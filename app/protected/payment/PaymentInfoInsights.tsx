@@ -88,14 +88,6 @@ export default async function PaymentInfoInsights() {
                                 </div>
                             </div>
 
-                            {/* Most expensive month */}
-                            <div className="flex flex-col">
-                                <div className="font-normal justify-start">{gc?.mostExpensiveMonth}</div>
-                                <div className="flex flex-row font-semibold text-base justify-start">
-                                    {format(new Date(1970, parseInt(await getMostExpensiveMonth(paymentData)), 1), 'MMMM')}
-                                </div>
-                            </div>
-
                             {/* Most Frequent Payment */}
                             <div className="flex flex-col">
                                 <div className="font-normal justify-start">{gc?.mostFrequentPayment}</div>
