@@ -42,7 +42,7 @@ export default async function Balance() {
                 <div className="font-semibold uppercase text-lg">Total balance</div>
                 <div
                     className={`flex flex-row items-center gap-1 
-                ${balanceDeltaDirection === "up" ? "text-accentGreenLighter" : balanceDeltaDirection === "down" ? "text-accentRed" : "text-accentYellow"}
+                ${balanceDeltaDirection === "up" ? "text-accentGreenLighter" : balanceDeltaDirection === "down" ? "text-accentRed" : ""}
                     `}
                 >
                     {/* {balanceDeltaDirection === "up" ? <FaArrowAltCircleUp /> : <FaArrowCircleDown />} */}
@@ -50,13 +50,14 @@ export default async function Balance() {
                     <div className={`mt-[0.5px]`}>
                         {/* {balanceDeltaDirection === "up" ? "+" : "-"} {deltaPercentage}% */}
                         {balanceDeltaDirection === "up" ? "+" : balanceDeltaDirection === "down" ? "-" : ""} 
-                        {deltaPercentage === "∞" ? "∞ %" : deltaPercentage === "0" ? "" : deltaPercentage + "%"}
+                        {deltaPercentage === "∞" ? " ∞ %" : deltaPercentage === "0" ? "" : deltaPercentage + "%"}
                     </div>
                 </div>
             </div>
             <div className="flex flex-row gap-1.5 font-bold text-3xl py-4">
                 <div className="total-balance ">
-                    {Number(currentBalance) < 0 ? "-" : ""} {defaultCurrency} {Number(currentBalance) < 0 ? Math.abs(Number(currentBalance)) : Number(currentBalance)}
+                    {Number(currentBalance) < 0 ? "-" : ""} {defaultCurrency}{" "}
+                    {Number(currentBalance) < 0 ? Math.abs(Number(currentBalance)) : Number(currentBalance)}
                 </div>
             </div>
             <div className="flex flex-row justify-between">
@@ -70,12 +71,12 @@ export default async function Balance() {
                     </div>
                 </div>
                 <div className="border-l border-[#434343]"></div>
-                <div>
+                <div className="flex flex-col">
                     <div className="flex flex-row items-center gap-1 select-none">
                         <IoMdArrowDropdown />
                         Expenses
                     </div>
-                    <div className={`font-semibold text-base ${parseFloat(totalExpenseThisMonth) > 0 ? "text-accentRedLighter" : "" }`}>
+                    <div className={`font-semibold text-base flex justify-end ${parseFloat(totalExpenseThisMonth) > 0 ? "text-accentRedLighter" : "" }`}>
                         {defaultCurrency} {totalExpenseThisMonth}
                     </div>
                 </div>

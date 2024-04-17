@@ -5,6 +5,7 @@ import Balance from "./components/dashboard/Balance";
 import InfoChartVerticalBarServer from "./InfoChartVerticalBarServer";
 import PaymentInfoHistory from "./protected/payment/PaymentInfoHistory";
 import GlobalConfig from "@/app/app.config";
+import IncomeInfoHistory from "./protected/income/IncomeInfoHistory";
 
 const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.dashboard;
 
@@ -29,7 +30,8 @@ export default async function Home() {
                     </div>
                 </div>
                 <div className="flex flex-row gap-8 h-fit">
-                    <PaymentInfoHistory />
+                    {/* <IncomeInfoHistory />
+                    <PaymentInfoHistory /> */}
                 </div>
             </div>
         </>

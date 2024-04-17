@@ -45,8 +45,10 @@ export default function AddPaymentWithFile() {
       if (year < 2000 || year > 2100) {
         return false;
       }
-      const monthsWith30Days = [4, 6, 9, 11];
-      if ((month === 2 && day > 28) || (monthsWith30Days.includes(month) && day > 30)) {
+
+      const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+      const daysInMonth = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      if (day > daysInMonth[month - 1]) {
         return false;
       }
 

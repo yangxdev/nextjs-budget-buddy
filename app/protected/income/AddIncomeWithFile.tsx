@@ -45,8 +45,10 @@ export default function AddIncomeWithFile() {
             if (year < 2000 || year > 2100) {
                 return false;
             }
-            const monthsWith30Days = [4, 6, 9, 11];
-            if ((month === 2 && day > 28) || (monthsWith30Days.includes(month) && day > 30)) {
+
+            const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+            const daysInMonth = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (day > daysInMonth[month - 1]) {
                 return false;
             }
 
@@ -187,7 +189,7 @@ export default function AddIncomeWithFile() {
                     const amount = data[3].replace(/[^0-9.]/g, "");
 
                     const currencyMatch = data[3].match(/^\D+/); // matches the first non-digit character
-                    const currencyMatch2 = currencyMatch?.[0]?.replace(/[\\"']/g, '') || ""; // removes backslashes and double quotes
+                    const currencyMatch2 = currencyMatch?.[0]?.replace(/[\\"']/g, "") || ""; // removes backslashes and double quotes
                     const currencySymbol = currencyMatch2 ? currencyMatch2[0] : "";
                     const currency = currencySymbol === "$" ? "USD" : "EUR";
                     const category = data[4];
@@ -256,27 +258,19 @@ export default function AddIncomeWithFile() {
                     }
                 }}
             />
-            <div className="font-bold pb-3">
-                {gc?.title}
-            </div>
+            <div className="font-bold pb-3">{gc?.title}</div>
 
             <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
                 <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
-                <label
-                    id="label-file-upload"
-                    htmlFor="input-file-upload"
-                    className={` w-full ${dragActive ? "drag-active" : ""}`}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={handleDrop}
-                >
-                    <div className="transition ease-in-out duration-200 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md 
-                        hover:bg-accentGreenDarkerer p-5 cursor-pointer text-center">
+                <label id="label-file-upload" htmlFor="input-file-upload" className={` w-full ${dragActive ? "drag-active" : ""}`} onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
+                    <div
+                        className="transition ease-in-out duration-200 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md 
+                        hover:bg-accentGreenDarkerer p-5 cursor-pointer text-center"
+                    >
                         <button className="upload-button font-bold" onClick={onButtonClick}>
                             {gc?.chooseFile}
                         </button>
-                        <p>
-                            {gc?.dragHere}
-                        </p>
+                        <p>{gc?.dragHere}</p>
                     </div>
                 </label>
                 {dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div>}
