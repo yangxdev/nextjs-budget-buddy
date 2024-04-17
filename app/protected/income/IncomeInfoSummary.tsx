@@ -1,4 +1,4 @@
-import { getConvertedIncomes, getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
+import { getConvertedIncomesByDateRange, getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
 import { getConversionRatesByArray } from "@/app/api/currency/currencies";
 import GlobalConfig from "@/app/app.config";
 
@@ -15,11 +15,11 @@ export default async function IncomeInfoSummary() {
   const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
 
-  const convertedIncomesThisWeek = await getConvertedIncomes(firstDayOfWeek, today);
+  const convertedIncomesThisWeek = await getConvertedIncomesByDateRange(firstDayOfWeek, today);
 
-  const convertedIncomesThisMonth = await getConvertedIncomes(firstDayOfMonth, today);
+  const convertedIncomesThisMonth = await getConvertedIncomesByDateRange(firstDayOfMonth, today);
 
-  const convertedIncomesThisYear = await getConvertedIncomes(firstDayOfYear, today);
+  const convertedIncomesThisYear = await getConvertedIncomesByDateRange(firstDayOfYear, today);
 
   function checkIfIncomesAreEmpty() {
     return convertedIncomesThisWeek.length === 0 && convertedIncomesThisMonth.length === 0 && convertedIncomesThisYear.length === 0;

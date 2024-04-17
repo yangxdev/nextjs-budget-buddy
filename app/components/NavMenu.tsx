@@ -71,7 +71,7 @@ import { MdOutlineSavings } from "react-icons/md";
 
 export default function NavMenu() {
   return (
-    <div className="dark:bg-darkGrayCustom flex flex-col justify-between h-screen min-w-sidebar select-none border-r-[1px] border-[#383b40]">
+    <div className="dark:bg-darkGrayCustom flex flex-col justify-between h-screen min-w-sidebar w-sidebar select-none border-r-[1px] border-[#383b40]">
       <div>
         <div className="my-6 px-padding">
           <AuthButton />

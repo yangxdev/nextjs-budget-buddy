@@ -6,15 +6,21 @@ export default async function InfoChartVerticalBar() {
     const today = new Date();
     const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
 
-    // this chart shows both payments and income values in a vertical bar chart
     const convertedPaymentYearly = await getConvertedPaymentsByDateRange(firstDayOfYear, today);
     const convertedIncomeYearly = await getConvertedIncomesByDateRange(firstDayOfYear, today);
 
-    const lastPaymentData = await getPaymentDataByQuantity(1);
-    const lastIncomeData = await getIncomeDataByQuantity(1);
-    const lastPaymentMonth = new Date(lastPaymentData.payments[0].date).getMonth();
-    const lastIncomeMonth = new Date(lastIncomeData.incomes[0].date).getMonth();
-    const lastMonth = lastPaymentMonth > lastIncomeMonth ? lastPaymentMonth : lastIncomeMonth;
+    let lastMonth = -1;
+    let lastPaymentMonth = -1;
+    let lastIncomeMonth = -1;
+    let lastPaymentData = await getPaymentDataByQuantity(1) || { payments: [] };
+    let lastIncomeData = await getIncomeDataByQuantity(1) || { incomes: [] };
+    if (lastPaymentData.payments.length > 0) {
+        lastPaymentMonth = new Date(lastPaymentData.payments[0].date).getMonth();
+    }
+    if (lastIncomeData.incomes.length > 0) {
+        lastIncomeMonth = new Date(lastIncomeData.incomes[0].date).getMonth();
+    }
+    lastMonth = lastPaymentMonth > lastIncomeMonth ? lastPaymentMonth : lastIncomeMonth;
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const labels = months.slice(0, lastMonth + 1);
@@ -29,18 +35,22 @@ export default async function InfoChartVerticalBar() {
         {
             label: "Income",
             data: convertedIncomeYearly,
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
         },
     ]
 
     return (
-        <div>
-            <h1>InfoChartVerticalBar</h1>
-            <div className="w-64 h-64">
-                <InfoChartVerticalBarClient labels={labels} datasets={datasets} />
+        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] rounded-2xl text-sm select-none">
+            <div className="mb-2 justify-between flex flex-row">
+                <div className="font-bold text-lg">
+                    Income and expenses
+                </div>
             </div>
+            <InfoChartVerticalBarClient labels={labels} datasets={datasets} />
         </div>
     );
 }
+
+// BUG: when there are data changes, the chart doesn't update until the page is refreshed

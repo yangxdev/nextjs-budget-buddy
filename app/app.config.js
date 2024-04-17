@@ -271,7 +271,7 @@ module.exports = {
                         thisMonth: "This month",
                         thisWeek: "This week",
                     },
-                    paymentInfoGraph: {
+                    paymentInfoChart: {
                         title: "Categories",
 
                         noPaymentDataAvailable: "No payment data available",
@@ -460,7 +460,7 @@ module.exports = {
                         thisMonth: "Questo mese",
                         thisWeek: "Questa settimana",
                     },
-                    paymentInfoGraph: {
+                    paymentInfoChart: {
                         title: "Categorie",
 
                         noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
