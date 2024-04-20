@@ -26,9 +26,9 @@ function AuthButton() {
                         <div className="text-[1.72rem] -mb-[0.15rem]">BUDDY</div>
                     </div>
                 </div>
-                <div className="text-lg greeting mt-2 opacity-80">
+                {/* <div className="text-lg greeting mt-2 opacity-80">
                     <Greetings />
-                </div>
+                </div> */}
             </div>
         );
     }
@@ -73,7 +73,7 @@ import { GoHomeFill } from "react-icons/go";
 
 export default function NavMenu() {
     return (
-        <div className="bg-white dark:bg-darkGrayCustom flex flex-col justify-between h-screen min-w-sidebar w-sidebar select-none border-r-[1px] border-[#383b40]">
+        <div className="bg-white dark:bg-darkGrayCustom flex flex-col justify-between h-screen min-w-sidebar w-sidebar select-none border-r-[1px] border-[#eaecf0]">
             <div>
                 <div className="mt-6 mb-12 px-padding">
                     <AuthButton />

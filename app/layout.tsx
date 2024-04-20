@@ -30,12 +30,12 @@ export default async function RootLayout({
 
     return (
         <html lang="en">
-            <body className={` ${myFont.className}`}>
+            <body className={`${inter.className} text-black`}>
                 <SessionProvider session={session}>
                     <main className="flex flex-row">
                         <NavMenu />
                         <div
-                            className="flex-grow p-dashboard-padding h-screen relative"
+                            className="flex-grow p-dashboard-padding h-screen relative bg-whiteDarker"
                         >
                             {children}
                             <Toaster position="top-right" reverseOrder={false} />

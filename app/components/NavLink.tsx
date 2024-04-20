@@ -13,7 +13,7 @@ const NavLink = ({ to, icon, children }: { to: string; icon: React.ComponentType
     const pathname = usePathname();
     return (
         <Link draggable="false" href={to}>
-            <li className={`flex flex-row items-center duration-100 transition gap-2 py-3 mx-6 my-4 text-2xl font-thin rounded-lg ${pathname === to ? ACTIVE_ROUTE : INACTIVE_ROUTE}`}>
+            <li className={`flex flex-row items-center duration-100 transition gap-3 py-3 mx-6 my-4 text-2xl font-base rounded-lg ${pathname === to ? ACTIVE_ROUTE : INACTIVE_ROUTE}`}>
                 {React.createElement(icon)}
                 <span>{children}</span>
             </li>

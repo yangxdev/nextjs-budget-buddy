@@ -198,7 +198,7 @@ export default function AddIncomeWithFile() {
                         const enabled = true;
                         incomeData.push({ enabled, date, source, amount, currency, category, notes });
                     } else {
-                        console.log("Invalid input: " + line);
+                        //console.log("Invalid input: " + line);
                         const enabled = false;
                         incomeData.push({ enabled, date, source, amount, currency, category, notes });
                     }

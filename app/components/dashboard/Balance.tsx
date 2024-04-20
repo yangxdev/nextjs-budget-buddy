@@ -37,12 +37,12 @@ export default async function Balance() {
     }
 
     return (
-        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] rounded-2xl text-sm select-none w-[18rem] h-fit">
+        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[18rem] h-[18rem] h-fit">
             <div className="flex flex-row justify-between select-none">
-                <div className="font-semibold uppercase text-lg">Total balance</div>
+                <div className="text-lg font-semibold">Current Balance</div>
                 <div
                     className={`flex flex-row items-center gap-1 
-                ${balanceDeltaDirection === "up" ? "text-accentGreenLighter" : balanceDeltaDirection === "down" ? "text-accentRed" : ""}
+                ${balanceDeltaDirection === "up" ? "text-accentGreen" : balanceDeltaDirection === "down" ? "text-accentRed" : ""}
                     `}
                 >
                     {/* {balanceDeltaDirection === "up" ? <FaArrowAltCircleUp /> : <FaArrowCircleDown />} */}
@@ -66,7 +66,7 @@ export default async function Balance() {
                         <IoMdArrowDropup />
                         Income
                     </div>
-                    <div className={`font-semibold text-base ${parseFloat(totalIncomeThisMonth) > 0 ? "text-accentGreenLighter" : "" }`}>
+                    <div className={`font-semibold text-base ${parseFloat(totalIncomeThisMonth) > 0 ? "text-accentGreen" : "" }`}>
                         {defaultCurrency} {totalIncomeThisMonth}
                     </div>
                 </div>
