@@ -37,9 +37,15 @@ const config: Config = {
                 // Custom light theme palette
                 platinum: "#EBE9E9",
                 mintCream: "#F3F8F2",
-                greenBlue: "#0B64AD",
+                azul: "#0C6FC0",
+                newBlue: { 
+                    200: "#D6E4F7",
+                    500: "#1455fb",
+                },
                 sandyBrown: "FCB07E",
                 alabaster: "DEE2D6",
+                white: "#FFFFFF",
+                whiteDarker: "#FDFDFD",
             },
             spacing: {
                 sidebar: SIDEBAR_MIN_WIDTH,

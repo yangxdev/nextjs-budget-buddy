@@ -6,6 +6,7 @@ import InfoChartVerticalBarServer from "./InfoChartVerticalBarServer";
 import PaymentInfoHistory from "./protected/payment/PaymentInfoHistory";
 import GlobalConfig from "@/app/app.config";
 import IncomeInfoHistory from "./protected/income/IncomeInfoHistory";
+import Greetings from "./components/Greetings";
 
 const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.dashboard;
 
@@ -18,7 +19,10 @@ export default async function Home() {
     return (
         <>
             <div className="font-bold text-3xl mb-2 select-none">{gc?.title}</div>
-            <div className="select-none mb-6">{gc?.subtitle}</div>
+            {/* <div className="select-none mb-6">{gc?.subtitle}</div> */}
+            <div className="text-lg greeting mt-2 opacity-80" suppressHydrationWarning>
+                    <Greetings />
+                </div>
             <div className="flex flex-row gap-8 justify-between h-fit">
                 <div className="flex flex-col gap-8 justify-between mb-[190px]">
                     <div className="flex flex-row gap-8 h-fit">
@@ -26,12 +30,9 @@ export default async function Home() {
                         <InfoChartVerticalBarServer />
                     </div>
                     <div className="flex flex-row gap-8 h-fit">
-                        {/* <Balance /> */}
                     </div>
                 </div>
                 <div className="flex flex-row gap-8 h-fit">
-                    {/* <IncomeInfoHistory />
-                    <PaymentInfoHistory /> */}
                 </div>
             </div>
         </>
