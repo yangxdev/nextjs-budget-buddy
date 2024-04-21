@@ -27,7 +27,7 @@ export default async function PaymentInfoSummary() {
     const sumThisWeek = convertedPaymentsThisWeek.reduce((acc: number, payment: number) => acc + payment, 0);
 
     return (
-        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
+        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-lightBorder max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
             <div className="text-lg font-bold select-none mb-2">{gc?.title}</div>
             {checkIfPaymentsAreEmpty() ? (
                 <div className="text-left text-sm">{gc?.noPaymentDataAvailable}</div>

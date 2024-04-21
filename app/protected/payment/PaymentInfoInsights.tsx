@@ -34,7 +34,7 @@ export default async function PaymentInfoInsights() {
     }
 
     return (
-        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] min-w-60 w-fit rounded-2xl text-sm select-none h-min">
+        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-lightBorder min-w-60 w-fit rounded-2xl text-sm select-none h-min">
             <div className="text-lg font-bold select-none mb-2">{gc?.title}</div>
             {checkIfPaymentsAreEmpty() ? (
                 <div className="text-left text-sm">{gc?.noPaymentDataAvailable}</div>

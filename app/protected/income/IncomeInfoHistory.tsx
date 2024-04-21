@@ -48,14 +48,14 @@ export default async function IncomeInfoHistory() {
 
                     {Object.entries(groupedIncomesByDay).map(([date, incomes]) => (
                         <div key={date}>
-                            <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">
+                            <div className="date-divider py-2 border-t-2 border-lightBorder font-semibold text-base">
                                 {/* {format(parse(date, "dd/MM/yyyy", new Date()), "MMMM do yyyy")} */}
                                 {date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}
                             </div>
                             {" "}
                             {incomes.map((income: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
-                                <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
-                                    <div className="icon rounded-full p-3 bg-accentGreenDarker">
+                                <div key={index} className={`rounded-xl hover:bg-newBlue-500 hover:text-white transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[1px] border-b-lightBorder" : ""}`}>
+                                    <div className="icon rounded-full p-3 bg-newBlue-500 text-white">
                                         {income.category === "Job" && <PiSuitcaseBold size={20} />}
                                         {income.category === "Crypto" && <MdCurrencyBitcoin size={20} />}
                                         {income.category === "Reward" && <PiMedal size={20} />}

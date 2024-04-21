@@ -247,7 +247,7 @@ export default function AddPaymentWithFile() {
   };
 
   return (
-    <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 rounded-2xl text-sm select-none h-min">
+    <div className="p-5 bg-lightGrayCustom3 border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
       <AddPaymentWithFileModal
         isOpen={openDialog}
         paymentData={paymentData}
@@ -264,7 +264,7 @@ export default function AddPaymentWithFile() {
         <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
         <label id="label-file-upload" htmlFor="input-file-upload" className={` w-full ${dragActive ? "drag-active" : ""}`} onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
           <div
-            className="transition ease-in-out duration-200 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md 
+            className="transition ease-in-out duration-200 bg-darkGrayCustom2 border-[1px] border-lightBorder rounded-md 
                         hover:bg-accentRedDarker p-5 cursor-pointer text-center"
           >
             <button className="upload-button font-bold" onClick={onButtonClick}>

@@ -19,7 +19,7 @@ export default async function TotalIncome() {
     const incomeDataByDateRange = incomeDataByDateRangeRaw.incomes;
 
     return (
-        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[22rem] h-fit">
+        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl text-sm select-none w-[22rem] h-fit">
             <div className="flex flex-row justify-between select-none items-center">
                 <div className="font-semibold text-lg">Total Income</div>
                 <div className="text-sm">

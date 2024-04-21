@@ -158,7 +158,7 @@ module.exports = {
 
                             reset: "Reset",
                             add: "Add",
-                            addRandom: "Add 10 random incomes",
+                            addRandom: "+10 entries",
                         },
 
                         addIncomeWithFile: {
@@ -201,14 +201,19 @@ module.exports = {
                         thisMonth: "This month",
                         thisWeek: "This week",
                     },
-                    incomeInfoGraph: {
+                    incomeInfoChart: {
                         title: "Categories",
 
-                        noIncomeDataAvailable: "No income data available",
+                        noPaymentDataAvailable: "No income data available",
 
-                        buttonThisWeek: "This week",
-                        buttonThisMonth: "This month",
-                        buttonThisYear: "This year",
+                        // buttonThisWeek: "This week",
+                        // buttonThisMonth: "This month",
+                        // buttonThisYear: "This year",
+                        buttonThisWeek: "1w",
+                        buttonThisMonth: "1M",
+                        buttonThisYear: "1y",
+                        buttonThreeYears: "3y",
+                        buttonAllTime: "All",
 
                         buttonDefault: "doughnutYearly",
                     },

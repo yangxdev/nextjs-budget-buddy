@@ -73,7 +73,7 @@ import { GoHomeFill } from "react-icons/go";
 
 export default function NavMenu() {
     return (
-        <div className="bg-white dark:bg-darkGrayCustom flex flex-col justify-between h-screen min-w-sidebar w-sidebar select-none border-r-[1px] border-[#eaecf0]">
+        <div className="bg-white dark:bg-darkGrayCustom flex flex-col justify-between h-screen min-w-sidebar w-sidebar select-none border-r-[1px] border-lightBorder">
             <div>
                 <div className="mt-6 mb-12 px-padding">
                     <AuthButton />

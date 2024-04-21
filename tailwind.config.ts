@@ -52,6 +52,7 @@ const config: Config = {
                 alabaster: "DEE2D6",
                 white: "#FFFFFF",
                 whiteDarker: "#FDFDFD",
+                lightBorder: "#eaecf0", 
             },
             spacing: {
                 sidebar: SIDEBAR_MIN_WIDTH,

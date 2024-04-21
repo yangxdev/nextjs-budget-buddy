@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.income?.addIncome?.addIncomeWithFile;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income?.addIncome?.addIncomeWithFile;
 
 export default function AddIncomeWithFile() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -247,7 +247,7 @@ export default function AddIncomeWithFile() {
     };
 
     return (
-        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 rounded-2xl text-sm select-none h-min">
+        <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
             <AddIncomeWithFileModal
                 isOpen={openDialog}
                 incomeData={incomeData}
@@ -258,14 +258,13 @@ export default function AddIncomeWithFile() {
                     }
                 }}
             />
-            <div className="font-bold pb-3">{gc?.title}</div>
+            <div className="text-lg font-semibold pb-2">{gc?.title}</div>
 
             <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
                 <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
                 <label id="label-file-upload" htmlFor="input-file-upload" className={` w-full ${dragActive ? "drag-active" : ""}`} onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
                     <div
-                        className="transition ease-in-out duration-200 bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md 
-                        hover:bg-accentGreenDarkerer p-5 cursor-pointer text-center"
+                        className="transition ease-in-out duration-100 bg-whiteDarker border-[1px] border-lightBorder rounded-md hover:bg-newGreen-500 hover:text-white p-5 cursor-pointer text-center shadow-sm hover:shadow-md"
                     >
                         <button className="upload-button font-bold" onClick={onButtonClick}>
                             {gc?.chooseFile}
