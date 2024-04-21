@@ -1,6 +1,7 @@
 import InfoChartLine from "@/app/InfoChartLineServer";
 import { getConvertedIncomesByDateRange, getIncomeDataByDateRange } from "@/app/api/database/get_incomes/incomes";
 import GlobalConfig, { income } from "@/app/app.config";
+import TrendPercentage from "./TrendPercentage";
 
 const defaultCurrency = GlobalConfig.currency.baseCurrency;
 
@@ -18,22 +19,23 @@ export default async function TotalIncome() {
     const incomeDataByDateRange = incomeDataByDateRangeRaw.incomes;
 
     return (
-        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[18rem] h-[18rem] h-fit">
-            <div className="flex flex-col justify-between select-none">
+        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[20rem] h-fit">
+            <div className="flex flex-row justify-between select-none items-center">
                 <div className="font-semibold text-lg">Total Income</div>
+                <div className="text-sm">
+                    {monthName} {year}
+                </div>
             </div>
-                <div className="text-sm text-gray-500">{monthName}{" "}{year}</div>
-            <div className="flex flex-row gap-1.5 font-bold text-3xl py-4">
+            <div className="flex flex-row gap-1.5 font-bold text-3xl py-4 justify-between">
                 <div className="total-balance ">
-                    {Number(totalIncomeThisMonth) < 0 ? "-" : ""} {defaultCurrency}{" "}
-                    {Number(totalIncomeThisMonth) < 0 ? Math.abs(Number(totalIncomeThisMonth)) : Number(totalIncomeThisMonth)}
+                    {Number(totalIncomeThisMonth) < 0 ? "-" : ""} {defaultCurrency} {Number(totalIncomeThisMonth) < 0 ? Math.abs(Number(totalIncomeThisMonth)) : Number(totalIncomeThisMonth)}
+                </div>
+                <div className="percentage text-newBlue-500">
+                    <TrendPercentage data={incomeDataByDateRange} />
                 </div>
             </div>
             <div className="mt-2">
-                <InfoChartLine
-                    data={incomeDataByDateRange}
-                    title="Income"
-                />
+                <InfoChartLine data={incomeDataByDateRange} title="Income" lineColor="20, 85, 251" />
             </div>
         </div>
     );

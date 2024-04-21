@@ -42,6 +42,9 @@ const config: Config = {
                     200: "#D6E4F7",
                     500: "#1455fb",
                 },
+                newRed: {
+                    500: "#F1554A",
+                },
                 sandyBrown: "FCB07E",
                 alabaster: "DEE2D6",
                 white: "#FFFFFF",

@@ -1,6 +1,7 @@
 import InfoChartLine from "@/app/InfoChartLineServer";
 import { getConvertedPaymentsByDateRange, getPaymentDataByDateRange } from "@/app/api/database/get_payments/payments";
 import GlobalConfig, { payment } from "@/app/app.config";
+import TrendPercentage from "./TrendPercentage";
 
 const defaultCurrency = GlobalConfig.currency.baseCurrency;
 
@@ -18,22 +19,23 @@ export default async function TotalPayment() {
     const paymentDataByDateRange = paymentDataByDateRangeRaw.payments;
 
     return (
-        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[18rem] h-[18rem] h-fit">
-            <div className="flex flex-col justify-between select-none">
-                <div className="font-semibold text-lg">Total Payment</div>
+        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[20rem] h-fit">
+            <div className="flex flex-row justify-between select-none items-center">
+                <div className="font-semibold text-lg">Total Expenses</div>
+                <div className="text-sm">
+                    {monthName} {year}
+                </div>
             </div>
-                <div className="text-sm text-gray-500">{monthName}{" "}{year}</div>
-            <div className="flex flex-row gap-1.5 font-bold text-3xl py-4">
-                <div className="total-balance ">
-                    {Number(totalPaymentThisMonth) < 0 ? "-" : ""} {defaultCurrency}{" "}
-                    {Number(totalPaymentThisMonth) < 0 ? Math.abs(Number(totalPaymentThisMonth)) : Number(totalPaymentThisMonth)}
+            <div className="flex flex-row gap-1.5 font-bold text-3xl py-4 justify-between">
+                <div className="total-balance">
+                    {Number(totalPaymentThisMonth) < 0 ? "-" : ""} {defaultCurrency} {Number(totalPaymentThisMonth) < 0 ? Math.abs(Number(totalPaymentThisMonth)) : Number(totalPaymentThisMonth)}
+                </div>
+                <div className="percentage text-newRed-500">
+                    <TrendPercentage data={paymentDataByDateRange} />
                 </div>
             </div>
             <div className="mt-2">
-                <InfoChartLine
-                    data={paymentDataByDateRange}
-                    title="Expenses"
-                />
+                <InfoChartLine data={paymentDataByDateRange} title="Expenses" lineColor="241, 85, 74" />
             </div>
         </div>
     );
