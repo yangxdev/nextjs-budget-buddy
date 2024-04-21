@@ -6,17 +6,16 @@ import TrendPercentage from "./TrendPercentage";
 const defaultCurrency = GlobalConfig.currency.baseCurrency;
 
 export default async function TotalPayment() {
-    const today = new Date();
-    // const startDate = new Date(today.getFullYear(), today.getMonth(), 1);
-    const startDate = new Date(today.getFullYear(), 0, 1);
+    const endDate = new Date();
+    const startDate = new Date(endDate.getFullYear(), 0, 1);
 
     const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(startDate);
     const year = new Date().getFullYear();
 
-    const convertedPayments = await getConvertedPaymentsByDateRange(startDate, today);
+    const convertedPayments = await getConvertedPaymentsByDateRange(startDate, endDate);
     const totalPayment = convertedPayments.reduce((a: number, b: number) => a + b, 0).toFixed(2);
 
-    const paymentDataByDateRangeRaw = await getPaymentDataByDateRange(startDate.toISOString(), today.toISOString());
+    const paymentDataByDateRangeRaw = await getPaymentDataByDateRange(startDate.toISOString(), endDate.toISOString());
     const paymentDataByDateRange = paymentDataByDateRangeRaw.payments;
 
     return (

@@ -7,22 +7,21 @@ import InfoChartLine from "@/app/InfoChartLineServer";
 const defaultCurrency = GlobalConfig.currency.baseCurrency;
 
 export default async function Balance() {
-    const today = new Date();
+    const endDate = new Date();
+    const startDate = new Date(endDate.getFullYear(), 0, 1);
+    const currentBalance = await getBalanceByDateRange(startDate.toISOString(), endDate.toISOString());
 
-    const startDate = new Date(today.getFullYear(), 0, 1);
-    const endDate = new Date(today.getFullYear(), today.getMonth(), 0);
-    const currentBalance = await getBalanceByDateRange(startDate.toISOString(), today.toISOString());
-
-    const balanceObject = await getBalanceDataByDateRange(startDate.toISOString(), today.toISOString());
+    const balanceObject = await getBalanceDataByDateRange(startDate.toISOString(), endDate.toISOString());
 
     const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(startDate);
     const year = new Date().getFullYear();
 
     // array of objects
-    const balanceData = Object.entries(balanceObject).map(([date, balance]: [string, number]) => {
+    const balanceData = Object.entries(balanceObject).map((
+        [date, balance]: [string, unknown]
+    ) => {
         return { date, balance };
     });
-    console.log("x", balanceData);
 
     return (
         <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[22rem] h-fit">

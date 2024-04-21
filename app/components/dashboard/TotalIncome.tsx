@@ -6,19 +6,17 @@ import TrendPercentage from "./TrendPercentage";
 const defaultCurrency = GlobalConfig.currency.baseCurrency;
 
 export default async function TotalIncome() {
-    const today = new Date();
-    // const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-    const startDate = new Date(today.getFullYear(), 0, 1);
+    const endDate = new Date();
+    const startDate = new Date(endDate.getFullYear(), 0, 1);
 
     const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(startDate);
     const year = new Date().getFullYear();
 
-    const convertedIncomes = await getConvertedIncomesByDateRange(startDate, today);
+    const convertedIncomes = await getConvertedIncomesByDateRange(startDate, endDate);
     const totalIncome = convertedIncomes.reduce((a: number, b: number) => a + b, 0).toFixed(2);
 
-    const incomeDataByDateRangeRaw = await getIncomeDataByDateRange(startDate.toISOString(), today.toISOString());
+    const incomeDataByDateRangeRaw = await getIncomeDataByDateRange(startDate.toISOString(), endDate.toISOString());
     const incomeDataByDateRange = incomeDataByDateRangeRaw.incomes;
-    console.log(incomeDataByDateRange);
 
     return (
         <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[22rem] h-fit">

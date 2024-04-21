@@ -3,7 +3,6 @@ import { getConvertedIncomesByDateRange, getIncomeDataByDateRange } from "../get
 import { getConvertedPaymentsByDateRange, getPaymentDataByDateRange } from "../get_payments/payments";
 import CurrencyConverter from "@/app/utils/currencyConverter";
 import GlobalConfig from "@/app/app.config";
-import { Coming_Soon } from "next/font/google";
 
 // this returns a single balance for the date range
 export async function getBalanceByDateRange(startDate: string, endDate: string) {
@@ -34,12 +33,12 @@ export async function getBalanceDataByDateRange(startDate: string, endDate: stri
         return acc;
     }, {});
 
-    const sortedIncomeDataMappedByDate = Object.entries(incomeDataMappedByDate).sort(([dateA], [dateB]) => new Date(dateA).getTime() - new Date(dateB).getTime()).reduce((acc: any, [date, amount]: [string, number]) => {
+    const sortedIncomeDataMappedByDate = Object.entries(incomeDataMappedByDate).sort(([dateA], [dateB]) => new Date(dateA).getTime() - new Date(dateB).getTime()).reduce((acc: any, [date, amount]: [string, unknown]) => {
         acc[date] = amount;
         return acc;
     }, {});
 
-    const sortedExpensesDataMappedByDate = Object.entries(expensesDataMappedByDate).sort(([dateA], [dateB]) => new Date(dateA).getTime() - new Date(dateB).getTime()).reduce((acc: any, [date, amount]: [string, number]) => {
+    const sortedExpensesDataMappedByDate = Object.entries(expensesDataMappedByDate).sort(([dateA], [dateB]) => new Date(dateA).getTime() - new Date(dateB).getTime()).reduce((acc: any, [date, amount]: [string, unknown]) => {
         acc[date] = amount;
         return acc;
     }, {});
@@ -49,16 +48,10 @@ export async function getBalanceDataByDateRange(startDate: string, endDate: stri
 
     const incrementalBalanceDataMappedByDate = allDates.reduce((acc: any, date: string, index: number) => {
         const previousDate = allDates[index - 1];
-        // console.log("previous date ", previousDate);
         const previousBalance = acc[previousDate] || 0;
-        // console.log("previous balance ", previousBalance);
         const income = sortedIncomeDataMappedByDate[date] || 0;
-        // console.log("income ", income);
         const expenses = sortedExpensesDataMappedByDate[date] || 0;
-        // console.log("expenses ", expenses);
         acc[date] = previousBalance + income - expenses;
-        // console.log("acc[date] ", acc[date]);
-        // console.log("--------------------");
         return acc;
     }, {});
 

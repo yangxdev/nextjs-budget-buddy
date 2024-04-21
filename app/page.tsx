@@ -10,7 +10,8 @@ import TotalIncome from "./components/dashboard/TotalIncome";
 import Greetings from "./components/Greetings";
 import TotalExpenses from "./components/dashboard/TotalExpenses";
 
-const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.dashboard;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.dashboard;
 
 export default async function Home() {
     const session = await getServerSession();

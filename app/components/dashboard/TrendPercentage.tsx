@@ -2,13 +2,18 @@ import CurrencyConverter from "@/app/utils/currencyConverter";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
 import GlobalConfig from "@/app/app.config";
-import { skip } from "node:test";
+
+type Amount = { amount: number } | { balance: number };
+interface Props {
+    useBalance?: boolean;
+    amounts: Amount[];
+}
 
 export default async function TrendPercentage(props: { data: any; skipConversion?: boolean; useBalance?: boolean }) {
     const data = props.data;
     const orderedDataByDate = Array.isArray(data) ? data.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime()) : [];
     let amounts = orderedDataByDate.map((entry: number) => entry);
-    
+
     if (!props.skipConversion) {
         const convertedOrderedDataByDate = await CurrencyConverter({ data: orderedDataByDate, currency: GlobalConfig.currency.baseCurrency });
         amounts = convertedOrderedDataByDate.map((entry: number) => entry);
@@ -16,13 +21,14 @@ export default async function TrendPercentage(props: { data: any; skipConversion
     if (amounts.length <= 1) {
         return null;
     }
-    let firstDay, currentDay;
+    let firstDay: number;
+    let currentDay: number;
     if (!props.useBalance) {
-        firstDay = amounts[0].amount;
-        currentDay = amounts[amounts.length - 1].amount;
+        firstDay = (amounts[0] as unknown as { amount: number }).amount;
+        currentDay = (amounts[amounts.length - 1] as unknown as { amount: number }).amount;
     } else {
-        firstDay = amounts[0].balance;
-        currentDay = amounts[amounts.length - 1].balance;
+        firstDay = (amounts[0] as unknown as { balance: number }).balance;
+        currentDay = (amounts[amounts.length - 1] as unknown as { balance: number }).balance;
     }
 
     const percentageRaw = ((currentDay - firstDay) / firstDay) * 100;
