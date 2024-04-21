@@ -47,6 +47,7 @@ export default function InfoChartLine(props: any) {
                 bottom: 0
             }
         },
+        tension: 0.1,
     };
 
     const data = {

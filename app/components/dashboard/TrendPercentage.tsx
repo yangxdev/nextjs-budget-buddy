@@ -3,12 +3,6 @@ import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
 import GlobalConfig from "@/app/app.config";
 
-type Amount = { amount: number } | { balance: number };
-interface Props {
-    useBalance?: boolean;
-    amounts: Amount[];
-}
-
 export default async function TrendPercentage(props: { data: any; skipConversion?: boolean; useBalance?: boolean }) {
     const data = props.data;
     const orderedDataByDate = Array.isArray(data) ? data.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime()) : [];
@@ -31,15 +25,14 @@ export default async function TrendPercentage(props: { data: any; skipConversion
         currentDay = (amounts[amounts.length - 1] as unknown as { balance: number }).balance;
     }
 
-    const percentageRaw = ((currentDay - firstDay) / firstDay) * 100;
-    // remove the minus sign if the percentage is negative
-    const percentage = percentageRaw < 0 ? Math.abs(percentageRaw) : percentageRaw;
+    const percentage = Math.abs((Math.abs(currentDay - firstDay) / Math.abs(firstDay)) * 100);
+    const trend = currentDay - firstDay;
 
     return (
         <>
             {percentage !== 0 && !isNaN(percentage) && (
                 <div className="flex flex-row items-center font-semibold text-[14px] gap-1">
-                    <div>{percentageRaw < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}</div>
+                    <div>{trend < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}</div>
                     <div>{percentage.toFixed(1)}%</div>
                 </div>
             )}
