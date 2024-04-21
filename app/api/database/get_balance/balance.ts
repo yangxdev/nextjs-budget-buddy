@@ -3,6 +3,7 @@ import { getConvertedIncomesByDateRange, getIncomeDataByDateRange } from "../get
 import { getConvertedPaymentsByDateRange, getPaymentDataByDateRange } from "../get_payments/payments";
 import CurrencyConverter from "@/app/utils/currencyConverter";
 import GlobalConfig from "@/app/app.config";
+import { Coming_Soon } from "next/font/google";
 
 // this returns a single balance for the date range
 export async function getBalanceByDateRange(startDate: string, endDate: string) {
@@ -18,23 +19,48 @@ export async function getBalanceDataByDateRange(startDate: string, endDate: stri
     const expensesDataRaw = await getPaymentDataByDateRange(startDate, endDate);
     const incomeData = incomeDataRaw.incomes;
     const expensesData = expensesDataRaw.payments;
-    const balanceData: { [date: string]: number } = {};
+    const convertedIncomeData = await CurrencyConverter({ data: incomeData, currency: GlobalConfig.currency.baseCurrency });
+    const convertedExpensesData = await CurrencyConverter({ data: expensesData, currency: GlobalConfig.currency.baseCurrency });
 
-    // Iterate over income data and add to balance
-    for (const income of incomeData) {
-        if (!balanceData[income.date]) {
-            balanceData[income.date] = 0;
-        }
-        balanceData[income.date] += income.amount;
-    }
+    const incomeDataMappedByDate = convertedIncomeData.reduce((acc: any, income: any) => {
+        const date = new Date(income.date).toISOString().split("T")[0];
+        acc[date] = (acc[date] || 0) + income.amount;
+        return acc;
+    }, {});
 
-    // Iterate over expenses data and subtract from balance
-    for (const expense of expensesData) {
-        if (!balanceData[expense.date]) {
-            balanceData[expense.date] = 0;
-        }
-        balanceData[expense.date] -= expense.amount;
-    }
+    const expensesDataMappedByDate = convertedExpensesData.reduce((acc: any, expense: any) => {
+        const date = new Date(expense.date).toISOString().split("T")[0];
+        acc[date] = (acc[date] || 0) + expense.amount;
+        return acc;
+    }, {});
 
-    console.log("balance data", balanceData);
+    const sortedIncomeDataMappedByDate = Object.entries(incomeDataMappedByDate).sort(([dateA], [dateB]) => new Date(dateA).getTime() - new Date(dateB).getTime()).reduce((acc: any, [date, amount]: [string, number]) => {
+        acc[date] = amount;
+        return acc;
+    }, {});
+
+    const sortedExpensesDataMappedByDate = Object.entries(expensesDataMappedByDate).sort(([dateA], [dateB]) => new Date(dateA).getTime() - new Date(dateB).getTime()).reduce((acc: any, [date, amount]: [string, number]) => {
+        acc[date] = amount;
+        return acc;
+    }, {});
+
+    const allDates = [...new Set([...Object.keys(sortedIncomeDataMappedByDate), ...Object.keys(sortedExpensesDataMappedByDate)])];
+    allDates.sort();
+
+    const incrementalBalanceDataMappedByDate = allDates.reduce((acc: any, date: string, index: number) => {
+        const previousDate = allDates[index - 1];
+        // console.log("previous date ", previousDate);
+        const previousBalance = acc[previousDate] || 0;
+        // console.log("previous balance ", previousBalance);
+        const income = sortedIncomeDataMappedByDate[date] || 0;
+        // console.log("income ", income);
+        const expenses = sortedExpensesDataMappedByDate[date] || 0;
+        // console.log("expenses ", expenses);
+        acc[date] = previousBalance + income - expenses;
+        // console.log("acc[date] ", acc[date]);
+        // console.log("--------------------");
+        return acc;
+    }, {});
+
+    return incrementalBalanceDataMappedByDate;
 }

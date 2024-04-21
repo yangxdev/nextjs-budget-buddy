@@ -7,28 +7,29 @@ const defaultCurrency = GlobalConfig.currency.baseCurrency;
 
 export default async function TotalPayment() {
     const today = new Date();
-    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    // const startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    const startDate = new Date(today.getFullYear(), 0, 1);
 
-    const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(firstDayOfMonth);
+    const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(startDate);
     const year = new Date().getFullYear();
 
-    const convertedPaymentsThisMonth = await getConvertedPaymentsByDateRange(firstDayOfMonth, today);
-    const totalPaymentThisMonth = convertedPaymentsThisMonth.reduce((a: number, b: number) => a + b, 0).toFixed(2);
+    const convertedPayments = await getConvertedPaymentsByDateRange(startDate, today);
+    const totalPayment = convertedPayments.reduce((a: number, b: number) => a + b, 0).toFixed(2);
 
-    const paymentDataByDateRangeRaw = await getPaymentDataByDateRange(firstDayOfMonth.toISOString(), today.toISOString());
+    const paymentDataByDateRangeRaw = await getPaymentDataByDateRange(startDate.toISOString(), today.toISOString());
     const paymentDataByDateRange = paymentDataByDateRangeRaw.payments;
 
     return (
-        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[20rem] h-fit">
+        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-[#eaecf0] rounded-2xl text-sm select-none w-[22rem] h-fit">
             <div className="flex flex-row justify-between select-none items-center">
                 <div className="font-semibold text-lg">Total Expenses</div>
                 <div className="text-sm">
-                    {monthName} {year}
+                    From {monthName} {year}
                 </div>
             </div>
             <div className="flex flex-row gap-1.5 font-bold text-3xl py-4 justify-between">
                 <div className="total-balance">
-                    {Number(totalPaymentThisMonth) < 0 ? "-" : ""} {defaultCurrency} {Number(totalPaymentThisMonth) < 0 ? Math.abs(Number(totalPaymentThisMonth)) : Number(totalPaymentThisMonth)}
+                    {Number(totalPayment) < 0 ? "-" : ""} {defaultCurrency} {Number(totalPayment) < 0 ? Math.abs(Number(totalPayment)) : Number(totalPayment)}
                 </div>
                 <div className="percentage text-newRed-500">
                     <TrendPercentage data={paymentDataByDateRange} />

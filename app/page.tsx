@@ -21,7 +21,6 @@ export default async function Home() {
     return (
         <>
             <div className="font-bold text-4xl mb-2 select-none">{gc?.title}</div>
-            {/* <div className="select-none mb-6">{gc?.subtitle}</div> */}
             <div className="text-lg greeting my-2 opacity-80" suppressHydrationWarning>
                     <Greetings />
                 </div>
