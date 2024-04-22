@@ -131,16 +131,14 @@ export default function AddIncome() {
                         onClick={() => {
                             addRandomIncome();
                             toast.success("Random Income Added", {
-                                style: {
-                                    background: "#333",
-                                    color: "#fff",
-                                },
                             });
                         }}
                         className="flex flex-row items-center gap-1 transition duration-100 bg-white rounded-md p-2 hover:bg-newGreen-500 hover:text-white"
                     >
-                        <CgDice5 />
-                        {gc?.addRandom}
+                        <div>
+                            <CgDice5 />
+                        </div>
+                        <div>{gc?.addRandom}</div>
                     </button>
                 )}
                 <button

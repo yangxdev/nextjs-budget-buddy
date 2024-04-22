@@ -51,8 +51,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
                 <div className="flex gap-0 transition duration-100 justify-start border-[1px] border-lightBorder rounded-xl shadow-sm">
                     <button
                         className={`
-                            w-32 hover:bg-newBlue-500 hover:text-white rounded-l-xl p-2 duration-100 transition ease-in-out
-                            ${props.datasets[0] === undefined || props.datasets[0].length === 0 ? "opacity-50 hover:bg-white" : ""}
+                            w-32 ${props.datasets[0] === undefined || props.datasets[0].length === 0 ? "opacity-50" : "hover:bg-newBlue-500 hover:text-white"} rounded-l-xl p-2 duration-100 transition ease-in-out
                             ${selectedOption === "doughnutWeekly" ? "bg-newBlue-500 text-white" : "bg-white"}
                         `}
                         disabled={props.datasets[0] === undefined || props.datasets[0].length === 0}
@@ -63,8 +62,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
                     </button>
                     <button
                         className={`
-                            w-32 hover:bg-newBlue-500 hover:text-white  p-2 duration-100 transition ease-in-out
-                            ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50 hover:bg-white" : ""}
+                            w-32 ${props.datasets[1] === undefined || props.datasets[1].length === 0 ? "opacity-50" : "hover:bg-newBlue-500 hover:text-white"} p-2 duration-100 transition ease-in-out
                             ${selectedOption === "doughnutMonthly" ? "bg-newBlue-500 text-white" : "bg-white"}
                         `}
                         disabled={props.datasets[1] === undefined || props.datasets[1].length === 0}
@@ -76,7 +74,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
 
                     <button
                         className={`
-                            w-32 hover:bg-newBlue-500 hover:text-white  p-2 duration-100 transition ease-in-out
+                            w-32 ${props.datasets[2] === undefined || props.datasets[2].length === 0 ? "opacity-50" : "hover:bg-newBlue-500 hover:text-white"} p-2 duration-100 transition ease-in-out
                             ${selectedOption === "doughnutYearly" ? "bg-newBlue-500 text-white" : "bg-white"}
                         `}
                         disabled={props.datasets[2] === undefined || props.datasets[2].length === 0}
@@ -87,7 +85,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
 
                     <button
                         className={`
-                                w-32 hover:bg-newBlue-500 hover:text-white  p-2 duration-100 transition ease-in-out
+                                w-32 ${props.datasets[3] === undefined || props.datasets[3].length === 0 ? "opacity-50" : "hover:bg-newBlue-500 hover:text-white"} p-2 duration-100 transition ease-in-out
                                 ${selectedOption === "doughtnutThreeYears" ? "bg-newBlue-500 text-white" : "bg-white"}
                             `}
                         disabled={props.datasets[3] === undefined || props.datasets[3].length === 0}
@@ -98,7 +96,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
 
                     <button
                         className={`
-                            w-32 hover:bg-newBlue-500 hover:text-white rounded-r-xl p-2 duration-100 transition ease-in-out
+                            w-32 ${props.datasets[4] === undefined || props.datasets[4].length === 0 ? "opacity-50" : "hover:bg-newBlue-500 hover:text-white"} rounded-r-xl p-2 duration-100 transition ease-in-out
                             ${selectedOption === "doughnutAllTime" ? "bg-newBlue-500 text-white" : "bg-white"}
                         `}
                         disabled={props.datasets[4] === undefined || props.datasets[4].length === 0}

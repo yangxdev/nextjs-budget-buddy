@@ -238,7 +238,7 @@ module.exports = {
 
                             reset: "Reset",
                             add: "Add",
-                            addRandom: "Add 10 random payments",
+                            addRandom: "+10 entries",
                         },
 
                         addPaymentWithFile: {
