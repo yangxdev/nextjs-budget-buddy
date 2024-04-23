@@ -41,4 +41,4 @@ export default async function TotalExpense() {
     );
 }
 
-// TODO: change "expense" to "expenses", everywhere in the codebase
+// DONE: change "expense" to "expenses", everywhere in the codebase

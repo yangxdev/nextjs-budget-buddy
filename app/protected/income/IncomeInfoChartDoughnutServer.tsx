@@ -80,4 +80,4 @@ export default async function IncomeInfoChartDoughnutServer(): Promise<JSX.Eleme
     );
 }
 
-// TODO: align with income section once development is done for income section
+// DONE: align with income section once development is done for income section
