@@ -11,49 +11,49 @@ const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income?.addIncome?.addIncomeForm;
 
 export default function AddIncome() {
-      const currentDate = new Date().toISOString().substring(0, 10);
+    const currentDate = new Date().toISOString().substring(0, 10);
 
-      const sourceRef = useRef<HTMLInputElement>(null);
-      const dateRef = useRef<HTMLInputElement>(null);
-      const amountRef = useRef<HTMLInputElement>(null);
-      const currencyRef = useRef<HTMLSelectElement>(null);
-      const categoryRef = useRef<HTMLSelectElement>(null);
-      const notesRef = useRef<HTMLTextAreaElement>(null);
+    const sourceRef = useRef<HTMLInputElement>(null);
+    const dateRef = useRef<HTMLInputElement>(null);
+    const amountRef = useRef<HTMLInputElement>(null);
+    const currencyRef = useRef<HTMLSelectElement>(null);
+    const categoryRef = useRef<HTMLSelectElement>(null);
+    const notesRef = useRef<HTMLTextAreaElement>(null);
 
-      const router = useRouter();
-      const handleSubmit = () => {
-            const source = sourceRef.current?.value;
-            const date = dateRef.current?.value;
-            const amount = amountRef.current?.value;
-            const currency = currencyRef.current?.value;
-            const category = categoryRef.current?.value;
-            const notes = notesRef.current?.value;
+    const router = useRouter();
+    const handleSubmit = () => {
+        const source = sourceRef.current?.value;
+        const date = dateRef.current?.value;
+        const amount = amountRef.current?.value;
+        const currency = currencyRef.current?.value;
+        const category = categoryRef.current?.value;
+        const notes = notesRef.current?.value;
 
         if (!source || !date || !amount || !currency || !category) {
             toast.error("Please fill in all the required fields", {});
             return;
         }
 
-            const responsePromise = fetch("/api/database/add_income", {
-                  method: "POST",
-                  headers: {
-                        "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                        source,
-                        date,
-                        amount,
-                        currency,
-                        category,
-                        notes,
-                  }),
-            }).then((response) => {
-                  if (!response.ok) {
-                        throw new Error("HTTP error " + response.status);
-                  }
-                  router.refresh();
-                  return response;
-            });
+        const responsePromise = fetch("/api/database/add_income", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                source,
+                date,
+                amount,
+                currency,
+                category,
+                notes,
+            }),
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            router.refresh();
+            return response;
+        });
 
         toast.promise(
             responsePromise,
@@ -66,20 +66,20 @@ export default function AddIncome() {
         );
     };
 
-      const elementRef = useRef(null);
+    const elementRef = useRef(null);
 
-      useEffect(() => {
-            // if (elementRef.current) {
-            //   VanillaTilt.init(elementRef.current, {
-            //     max: 5,
-            //     speed: 200,
-            //   });
-            // }
-      }, []);
+    useEffect(() => {
+        // if (elementRef.current) {
+        //   VanillaTilt.init(elementRef.current, {
+        //     max: 5,
+        //     speed: 200,
+        //   });
+        // }
+    }, []);
 
     return (
         <div ref={elementRef} className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
-            <div className="text-lg font-semibold pb-2">{gc?.title}</div>
+            <div className="font-bold pb-2 text-lg">{gc?.title}</div>
             <div className="pb-2">
                 {gc?.date}
                 <input type="date" ref={dateRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md" defaultValue={currentDate} required />
@@ -130,8 +130,7 @@ export default function AddIncome() {
                     <button
                         onClick={() => {
                             addRandomIncome();
-                            toast.success("Random Income Added", {
-                            });
+                            toast.success("Random Income Added", {});
                         }}
                         className="flex flex-row items-center gap-1 transition duration-100 bg-white rounded-md p-2 hover:bg-newGreen-500 hover:text-white"
                     >

@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import GlobalConfig from "@/app/app.config";
 
-const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.expense;
+const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.expenses;
 
 export default function ExpenseSkeleton() {
     return (

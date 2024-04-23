@@ -73,7 +73,7 @@ export default async function ExpenseInfoChartDoughnutServer(): Promise<JSX.Elem
     return (
         <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 min-w-80 rounded-2xl text-sm select-none h-min max-h-[35rem]">
             <div className="mb-2 justify-between flex flex-row">
-                <div className="font-semibold text-lg">{gc?.title}</div>
+                <div className="font-bold text-lg">{gc?.title}</div>
             </div>
             <ExpenseInfoChartDoughnutClient datasets={[datasetsDataWeekly, datasetsDataMonthly, datasetsDataYearly, datasetsDataThreeYears, datasetsDataAllTime]} categories={[categoriesWeekly, categoriesMonthly, categoriesYearly, categoriesThreeYears, categoriesAllTime]} />
         </div>

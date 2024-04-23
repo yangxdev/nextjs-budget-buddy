@@ -31,14 +31,14 @@ export default async function IncomeInfoSummary() {
 
     return (
         <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
-            <div className="text-lg font-semibold select-none mb-2">{gc?.title}</div>
+            <div className="text-lg font-bold select-none mb-2">{gc?.title}</div>
             {checkIfIncomesAreEmpty() ? (
                 <div className="text-left text-sm">{gc?.noIncomeDataAvailable}</div>
             ) : (
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-row justify-between items-center gap-4">
                         <div className="font-normal">{gc?.thisYear}</div>
-                        <div className={`flex flex-row font-semibold ${sumThisYear > 0 ? "text-accentGreen" : ""}`}>
+                        <div className={`flex flex-row font-semibold text-base ${sumThisYear > 0 ? "text-accentGreen" : ""}`}>
                             {"+"}
                             <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
                             <div>{sumThisYear.toFixed(2)}</div>
@@ -46,7 +46,7 @@ export default async function IncomeInfoSummary() {
                     </div>
                     <div className="flex flex-row justify-between items-center gap-4">
                         <div className="font-normal">{gc?.thisMonth}</div>
-                        <div className={`flex flex-row font-semibold ${sumThisMonth > 0 ? "text-accentGreen" : ""}`}>
+                        <div className={`flex flex-row font-semibold text-base ${sumThisMonth > 0 ? "text-accentGreen" : ""}`}>
                             {"+"}
                             <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
                             <div>{sumThisMonth.toFixed(2)}</div>
@@ -54,7 +54,7 @@ export default async function IncomeInfoSummary() {
                     </div>
                     <div className="flex flex-row justify-between items-center gap-4">
                         <div className="font-normal">{gc?.thisWeek}</div>
-                        <div className={`flex flex-row font-semibold ${sumThisWeek > 0 ? "text-accentGreen" : ""}`}>
+                        <div className={`flex flex-row font-semibold text-base ${sumThisWeek > 0 ? "text-accentGreen" : ""}`}>
                             {"+"}
                             <div className="px-1">{GlobalConfig.currency.baseCurrency}</div>
                             <div>{sumThisWeek.toFixed(2)}</div>
