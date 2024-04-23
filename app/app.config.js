@@ -2,7 +2,12 @@ module.exports = {
     debug: {
         showAddRandomEntriesButton: true,
     },
+    debug: {
+        showAddRandomEntriesButton: true,
+    },
 
+    currency: {
+        baseCurrency: "EUR", // change the base currency here
     currency: {
         baseCurrency: "EUR", // change the base currency here
 
@@ -40,7 +45,57 @@ module.exports = {
             "PKR",
         ],
     },
+        currencies: [
+            // add or remove currencies
+            "USD",
+            "EUR",
+            "JPY",
+            "GBP",
+            "AUD",
+            "CAD",
+            "CHF",
+            "CNY",
+            "SEK",
+            "NZD",
+            "MXN",
+            "SGD",
+            "HKD",
+            "NOK",
+            "KRW",
+            "TRY",
+            "RUB",
+            "INR",
+            "BRL",
+            "ZAR",
+            "TWB",
+            "THB",
+            "IDR",
+            "HUF",
+            "PLN",
+            "PHP",
+            "CZK",
+            "ILS",
+            "CLP",
+            "PKR",
+        ],
+    },
 
+    income: {
+        incomeCategories: [
+            // add or remove income categories
+            "Job",
+            "Gift",
+            "Crypto",
+            "Reward",
+            "Savings",
+            "Cashback",
+            "Investment",
+            "Scholarship",
+            "Financial assistance",
+            "Expense reimbursement",
+            "Other",
+        ],
+    },
     income: {
         incomeCategories: [
             // add or remove income categories
@@ -103,6 +158,8 @@ module.exports = {
 
     i18n: {
         defaultLanguage: "en", // <<< change the default language here, remember to refresh the page after changing it
+    i18n: {
+        defaultLanguage: "en", // <<< change the default language here, remember to refresh the page after changing it
 
         languages: ["en", "it"],
         greetings: {
@@ -155,6 +212,17 @@ module.exports = {
                             currency: "Currency",
                             category: "Category",
                             notes: "Notes (optional)",
+                income: {
+                    title: "Income",
+                    addIncome: {
+                        addIncomeForm: {
+                            title: "Add income",
+                            date: "Date",
+                            source: "Source",
+                            amount: "Amount",
+                            currency: "Currency",
+                            category: "Category",
+                            notes: "Notes (optional)",
 
                             reset: "Reset",
                             add: "Add",
@@ -165,11 +233,26 @@ module.exports = {
                             title: "Import CSV",
                             chooseFile: "Choose a file",
                             dragHere: "or drag it here",
+                        addIncomeWithFile: {
+                            title: "Import CSV",
+                            chooseFile: "Choose a file",
+                            dragHere: "or drag it here",
 
                             addIncomeWithFileModal: {
                                 title: "Import income data",
                                 question: "Do you want to import the following income data?",
+                            addIncomeWithFileModal: {
+                                title: "Import income data",
+                                question: "Do you want to import the following income data?",
 
+                                selectAll: "Select all",
+                                unselectAll: "Unselect all",
+                                date: "Date",
+                                source: "Source",
+                                amount: "Amount",
+                                currency: "Currency",
+                                category: "Category",
+                                notes: "Notes",
                                 selectAll: "Select all",
                                 unselectAll: "Unselect all",
                                 date: "Date",
@@ -185,6 +268,12 @@ module.exports = {
                                     // "Invalid or unrecognized entries are ",
                                     // "highlighted"
                                 ],
+                                bottomNote: [
+                                    `Note: if the currency is not recognized, it will be imported as the default currency.`,
+                                    `If the category is not recognized, it will be imported as "Other".`,
+                                    // "Invalid or unrecognized entries are ",
+                                    // "highlighted"
+                                ],
 
                                 selectedCount: "Selected",
                                 cancelButton: "Cancel",
@@ -194,7 +283,16 @@ module.exports = {
                     },
                     incomeInfoSummary: {
                         title: "Summary",
+                                selectedCount: "Selected",
+                                cancelButton: "Cancel",
+                                importButton: "Import",
+                            },
+                        },
+                    },
+                    incomeInfoSummary: {
+                        title: "Summary",
 
+                        noIncomeDataAvailable: "No income data available",
                         noIncomeDataAvailable: "No income data available",
 
                         thisYear: "This year",
@@ -219,7 +317,14 @@ module.exports = {
                     },
                     incomeInfoHistory: {
                         title: "History",
+                        buttonDefault: "doughnutYearly",
+                    },
+                    incomeInfoHistory: {
+                        title: "History",
 
+                        noIncomeDataAvailable: "No income data available",
+                    },
+                },
                         noIncomeDataAvailable: "No income data available",
                     },
                 },
@@ -258,7 +363,21 @@ module.exports = {
                                 currency: "Currency",
                                 category: "Category",
                                 notes: "Notes",
+                                selectAll: "Select all",
+                                unselectAll: "Unselect all",
+                                date: "Date",
+                                source: "Store / Vendor",
+                                amount: "Amount",
+                                currency: "Currency",
+                                category: "Category",
+                                notes: "Notes",
 
+                                bottomNote: [
+                                    `Note: if the currency is not recognized, it will be imported as the default currency.`,
+                                    `If the category is not recognized, it will be imported as "Other".`,
+                                    // "Invalid or unrecognized entries are ",
+                                    // "highlighted"
+                                ],
                                 bottomNote: [
                                     `Note: if the currency is not recognized, it will be imported as the default currency.`,
                                     `If the category is not recognized, it will be imported as "Other".`,
@@ -286,6 +405,14 @@ module.exports = {
 
                         noExpenseDataAvailable: "No expense data available",
 
+                        // buttonThisWeek: "This week",
+                        // buttonThisMonth: "This month",
+                        // buttonThisYear: "This year",
+                        buttonThisWeek: "1w",
+                        buttonThisMonth: "1M",
+                        buttonThisYear: "1y",
+                        buttonThreeYears: "3y",
+                        buttonAllTime: "All",
                         // buttonThisWeek: "This week",
                         // buttonThisMonth: "This month",
                         // buttonThisYear: "This year",
@@ -345,7 +472,19 @@ module.exports = {
                     title: "Entrate",
                     addIncome: {
                         title: "Entrate",
+                income: {
+                    title: "Entrate",
+                    addIncome: {
+                        title: "Entrate",
 
+                        addIncomeForm: {
+                            title: "Aggiungi entrata",
+                            date: "Data",
+                            source: "Fonte",
+                            amount: "Importo",
+                            currency: "Valuta",
+                            category: "Categoria",
+                            notes: "Note (opzionale)",
                         addIncomeForm: {
                             title: "Aggiungi entrata",
                             date: "Data",
@@ -359,7 +498,15 @@ module.exports = {
                             add: "Aggiungi",
                             addRandom: "Aggiungi 10 entrate casuali",
                         },
+                            reset: "Annulla",
+                            add: "Aggiungi",
+                            addRandom: "Aggiungi 10 entrate casuali",
+                        },
 
+                        addIncomeWithFile: {
+                            title: "Carica CSV",
+                            chooseFile: "Scegli un file",
+                            dragHere: "o trascinalo qui",
                         addIncomeWithFile: {
                             title: "Carica CSV",
                             chooseFile: "Scegli un file",
@@ -368,7 +515,18 @@ module.exports = {
                             addIncomeWithFileModal: {
                                 title: "Caricamento CSV",
                                 question: "Vuoi importare i seguenti dati?",
+                            addIncomeWithFileModal: {
+                                title: "Caricamento CSV",
+                                question: "Vuoi importare i seguenti dati?",
 
+                                selectAll: "Seleziona tutto",
+                                unselectAll: "Deseleziona tutto",
+                                date: "Data",
+                                source: "Fonte",
+                                amount: "Importo",
+                                currency: "Valuta",
+                                category: "Categoria",
+                                notes: "Note",
                                 selectAll: "Seleziona tutto",
                                 unselectAll: "Deseleziona tutto",
                                 date: "Data",
@@ -384,7 +542,21 @@ module.exports = {
                                     // "Le voci non valide o non riconosciute sono ",
                                     // "evidenziate"
                                 ],
+                                bottomNote: [
+                                    `Nota: se la valuta non è riconosciuta, verrà importata come la valuta di default.`,
+                                    `Se la categoria non è riconosciuta, verrà importata come "Altro".`,
+                                    // "Le voci non valide o non riconosciute sono ",
+                                    // "evidenziate"
+                                ],
 
+                                selectedCount: "Selezionati",
+                                cancelButton: "Annulla",
+                                importButton: "Importa",
+                            },
+                        },
+                    },
+                    incomeInfoSummary: {
+                        title: "Sommario",
                                 selectedCount: "Selezionati",
                                 cancelButton: "Annulla",
                                 importButton: "Importa",
@@ -395,7 +567,14 @@ module.exports = {
                         title: "Sommario",
 
                         noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
+                        noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
 
+                        thisYear: "Quest'anno",
+                        thisMonth: "Questo mese",
+                        thisWeek: "Questa settimana",
+                    },
+                    incomeInfoGraph: {
+                        title: "Categorie",
                         thisYear: "Quest'anno",
                         thisMonth: "Questo mese",
                         thisWeek: "Questa settimana",
@@ -404,6 +583,7 @@ module.exports = {
                         title: "Categorie",
 
                         noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
+                        noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
 
                         buttonThisWeek: "Questa sett.",
                         buttonThisMonth: "Questo mese",
@@ -411,7 +591,16 @@ module.exports = {
                     },
                     incomeInfoHistory: {
                         title: "Cronologia",
+                        buttonThisWeek: "Questa sett.",
+                        buttonThisMonth: "Questo mese",
+                        buttonThisYear: "Quest'anno",
+                    },
+                    incomeInfoHistory: {
+                        title: "Cronologia",
 
+                        noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
+                    },
+                },
                         noIncomeDataAvailable: "Nessun dato sul reddito disponibile",
                     },
                 },
@@ -452,7 +641,21 @@ module.exports = {
                                 currency: "Valuta",
                                 category: "Categoria",
                                 notes: "Note",
+                                selectAll: "Seleziona tutto",
+                                unselectAll: "Deseleziona tutto",
+                                date: "Data",
+                                source: "Negozio / Venditore",
+                                amount: "Importo",
+                                currency: "Valuta",
+                                category: "Categoria",
+                                notes: "Note",
 
+                                bottomNote: [
+                                    `Nota: se la valuta non è riconosciuta, verrà importata come la valuta di default.`,
+                                    `Se la categoria non è riconosciuta, verrà importata come "Altro".`,
+                                    // "Le voci non valide o non riconosciute sono ",
+                                    // "evidenziate"
+                                ],
                                 bottomNote: [
                                     `Nota: se la valuta non è riconosciuta, verrà importata come la valuta di default.`,
                                     `Se la categoria non è riconosciuta, verrà importata come "Altro".`,
