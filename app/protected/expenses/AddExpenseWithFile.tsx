@@ -1,16 +1,16 @@
 "use client";
 import React, { useRef, useState } from "react";
-import AddPaymentWithFileModal from "./AddPaymentWithFileModal";
+import AddExpenseWithFileModal from "./AddExpenseWithFileModal";
 import DOMPurify from "dompurify";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment?.addPayment?.addPaymentWithFile;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseWithFile;
 
-export default function AddPaymentWithFile() {
+export default function AddExpenseWithFile() {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const [paymentData, setPaymentData] = useState<any[]>([]);
+    const [expenseData, setExpenseData] = useState<any[]>([]);
     const [openDialog, setOpenDialog] = useState<boolean>(false);
 
     function checkInput(data: { date: string; source: string; amount: string; currency: string; category: string; notes: string }) {
@@ -165,7 +165,7 @@ export default function AddPaymentWithFile() {
             reader.onload = async (e) => {
                 const text = e.target?.result as string;
                 const lines = text.split("\n");
-                let paymentData = [];
+                let expenseData = [];
                 for (let line of lines) {
                     // data entry example:
                     /* 
@@ -196,15 +196,15 @@ export default function AddPaymentWithFile() {
                     const notes = data[5];
                     if (checkInput({ date, source, amount, currency, category, notes })) {
                         const enabled = true;
-                        paymentData.push({ enabled, date, source, amount, currency, category, notes });
+                        expenseData.push({ enabled, date, source, amount, currency, category, notes });
                     } else {
                         // console.log("Invalid input: " + line);
                         const enabled = false;
-                        paymentData.push({ enabled, date, source, amount, currency, category, notes });
+                        expenseData.push({ enabled, date, source, amount, currency, category, notes });
                     }
                 }
-                // console.log(paymentData);
-                setPaymentData(paymentData);
+                // console.log(expenseData);
+                setExpenseData(expenseData);
                 setOpenDialog(true);
             };
             reader.readAsText(file);
@@ -248,9 +248,9 @@ export default function AddPaymentWithFile() {
 
     return (
         <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
-            <AddPaymentWithFileModal
+            <AddExpenseWithFileModal
                 isOpen={openDialog}
-                paymentData={paymentData}
+                expenseData={expenseData}
                 handleClose={() => {
                     setOpenDialog(false);
                     if (fileInputRef.current) {

@@ -1,34 +1,34 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import GlobalConfig from "@/app/app.config";
 
-const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.payment;
+const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.expense;
 
-export default function PaymentSkeleton() {
+export default function ExpenseSkeleton() {
     return (
         <>
             <div className="font-bold text-3xl pb-6 select-none">{gc?.title}</div>
             <div className="flex flex-row gap-8 justify-between h-full">
                 <>
                     <div className="flex flex-row gap-8">
-                        {/* First column [AddPayment, AddPaymentWithFile] */}
+                        {/* First column [AddExpense, AddExpenseWithFile] */}
                         <div className="flex flex-col gap-8 max-w-80">
                             <Skeleton className="h-[470px] w-80 rounded-xl" />
                             <Skeleton className="h-[156px] w-80 rounded-xl" />
                         </div>
 
-                        {/* Second column [PaymentInfoSummary, PaymentInfoChartDoughnut] */}
+                        {/* Second column [ExpenseInfoSummary, ExpenseInfoChartDoughnut] */}
                         <div className="flex flex-col gap-8">
                             <Skeleton className="h-[158px] w-80 rounded-xl" />
                             <Skeleton className="h-[500px] w-80 rounded-xl" />
                         </div>
 
-                        {/* Third column [PaymentInfoInsights] */}
+                        {/* Third column [ExpenseInfoInsights] */}
                         <div className="flex flex-col gap-8">
                             <Skeleton className="h-[474px] min-w-60 rounded-xl" />
                         </div>
                     </div>
 
-                    {/* PaymentInfoHistory */}
+                    {/* ExpenseInfoHistory */}
                     <div className="flex flex-col mb-2 gap-2 w-80">
                         <div className="flex flex-row justify-between items-center pb-2">
                             <Skeleton className="h-8 w-36" />

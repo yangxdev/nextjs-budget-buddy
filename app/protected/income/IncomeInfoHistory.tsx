@@ -1,6 +1,6 @@
 import GlobalConfig from "@/app/app.config";
 import { getIncomeDataByQuantity } from "@/app/api/database/get_incomes/incomes";
-import HistoryRefreshButton from "../../components/HistoryRefreshButton";
+import RefreshButton from "../../components/HistoryRefreshButton";
 import { PiSuitcaseBold } from "react-icons/pi";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { PiGift } from "react-icons/pi";
@@ -37,25 +37,24 @@ export default async function IncomeInfoHistory() {
     }, {});
 
     return (
-        <div className="flex flex-col mb-2">
+        <div className="flex flex-col mb-2 h-screen">
             <div className="flex flex-row justify-between items-center pb-2">
                 <div className="text-2xl font-semibold select-none">{gc?.title}</div>
-                <HistoryRefreshButton />
+                <RefreshButton targetPageId="IncomeInfoHistory" />
             </div>
-            <div className="w-80 overflow-y-scroll mb-6 scrollbar-hide">
+            <div className="w-80 overflow-y-scroll mb-6 scrollbar-hide h-full relative" id="IncomeInfoHistory">
                 <div className="flex flex-col select-none ">
                     {incomeData.incomes.length === 0 && <div className="text-left text-sm py-4">{gc?.noIncomeDataAvailable}</div>}
 
                     {Object.entries(groupedIncomesByDay).map(([date, incomes]) => (
                         <div key={date}>
-                            <div className="date-divider py-2 border-t-2 border-lightBorder font-semibold text-base">
-                                {/* {format(parse(date, "dd/MM/yyyy", new Date()), "MMMM do yyyy")} */}
-                                {date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}
-                            </div>
-                            {" "}
+                            <div className="date-divider py-2 border-t-2 border-lightBorder font-semibold text-base">{date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}</div>{" "}
                             {incomes.map((income: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
-                                <div key={index} className={`rounded-xl hover:bg-newBlue-500 hover:text-white transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[1px] border-b-lightBorder" : ""}`}>
-                                    <div className="icon rounded-full p-3 bg-newBlue-500 text-white border border-whiteDarker">
+                                <div
+                                    key={index}
+                                    className={`rounded-xl hover:bg-newBlue-500 hover:text-white transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== incomeData.incomes.length - 1 ? "border-b-[1px] border-b-lightBorder" : ""}`}
+                                >
+                                    <div className="icon rounded-full p-3 bg-newBlue-500 text-white border-2 border-whiteDarker">
                                         {income.category === "Job" && <PiSuitcaseBold size={20} />}
                                         {income.category === "Crypto" && <MdCurrencyBitcoin size={20} />}
                                         {income.category === "Reward" && <PiMedal size={20} />}
@@ -64,9 +63,10 @@ export default async function IncomeInfoHistory() {
                                         {income.category === "Investment" && <BsGraphUpArrow size={20} />}
                                         {income.category === "Scholarship" && <MdOutlineSchool size={20} />}
                                         {income.category === "Financial assistance" && <FaHandsHelping size={20} />}
-                                        {income.category === "Expense reimbursement" && <RiRefund2Line size={20} />}
+                                        {income.category === "Income reimbursement" && <RiRefund2Line size={20} />}
                                         {income.category === "Gift" && <PiGift size={20} />}
                                         {income.category === "Other" && <IoEllipsisHorizontalCircleOutline size={20} />}
+                                        {["Job", "Crypto", "Reward", "Savings", "Cashback", "Investment", "Scholarship", "Financial assistance", "Income reimbursement", "Gift", "Other"].indexOf(income.category) === -1 && <IoEllipsisHorizontalCircleOutline size={20} />}
                                     </div>
                                     <div className="flex flex-row flex-grow justify-between">
                                         <div>
@@ -76,7 +76,7 @@ export default async function IncomeInfoHistory() {
                                         </div>
                                         <div className="flex flex-col font-semibold items-end justify-center">
                                             <div className="flex flex-row">
-                                                <div>{"+"}</div>
+                                                <div>{"-"}</div>
                                                 <div className="currency px-1">{income.currency}</div>
                                                 <div className="amount">{income.amount}</div>
                                             </div>

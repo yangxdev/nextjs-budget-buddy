@@ -113,4 +113,4 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
 }
 
 
-// TODO: fix hover when disabled
+// DONE: fix hover when disabled

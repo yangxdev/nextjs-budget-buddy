@@ -5,11 +5,15 @@ import ReactDOM from "react-dom";
 import RefreshButtonSkeleton from "../utils/refreshButtonSkeleton";
 import { useRouter } from "next/navigation";
 
-export default function HistoryRefreshButton() {
+export default function HistoryRefreshButton(
+    props: {
+        targetPageId: string;
+    } = { targetPageId: "" }
+) {
     const router = useRouter();
     const historySkeleton = <HistorySkeleton />;
     const handleRefreshClick = () => {
-        RefreshButtonSkeleton(historySkeleton, 2500, "PaymentInfoHistory", router);
+        RefreshButtonSkeleton(historySkeleton, 2500, props.targetPageId, router);
     };
 
     return (

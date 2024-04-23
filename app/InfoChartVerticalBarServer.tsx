@@ -1,4 +1,4 @@
-import { getConvertedPaymentsByDateRange, getPaymentDataByDateRange, getPaymentDataByQuantity } from "./api/database/get_payments/payments";
+import { getConvertedExpensesByDateRange, getExpenseDataByDateRange, getExpenseDataByQuantity } from "./api/database/get_expenses/expenses";
 import { getConvertedIncomesByDateRange, getIncomeDataByDateRange, getIncomeDataByQuantity } from "./api/database/get_incomes/incomes";
 import InfoChartVerticalBarClient from "./InfoChartVerticalBarClient";
 import { getConversionRatesByArray } from "./api/currency/currencies";
@@ -9,17 +9,17 @@ export default async function InfoChartVerticalBar() {
     const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    // const convertedPaymentYearly = await getConvertedPaymentsByDateRange(firstDayOfYear, today);
+    // const convertedExpenseYearly = await getConvertedExpensesByDateRange(firstDayOfYear, today);
     // const convertedIncomeYearly = await getConvertedIncomesByDateRange(firstDayOfYear, today);
 
-    const paymentDataYearly = await getPaymentDataByDateRange(firstDayOfYear.toISOString(), today.toISOString());
+    const expenseDataYearly = await getExpenseDataByDateRange(firstDayOfYear.toISOString(), today.toISOString());
     const incomeDataYearly = await getIncomeDataByDateRange(firstDayOfYear.toISOString(), today.toISOString());
-    const currencies = [...new Set(paymentDataYearly.payments.map((payment: { currency: any }) => payment.currency))];
+    const currencies = [...new Set(expenseDataYearly.expenses.map((expense: { currency: any }) => expense.currency))];
     const conversionRates = await getConversionRatesByArray(currencies as string[], GlobalConfig.currency.baseCurrency);
 
-    const paymentDataMappedByMonth = paymentDataYearly.payments.reduce((acc: any, payment: any) => {
-        const month = months[new Date(payment.date).getMonth()];
-        const convertedAmount = payment.currency === GlobalConfig.currency.baseCurrency ? payment.amount : (payment.amount / conversionRates[payment.currency]);
+    const expenseDataMappedByMonth = expenseDataYearly.expenses.reduce((acc: any, expense: any) => {
+        const month = months[new Date(expense.date).getMonth()];
+        const convertedAmount = expense.currency === GlobalConfig.currency.baseCurrency ? expense.amount : (expense.amount / conversionRates[expense.currency]);
         const convertedAmountRounded = Math.round((convertedAmount + Number.EPSILON) * 100) / 100;
         acc[month] = (acc[month] || 0) + convertedAmountRounded;
         return acc;
@@ -34,23 +34,23 @@ export default async function InfoChartVerticalBar() {
     }, {});
 
     let lastMonth = -1;
-    let lastPaymentMonth = -1;
+    let lastExpenseMonth = -1;
     let lastIncomeMonth = -1;
-    let lastPaymentData = (await getPaymentDataByQuantity(1)) || { payments: [] };
+    let lastExpenseData = (await getExpenseDataByQuantity(1)) || { expenses: [] };
     let lastIncomeData = (await getIncomeDataByQuantity(1)) || { incomes: [] };
-    if (lastPaymentData.payments.length > 0) {
-        lastPaymentMonth = new Date(lastPaymentData.payments[0].date).getMonth();
+    if (lastExpenseData.expenses.length > 0) {
+        lastExpenseMonth = new Date(lastExpenseData.expenses[0].date).getMonth();
     }
     if (lastIncomeData.incomes.length > 0) {
         lastIncomeMonth = new Date(lastIncomeData.incomes[0].date).getMonth();
     }
-    lastMonth = lastPaymentMonth > lastIncomeMonth ? lastPaymentMonth : lastIncomeMonth;
+    lastMonth = lastExpenseMonth > lastIncomeMonth ? lastExpenseMonth : lastIncomeMonth;
 
     const labels = months.slice(0, lastMonth + 1);
     const datasets = [
         {
-            label: "Payments",
-            data: paymentDataMappedByMonth,
+            label: "Expenses",
+            data: expenseDataMappedByMonth,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 1,

@@ -35,11 +35,11 @@ export default function Greetings() {
     // each greeting has 4 variations, pick a random one
     const random = Math.random();
     if (random < 0.25) {
-        const greetings = GlobalConfig.i18n.greetings[defaultLanguage]?.basic;
+        const greetings = GlobalConfig.i18n.greetings[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.basic;
         const randomIndex = Math.floor(Math.random() * greetings!.length);
         return HandleUsername(greetings![randomIndex]);
     } else {
-        const greetings = (GlobalConfig.i18n.greetings[defaultLanguage]?.timed as { [key: string]: string[] })?.[timeOfDay];
+        const greetings = (GlobalConfig.i18n.greetings[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.timed as { [key: string]: string[] })?.[timeOfDay];
         const randomIndex = Math.floor(Math.random() * greetings!.length);
         return HandleUsername(greetings![randomIndex]);
     }
