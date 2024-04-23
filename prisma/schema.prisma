@@ -29,7 +29,7 @@ model Income {
     @@map(name: "incomes")
 }
 
-model Payment {
+model Expense {
     id        String   @id @default(cuid())
     date      DateTime
     source    String
@@ -42,7 +42,7 @@ model Payment {
     userId    String   @map(name: "user_id")
     user      User     @relation(fields: [userId], references: [id])
 
-    @@map(name: "payments")
+    @@map(name: "expenses")
 }
 
 model User {
@@ -52,7 +52,7 @@ model User {
     createdAt DateTime  @default(now()) @map(name: "created_at")
     updatedAt DateTime  @updatedAt @map(name: "updated_at")
     incomes   Income[]
-    payments  Payment[]
+    expenses  Expense[]
 
     @@map(name: "users")
 }

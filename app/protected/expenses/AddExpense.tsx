@@ -2,15 +2,15 @@
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import GlobalConfig from "@/app/app.config";
-import addRandomPayments from "@/app/api/database/add_random_payments/addRandomPayments";
+import addRandomExpenses from "@/app/api/database/add_random_expenses/addRandomExpenses";
 import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
 import { CgDice5 } from "react-icons/cg";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment?.addPayment?.addPaymentForm;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseForm;
 
-export default function AddPayment() {
+export default function AddExpense() {
     const currentDate = new Date().toISOString().substring(0, 10);
 
     const sourceRef = useRef<HTMLInputElement>(null);
@@ -34,7 +34,7 @@ export default function AddPayment() {
             return;
         }
 
-        const responsePromise = fetch("/api/database/add_payment", {
+        const responsePromise = fetch("/api/database/add_expense", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -59,8 +59,8 @@ export default function AddPayment() {
             responsePromise,
             {
                 loading: "Saving...",
-                success: "Payment added successfully",
-                error: "Error when adding payment",
+                success: "Expense added successfully",
+                error: "Error when adding expense",
             },
             {}
         );
@@ -114,7 +114,7 @@ export default function AddPayment() {
             <div className="pb-2">
                 {gc?.category}
                 <select ref={categoryRef} required className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md">
-                    {GlobalConfig.payment.paymentCategories.map((category, index) => (
+                    {GlobalConfig.expenses.expenseCategories.map((category, index) => (
                         <option key={index} value={category}>
                             {category}
                         </option>
@@ -129,8 +129,8 @@ export default function AddPayment() {
                 {GlobalConfig.debug.showAddRandomEntriesButton && (
                     <button
                         onClick={() => {
-                            addRandomPayments();
-                            toast.success("Random Payments Added", {});
+                            addRandomExpenses();
+                            toast.success("Random Expenses Added", {});
                         }}
                         className="flex flex-row items-center gap-1 transition duration-100 bg-white rounded-md p-2 hover:bg-newGreen-500 hover:text-white"
                     >
@@ -146,7 +146,7 @@ export default function AddPayment() {
                         dateRef.current!.value = currentDate;
                         amountRef.current!.value = "";
                         currencyRef.current!.value = GlobalConfig.currency.baseCurrency;
-                        categoryRef.current!.value = GlobalConfig.payment.paymentCategories[0];
+                        categoryRef.current!.value = GlobalConfig.expenses.expenseCategories[0];
                         notesRef.current!.value = "";
                         toast.success("Fields reset", {});
                     }}

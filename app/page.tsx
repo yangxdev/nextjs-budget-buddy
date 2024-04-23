@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import Balance from "./components/dashboard/Balance";
 import InfoChartVerticalBarServer from "./InfoChartVerticalBarServer";
-import PaymentInfoHistory from "./protected/payment/PaymentInfoHistory";
+import ExpenseInfoHistory from "./protected/expenses/ExpenseInfoHistory";
 import GlobalConfig from "@/app/app.config";
 import IncomeInfoHistory from "./protected/income/IncomeInfoHistory";
 import TotalIncome from "./components/dashboard/TotalIncome";
@@ -11,7 +11,7 @@ import Greetings from "./components/Greetings";
 import TotalExpenses from "./components/dashboard/TotalExpenses";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.dashboard;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.dashboard;
 
 export default async function Home() {
     const session = await getServerSession();

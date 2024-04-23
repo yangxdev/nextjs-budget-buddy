@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment?.addPayment?.addPaymentWithFile?.addPaymentWithFileModal;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseWithFile?.addExpenseWithFileModal;
 
-export default function AddPaymentWithFileModal(props: { paymentData: any; isOpen?: any; handleClose?: any }) {
+export default function AddExpenseWithFileModal(props: { expenseData: any; isOpen?: any; handleClose?: any }) {
     const { isOpen, handleClose } = props;
-    const [checkboxes, setCheckboxes] = useState(new Array(props.paymentData.length).fill(false));
+    const [checkboxes, setCheckboxes] = useState(new Array(props.expenseData.length).fill(false));
     const [selectedEntries, setSelectedEntries] = useState(0);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
 
     const router = useRouter();
     function handleImport() {
-        const updatedPaymentData = props.paymentData.map(
+        const updatedExpenseData = props.expenseData.map(
             (
                 _data: {
                     enabled: boolean;
@@ -32,7 +32,7 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
                 },
                 index: number
             ) => {
-                if (props.paymentData[index].enabled && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked) {
+                if (props.expenseData[index].enabled && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked) {
                     // const checkbox = (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked;
                     const date = `${(document.getElementsByName("month")[index] as HTMLInputElement).value}-${(document.getElementsByName("day")[index] as HTMLInputElement).value}-${(document.getElementsByName("year")[index] as HTMLInputElement).value}`;
                     const source = (document.getElementsByName("source")[index] as HTMLInputElement).value;
@@ -53,11 +53,11 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
                 }
             }
         );
-        const filteredPaymentData = updatedPaymentData.filter((data: any) => data !== null);
+        const filteredExpenseData = updatedExpenseData.filter((data: any) => data !== null);
 
         try {
-            const responsePromises = filteredPaymentData.map((data: any) =>
-                fetch("/api/database/add_payment", {
+            const responsePromises = filteredExpenseData.map((data: any) =>
+                fetch("/api/database/add_expense", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -74,11 +74,11 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
             Promise.all(responsePromises)
                 .then(() => {
                     router.refresh();
-                    toast.success("Payment(s) added successfully", {
+                    toast.success("Expense(s) added successfully", {
                     });
                 })
                 .catch(() => {
-                    toast.error("Error when adding payment(s)", {
+                    toast.error("Error when adding expense(s)", {
                         style: {
                             background: "#fff",
                             color: "#000",
@@ -139,7 +139,7 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
                             transition duration-100
                           "
                                                         onClick={() => {
-                                                            setCheckboxes(new Array(props.paymentData.length).fill(true));
+                                                            setCheckboxes(new Array(props.expenseData.length).fill(true));
                                                             toast.success("All entries selected", {});
                                                         }}
                                                     >
@@ -163,7 +163,7 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
                                 transition duration-100
                                 "
                                                         onClick={() => {
-                                                            setCheckboxes(new Array(props.paymentData.length).fill(false));
+                                                            setCheckboxes(new Array(props.expenseData.length).fill(false));
                                                             toast.error("All entries unselected", {});
                                                         }}
                                                     >
@@ -187,7 +187,7 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
                                                 </thead>
                                             </table>
                                             <div className="max-h-[70vh] transition duration-100">
-                                                {props.paymentData.map(
+                                                {props.expenseData.map(
                                                     (
                                                         data: {
                                                             enabled: boolean;
@@ -291,12 +291,12 @@ export default function AddPaymentWithFileModal(props: { paymentData: any; isOpe
                                                                                                 e.target.classList.add("text-black");
                                                                                             }
                                                                                         }}
-                                                                                        defaultValue={GlobalConfig.payment.paymentCategories.includes(data.category) ? data.category : "Other"}
+                                                                                        defaultValue={GlobalConfig.expenses.expenseCategories.includes(data.category) ? data.category : "Other"}
                                                                                         className={`${widths.category} bg-white text-black focus:outline-none hover:shadow-md transition duration-100 px-2 py-2 rounded-md cursor-pointer ${
-                                                                                            !GlobalConfig.payment.paymentCategories.includes(data.category) ? "text-newRed-500" : "text-black"
+                                                                                            !GlobalConfig.expenses.expenseCategories.includes(data.category) ? "text-newRed-500" : "text-black"
                                                                                         }`}
                                                                                     >
-                                                                                        {GlobalConfig.payment.paymentCategories.map((category, index) => {
+                                                                                        {GlobalConfig.expenses.expenseCategories.map((category, index) => {
                                                                                             return (
                                                                                                 <option key={index} value={category} className={``}>
                                                                                                     {category}

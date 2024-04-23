@@ -25,7 +25,7 @@ export default function InfoChartDoughnut(props: { id: string; categories: any; 
         ],
     };
 
-    const totalAmount = props.datasetsData.reduce((acc: number, payment: string) => acc + Number(payment), 0);
+    const totalAmount = props.datasetsData.reduce((acc: number, expense: string) => acc + Number(expense), 0);
 
     return (
         <div id={props.id}>
@@ -43,14 +43,14 @@ export default function InfoChartDoughnut(props: { id: string; categories: any; 
                 }}
             />
             <div className="overflow-y-scroll max-h-[10rem] scrollbar-thin scrollbar-thumb-accentGray scrollbar-track-transparent pr-1">
-                {/* <div className="font-semibold pb-2">{paymentData.id}</div> */}
+                {/* <div className="font-semibold pb-2">{expenseData.id}</div> */}
                 {props.categories
                     .map((category: any, index: number) => {
-                        const categoryPayment = props.datasetsData[index];
-                        const categoryPercentage = (categoryPayment / totalAmount) * 100;
+                        const categoryExpense = props.datasetsData[index];
+                        const categoryPercentage = (categoryExpense / totalAmount) * 100;
                         const color = colors[index];
 
-                        return { category, categoryPayment, categoryPercentage, color };
+                        return { category, categoryExpense, categoryPercentage, color };
                     })
                     .sort((a: { categoryPercentage: number }, b: { categoryPercentage: number }) => b.categoryPercentage - a.categoryPercentage)
                     .map(

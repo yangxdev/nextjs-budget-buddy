@@ -1,57 +1,57 @@
 import {
-    getCheapestPayment,
-    getCheapestPaymentStore,
-    getConvertedPaymentsFromData,
+    getCheapestExpense,
+    getCheapestExpenseStore,
+    getConvertedExpensesFromData,
     getMostExpensiveCategory,
     getMostExpensiveCategorySum,
-    getMostExpensivePayment,
-    getMostExpensivePaymentStore,
-    getMostFrequentPaymentCount,
-    getMostFrequentPaymentStore,
-    getPaymentDataAndConversionRates,
-    getAveragePaymentAmount,
-    getTotalPaymentsMade,
+    getMostExpensiveExpense,
+    getMostExpensiveExpenseStore,
+    getMostFrequentExpenseCount,
+    getMostFrequentExpenseStore,
+    getExpenseDataAndConversionRates,
+    getAverageExpenseAmount,
+    getTotalExpensesMade,
     getMostExpensiveMonth,
-} from "@/app/api/database/get_payments/payments";
+} from "@/app/api/database/get_expenses/expenses";
 import GlobalConfig from "@/app/app.config";
 import { format } from "date-fns";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoInsights;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.expenseInfoInsights;
 
-export default async function PaymentInfoInsights() {
+export default async function ExpenseInfoInsights() {
     const today = new Date();
     const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
 
-    const paymentRawData = await getPaymentDataAndConversionRates(firstDayOfYear, today);
-    const paymentData = paymentRawData.paymentData;
-    const conversionRates = paymentRawData.conversionRates;
+    const expenseRawData = await getExpenseDataAndConversionRates(firstDayOfYear, today);
+    const expenseData = expenseRawData.expenseData;
+    const conversionRates = expenseRawData.conversionRates;
 
-    const convertedPaymentsThisYear = await getConvertedPaymentsFromData(paymentData, conversionRates);
+    const convertedExpensesThisYear = await getConvertedExpensesFromData(expenseData, conversionRates);
 
-    function checkIfPaymentsAreEmpty() {
-        return convertedPaymentsThisYear?.length === 0;
+    function checkIfExpensesAreEmpty() {
+        return convertedExpensesThisYear?.length === 0;
     }
 
     return (
         <div className="p-5 bg-white border-[1px] border-lightBorder min-w-60 w-fit rounded-2xl text-sm select-none h-min">
             <div className="text-lg font-semibold select-none mb-2">{gc?.title}</div>
-            {checkIfPaymentsAreEmpty() ? (
-                <div className="text-left text-sm">{gc?.noPaymentDataAvailable}</div>
+            {checkIfExpensesAreEmpty() ? (
+                <div className="text-left text-sm">{gc?.noExpenseDataAvailable}</div>
             ) : (
                 <div>
                     <div className="flex flex-col gap-2">
                         <div className="flex flex-col gap-4">
-                            {/* Most Expensive Payment */}
+                            {/* Most Expensive Expense */}
                             <div className="flex flex-col">
-                                <div className="font-normal justify-start">{gc?.mostExpensivePayment}</div>
+                                <div className="font-normal justify-start">{gc?.mostExpensiveExpense}</div>
                                 <div className="flex flex-row font-semibold text-base justify-start">
                                     <div className="pr-1">{GlobalConfig.currency.baseCurrency}</div>
                                     <div>
-                                        {await getMostExpensivePayment(paymentData)}
-                                        {(await getMostExpensivePaymentStore(paymentData)) && (
+                                        {await getMostExpensiveExpense(expenseData)}
+                                        {(await getMostExpensiveExpenseStore(expenseData)) && (
                                             <span className="">
-                                                {" " + gc?.at} {await getMostExpensivePaymentStore(paymentData)}
+                                                {" " + gc?.at} {await getMostExpensiveExpenseStore(expenseData)}
                                             </span>
                                         )}
                                     </div>
@@ -62,16 +62,16 @@ export default async function PaymentInfoInsights() {
                             <div className="flex flex-col">
                                 <div className="font-normal justify-start">{gc?.mostExpensiveCategory}</div>
                                 <div className="flex flex-col font-semibold text-base justify-start">
-                                    <div>{await getMostExpensiveCategory(paymentData)}</div>
+                                    <div>{await getMostExpensiveCategory(expenseData)}</div>
                                     <div className="flex flex-row">
-                                        {(await getMostExpensiveCategorySum(paymentData)) > 1 && (
+                                        {(await getMostExpensiveCategorySum(expenseData)) > 1 && (
                                             <>
                                                 <div className="px-1">
                                                     {"("}
                                                     {GlobalConfig.currency.baseCurrency}
                                                 </div>
                                                 <div>
-                                                    {await getMostExpensiveCategorySum(paymentData)} {" " + gc?.spent}
+                                                    {await getMostExpensiveCategorySum(expenseData)} {" " + gc?.spent}
                                                     {")"}
                                                 </div>
                                             </>
@@ -84,57 +84,57 @@ export default async function PaymentInfoInsights() {
                             <div className="flex flex-col">
                                 <div className="font-normal justify-start">{gc?.mostExpensiveMonth}</div>
                                 <div className="flex flex-row font-semibold text-base justify-start">
-                                    {format(new Date(1970, parseInt(await getMostExpensiveMonth(paymentData)), 1), 'MMMM')}
+                                    {format(new Date(1970, parseInt(await getMostExpensiveMonth(expenseData)), 1), 'MMMM')}
                                 </div>
                             </div>
 
-                            {/* Most Frequent Payment */}
+                            {/* Most Frequent Expense */}
                             <div className="flex flex-col">
-                                <div className="font-normal justify-start">{gc?.mostFrequentPayment}</div>
+                                <div className="font-normal justify-start">{gc?.mostFrequentExpense}</div>
                                 <div className="flex flex-row font-semibold text-base justify-start gap-1">
-                                    {await getMostFrequentPaymentStore(paymentData)}
-                                    {(await getMostFrequentPaymentCount(paymentData)) > 1 && (
+                                    {await getMostFrequentExpenseStore(expenseData)}
+                                    {(await getMostFrequentExpenseCount(expenseData)) > 1 && (
                                         <span>
                                             {"("}
-                                            {await getMostFrequentPaymentCount(paymentData)} {" " + gc?.times}
+                                            {await getMostFrequentExpenseCount(expenseData)} {" " + gc?.times}
                                             {")"}
                                         </span>
                                     )}
                                 </div>
                             </div>
 
-                            {/* Cheapest Payment */}
+                            {/* Cheapest Expense */}
                             <div className="flex flex-col">
-                                <div className="font-normal justify-start">{gc?.cheapestPayment}</div>
+                                <div className="font-normal justify-start">{gc?.cheapestExpense}</div>
                                 <div className="flex flex-row font-semibold text-base justify-start">
                                     <div className="pr-1">{GlobalConfig.currency.baseCurrency}</div>
                                     <div>
-                                        {await getCheapestPayment(paymentData)}
-                                        {(await getCheapestPaymentStore(paymentData)) && (
+                                        {await getCheapestExpense(expenseData)}
+                                        {(await getCheapestExpenseStore(expenseData)) && (
                                             <span className="">
-                                                {" " + gc?.at} {await getCheapestPaymentStore(paymentData)}
+                                                {" " + gc?.at} {await getCheapestExpenseStore(expenseData)}
                                             </span>
                                         )}
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Average Payment Amount */}
+                            {/* Average Expense Amount */}
                             <div className="flex flex-col">
-                                <div className="font-normal justify-start">{gc?.averagePaymentAmount}</div>
+                                <div className="font-normal justify-start">{gc?.averageExpenseAmount}</div>
                                 <div className="flex flex-row font-semibold text-base justify-start">
                                     <div className="pr-1">{GlobalConfig.currency.baseCurrency}</div>
-                                    <div>{await getAveragePaymentAmount(paymentData)}</div>
+                                    <div>{await getAverageExpenseAmount(expenseData)}</div>
                                 </div>
                             </div>
 
-                            {/* Total Payments Made */}
+                            {/* Total Expenses Made */}
                             <div className="flex flex-col">
-                                <div className="font-normal justify-start">{gc?.totalPaymentsMade}</div>
+                                <div className="font-normal justify-start">{gc?.totalExpensesMade}</div>
                                 <div className="flex flex-row font-semibold text-base justify-start">
                                     <div>
-                                        {await getTotalPaymentsMade(paymentData)}
-                                        {" " + (await getTotalPaymentsMade(paymentData) === 1 ? gc?.payment : gc?.payments)}
+                                        {await getTotalExpensesMade(expenseData)}
+                                        {" " + (await getTotalExpensesMade(expenseData) === 1 ? gc?.expense : gc?.expenses)}
                                     </div>
                                 </div>
                             </div>
@@ -147,4 +147,4 @@ export default async function PaymentInfoInsights() {
 }
 
 // DONE: Most expensive month
-// TODO: Payments amount per week/month chart below the insights
+// TODO: Expenses amount per week/month chart below the insights

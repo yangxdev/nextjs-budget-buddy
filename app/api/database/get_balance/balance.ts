@@ -1,23 +1,23 @@
 import { income } from "@/app/app.config";
 import { getConvertedIncomesByDateRange, getIncomeDataByDateRange } from "../get_incomes/incomes";
-import { getConvertedPaymentsByDateRange, getPaymentDataByDateRange } from "../get_payments/payments";
+import { getConvertedExpensesByDateRange, getExpenseDataByDateRange } from "../get_expenses/expenses";
 import CurrencyConverter from "@/app/utils/currencyConverter";
 import GlobalConfig from "@/app/app.config";
 
 // this returns a single balance for the date range
 export async function getBalanceByDateRange(startDate: string, endDate: string) {
     const incomeData = await getConvertedIncomesByDateRange(new Date(startDate), new Date(endDate));
-    const paymentData = await getConvertedPaymentsByDateRange(new Date(startDate), new Date(endDate));
-    const balance = (incomeData.reduce((a: number, b: number) => a + b, 0) - paymentData.reduce((a: number, b: number) => a + b, 0)).toFixed(2);
+    const expenseData = await getConvertedExpensesByDateRange(new Date(startDate), new Date(endDate));
+    const balance = (incomeData.reduce((a: number, b: number) => a + b, 0) - expenseData.reduce((a: number, b: number) => a + b, 0)).toFixed(2);
     return balance;
 }
 
 // this returns an array of balance data for each day in the date range
 export async function getBalanceDataByDateRange(startDate: string, endDate: string) {
     const incomeDataRaw = await getIncomeDataByDateRange(startDate, endDate);
-    const expensesDataRaw = await getPaymentDataByDateRange(startDate, endDate);
+    const expensesDataRaw = await getExpenseDataByDateRange(startDate, endDate);
     const incomeData = incomeDataRaw.incomes;
-    const expensesData = expensesDataRaw.payments;
+    const expensesData = expensesDataRaw.expenses;
     const convertedIncomeData = await CurrencyConverter({ data: incomeData, currency: GlobalConfig.currency.baseCurrency });
     const convertedExpensesData = await CurrencyConverter({ data: expensesData, currency: GlobalConfig.currency.baseCurrency });
 

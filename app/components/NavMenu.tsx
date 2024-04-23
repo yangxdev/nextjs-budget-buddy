@@ -10,7 +10,7 @@ import BudgetBuddyLogo from "@/public/nextjs-budget-buddy-logo-black.jsx";
 // https://www.logoai.com/logo/3487038
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.navMenu;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.navMenu;
 
 function AuthButton() {
     const { data: session } = useSession();
@@ -82,8 +82,8 @@ export default function NavMenu() {
                     <NavLink to="/" icon={GoHomeFill}>
                         {gc?.dashboard}
                     </NavLink>
-                    <NavLink to="/p/payment" icon={MdOutlinePayments}>
-                        {gc?.payment}
+                    <NavLink to="/p/expenses" icon={MdOutlinePayments}>
+                        {gc?.expenses}
                     </NavLink>
                     <NavLink to="/p/income" icon={GiReceiveMoney}>
                         {gc?.income}

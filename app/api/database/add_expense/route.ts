@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const updatedAt = new Date().toISOString();
     try {
         const result = await sql`
-            INSERT INTO payments (id, date, source, amount, currency, category, notes, created_at, updated_at, user_id) 
+            INSERT INTO expenses (id, date, source, amount, currency, category, notes, created_at, updated_at, user_id) 
             VALUES (${id}, ${date}, ${source}, ${amount}, ${currency}, ${category}, ${notes}, ${createdAt}, ${updatedAt}, ${userId})`;
         // console.log(result);
         return NextResponse.json({ result }, { status: 200 });
