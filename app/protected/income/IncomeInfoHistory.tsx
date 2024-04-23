@@ -102,3 +102,4 @@ export default async function IncomeInfoHistory() {
 
 // DONE: Add a loading spinner -> Skeleton
 // TODO: Load more when scrolling to the bottom
+// TODO: Show notes, somehow
