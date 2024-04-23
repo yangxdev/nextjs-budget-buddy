@@ -14,7 +14,9 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
 
     useEffect(() => {
         const count = checkboxes.filter(Boolean).length;
-        setSelectedEntries(count);
+        const disabledCount = checkboxes.filter((checkbox, index) => checkbox && props.incomeData[index].enabled === false).length;
+        const finalCount = count - disabledCount;
+        setSelectedEntries(finalCount < 0 ? 0 : finalCount);
     }, [checkboxes]);
 
     const router = useRouter();
@@ -328,10 +330,10 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                                                     <table className="w-full text-left text-accentOrange line-through">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td className={`${widths.checkbox} text-center`}>
-                                                                                    <input type="checkbox" name="checkbox" disabled className="h-[1.1rem] w-[1.1rem]" />
+                                                                                <td className={`${widths.checkbox} text-center p-2`}>
+                                                                                    <input type="checkbox" name="checkbox" disabled checked={false} className="h-[1.1rem] w-[1.1rem]" />
                                                                                 </td>
-                                                                                <td className={`${widths.date}`}>
+                                                                                <td className={`${widths.date} p-2`}>
                                                                                     <div className="hidden">
                                                                                         <input name="month" />
                                                                                         <input name="day" />
@@ -339,23 +341,23 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                                                                     </div>
                                                                                     {data.date}
                                                                                 </td>
-                                                                                <td className={`${widths.source}`}>
+                                                                                <td className={`${widths.source} p-2`}>
                                                                                     <input name="source" className="hidden" />
                                                                                     {data.source}
                                                                                 </td>
-                                                                                <td className={`${widths.amount}`}>
+                                                                                <td className={`${widths.amount} p-2`}>
                                                                                     <input name="amount" className="hidden" />
                                                                                     {data.amount}
                                                                                 </td>
-                                                                                <td className={`${widths.currency}`}>
+                                                                                <td className={`${widths.currency} p-2`}>
                                                                                     <input name="currency" className="hidden" />
                                                                                     {data.currency}
                                                                                 </td>
-                                                                                <td className={`${widths.category}`}>
+                                                                                <td className={`${widths.category} p-2`}>
                                                                                     <input name="category" className="hidden" />
                                                                                     {data.category}
                                                                                 </td>
-                                                                                <td className={`${widths.notes}`}>
+                                                                                <td className={`${widths.notes} p-2`}>
                                                                                     <input name="notes" className="hidden" />
                                                                                     {data.notes}
                                                                                 </td>
@@ -412,3 +414,5 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
         </Transition>
     );
 }
+
+// BUG: selected entries count doesn't update when the modal is opened, keeping the previous count
