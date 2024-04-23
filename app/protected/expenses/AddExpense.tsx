@@ -2,14 +2,15 @@
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import GlobalConfig from "@/app/app.config";
-import addRandomPayments from "@/app/api/database/add_random_payments/addRandomPayments";
+import addRandomExpenses from "@/app/api/database/add_random_expenses/addRandomExpenses";
 import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
+import { CgDice5 } from "react-icons/cg";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentForm;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseForm;
 
-export default function AddPayment() {
+export default function AddExpense() {
     const currentDate = new Date().toISOString().substring(0, 10);
 
     const sourceRef = useRef<HTMLInputElement>(null);
@@ -29,16 +30,11 @@ export default function AddPayment() {
         const notes = notesRef.current?.value;
 
         if (!source || !date || !amount || !currency || !category) {
-            toast.error("Please fill in all the required fields", {
-                style: {
-                    background: "#333",
-                    color: "#fff",
-                },
-            });
+            toast.error("Please fill in all the required fields", {});
             return;
         }
 
-        const responsePromise = fetch("/api/database/add_payment", {
+        const responsePromise = fetch("/api/database/add_expense", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -63,15 +59,10 @@ export default function AddPayment() {
             responsePromise,
             {
                 loading: "Saving...",
-                success: "Payment added successfully",
-                error: "Error when adding payment",
+                success: "Expense added successfully",
+                error: "Error when adding expense",
             },
-            {
-                style: {
-                    background: "#333",
-                    color: "#fff",
-                },
-            }
+            {}
         );
     };
 
@@ -87,15 +78,15 @@ export default function AddPayment() {
     }, []);
 
     return (
-        <div ref={elementRef} className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 rounded-2xl text-sm select-none h-min">
+        <div ref={elementRef} className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
             <div className="font-bold pb-2 text-lg">{gc?.title}</div>
             <div className="pb-2">
                 {gc?.date}
-                <input type="date" ref={dateRef} className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 cursor-pointer hover:bg-lightGrayCustom3 transition duration-100 dark:[color-scheme:dark] focus:outline-none" defaultValue={currentDate} required />
+                <input type="date" ref={dateRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md" defaultValue={currentDate} required />
             </div>
             <div className="pb-2">
                 {gc?.source}
-                <input type="text" ref={sourceRef} className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 hover:bg-lightGrayCustom3 transition duration-100 focus:outline-none dark:[color-scheme:dark]" required />
+                <input type="text" ref={sourceRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 hover:bg-white transition duration-100 focus:outline-none dark:[color-scheme:dark] shadow-sm hover:shadow-md" required />
             </div>
             <div className="pb-2 flex flex-row gap-4">
                 <div className="flex flex-col w-1/2">
@@ -103,15 +94,15 @@ export default function AddPayment() {
                     <input
                         type="number"
                         ref={amountRef}
-                        className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2
-                        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none cursor-pointer hover:bg-lightGrayCustom3 transition duration-100 dark:[color-scheme:dark] focus:outline-none
+                        className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2
+                        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md
                         "
                         required
                     />
                 </div>
                 <div className="flex flex-col w-1/2">
                     {gc?.currency}
-                    <select required ref={currencyRef} className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 cursor-pointer hover:bg-lightGrayCustom3 transition duration-100 dark:[color-scheme:dark] focus:outline-none">
+                    <select required ref={currencyRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md">
                         {GlobalConfig.currency.currencies.map((currency, index) => (
                             <option key={index} value={currency}>
                                 {currency}
@@ -122,8 +113,8 @@ export default function AddPayment() {
             </div>
             <div className="pb-2">
                 {gc?.category}
-                <select ref={categoryRef} required className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 cursor-pointer hover:bg-lightGrayCustom3 transition duration-100 dark:[color-scheme:dark] focus:outline-none">
-                    {GlobalConfig.payment.paymentCategories.map((category, index) => (
+                <select ref={categoryRef} required className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md">
+                    {GlobalConfig.expenses.expenseCategories.map((category, index) => (
                         <option key={index} value={category}>
                             {category}
                         </option>
@@ -132,47 +123,40 @@ export default function AddPayment() {
             </div>
             <div className="pb-2">
                 {gc?.notes}
-                <textarea ref={notesRef} className="w-full bg-darkGrayCustom2 border-[1px] border-[#383b40] rounded-md p-2 cursor-pointer hover:bg-lightGrayCustom3 transition duration-100 dark:[color-scheme:dark] focus:outline-none" rows={1}></textarea>
+                <textarea ref={notesRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md" rows={1}></textarea>
             </div>
-            <div className="flex flex-row justify-end">
+            <div className="flex flex-row justify-end gap-2">
+                {GlobalConfig.debug.showAddRandomEntriesButton && (
+                    <button
+                        onClick={() => {
+                            addRandomExpenses();
+                            toast.success("Random Expenses Added", {});
+                        }}
+                        className="flex flex-row items-center gap-1 transition duration-100 bg-white rounded-md p-2 hover:bg-newGreen-500 hover:text-white"
+                    >
+                        <div>
+                            <CgDice5 />
+                        </div>
+                        <div>{gc?.addRandom}</div>
+                    </button>
+                )}
                 <button
                     onClick={() => {
                         sourceRef.current!.value = "";
                         dateRef.current!.value = currentDate;
                         amountRef.current!.value = "";
                         currencyRef.current!.value = GlobalConfig.currency.baseCurrency;
-                        categoryRef.current!.value = GlobalConfig.payment.paymentCategories[0];
+                        categoryRef.current!.value = GlobalConfig.expenses.expenseCategories[0];
                         notesRef.current!.value = "";
-                        toast.success("Fields reset", {
-                            style: {
-                                background: "#333",
-                                color: "#fff",
-                            },
-                        });
+                        toast.success("Fields reset", {});
                     }}
-                    className="transition duration-100 bg-lightGrayCustom3 rounded-md p-2 hover:bg-[#565656] mr-2"
+                    className="transition duration-100 bg-white rounded-md p-2 hover:bg-newRed-500 hover:text-white"
                 >
                     {gc?.reset}
                 </button>
-                <button onClick={handleSubmit} className="transition duration-100 bg-accentGreen rounded-md p-2 hover:bg-[#2e8b57]">
+                <button onClick={handleSubmit} className="transition border-[1px] shadow-sm hover:shadow-md duration-100 bg-white rounded-md p-2 hover:bg-newGreen-500 hover:text-white">
                     {gc?.add}
                 </button>
-                {GlobalConfig.debug.showAddRandomEntriesButton && (
-                    <button
-                        onClick={() => {
-                            addRandomPayments();
-                            toast.success("Random Payments Added", {
-                                style: {
-                                    background: "#333",
-                                    color: "#fff",
-                                },
-                            });
-                        }}
-                        className="transition duration-100 ml-2 bg-[#e2820e] rounded-md p-2 hover:bg-[#bd8112]"
-                    >
-                        {gc?.addRandom}
-                    </button>
-                )}
             </div>
         </div>
     );

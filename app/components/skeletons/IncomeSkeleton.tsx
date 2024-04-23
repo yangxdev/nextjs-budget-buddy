@@ -1,24 +1,34 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import GlobalConfig from "@/app/app.config";
 
-export default function PaymentSkeleton() {
+const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.income;
+
+export default function IncomeSkeleton() {
     return (
         <>
-            <div className="font-bold text-3xl pb-6 select-none">Payments</div>
+            <div className="font-bold text-3xl pb-6 select-none">{gc?.title}</div>
             <div className="flex flex-row gap-8 justify-between h-full">
                 <>
                     <div className="flex flex-row gap-8">
+                        {/* First column [AddIncome, AddIncomeWithFile] */}
                         <div className="flex flex-col gap-8 max-w-80">
                             <Skeleton className="h-[470px] w-80 rounded-xl" />
                             <Skeleton className="h-[156px] w-80 rounded-xl" />
                         </div>
+
+                        {/* Second column [IncomeInfoSummary, IncomeInfoGraph] */}
                         <div className="flex flex-col gap-8">
                             <Skeleton className="h-[158px] w-80 rounded-xl" />
                             <Skeleton className="h-[500px] w-80 rounded-xl" />
                         </div>
+
+                        {/* Third column [IncomeInfoInsights] */}
                         <div className="flex flex-col gap-8">
-                            <Skeleton className="h-[474px] min-w-72 rounded-xl" />
+                            <Skeleton className="h-[474px] min-w-60 rounded-xl" />
                         </div>
                     </div>
+
+                    {/* IncomeInfoHistory */}
                     <div className="flex flex-col mb-2 gap-2 w-80">
                         <div className="flex flex-row justify-between items-center pb-2">
                             <Skeleton className="h-8 w-36" />

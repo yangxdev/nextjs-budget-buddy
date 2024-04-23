@@ -6,8 +6,8 @@ const copyToClipboard = (event: React.MouseEvent<HTMLDivElement>) => {
         navigator.clipboard.writeText(textToCopy);
         toast.success("Copied to clipboard! 📋", {
             style: {
-                background: "#333",
-                color: "#fff",
+                background: "#fff",
+                color: "#000",
             },
         });
     }

@@ -1,16 +1,16 @@
 "use client";
 import React, { useRef, useState } from "react";
-import AddIncomeWithFileModal from "./AddIncomeWithFileModal";
+import AddExpenseWithFileModal from "./AddExpenseWithFileModal";
 import DOMPurify from "dompurify";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income?.addIncome?.addIncomeWithFile;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseWithFile;
 
-export default function AddIncomeWithFile() {
+export default function AddExpenseWithFile() {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const [incomeData, setIncomeData] = useState<any[]>([]);
+    const [expenseData, setExpenseData] = useState<any[]>([]);
     const [openDialog, setOpenDialog] = useState<boolean>(false);
 
     function checkInput(data: { date: string; source: string; amount: string; currency: string; category: string; notes: string }) {
@@ -165,7 +165,7 @@ export default function AddIncomeWithFile() {
             reader.onload = async (e) => {
                 const text = e.target?.result as string;
                 const lines = text.split("\n");
-                let incomeData = [];
+                let expenseData = [];
                 for (let line of lines) {
                     // data entry example:
                     /* 
@@ -196,15 +196,15 @@ export default function AddIncomeWithFile() {
                     const notes = data[5];
                     if (checkInput({ date, source, amount, currency, category, notes })) {
                         const enabled = true;
-                        incomeData.push({ enabled, date, source, amount, currency, category, notes });
+                        expenseData.push({ enabled, date, source, amount, currency, category, notes });
                     } else {
-                        //console.log("Invalid input: " + line);
+                        // console.log("Invalid input: " + line);
                         const enabled = false;
-                        incomeData.push({ enabled, date, source, amount, currency, category, notes });
+                        expenseData.push({ enabled, date, source, amount, currency, category, notes });
                     }
                 }
-                // console.log(incomeData);
-                setIncomeData(incomeData);
+                // console.log(expenseData);
+                setExpenseData(expenseData);
                 setOpenDialog(true);
             };
             reader.readAsText(file);
@@ -248,9 +248,9 @@ export default function AddIncomeWithFile() {
 
     return (
         <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
-            <AddIncomeWithFileModal
+            <AddExpenseWithFileModal
                 isOpen={openDialog}
-                incomeData={incomeData}
+                expenseData={expenseData}
                 handleClose={() => {
                     setOpenDialog(false);
                     if (fileInputRef.current) {
@@ -263,9 +263,7 @@ export default function AddIncomeWithFile() {
             <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
                 <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
                 <label id="label-file-upload" htmlFor="input-file-upload" className={` w-full ${dragActive ? "drag-active" : ""}`} onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
-                    <div
-                        className="transition ease-in-out duration-100 bg-whiteDarker border-[1px] border-lightBorder rounded-md hover:bg-newGreen-500 hover:text-white p-5 cursor-pointer text-center shadow-sm hover:shadow-md"
-                    >
+                    <div className="transition ease-in-out duration-100 bg-whiteDarker border-[1px] border-lightBorder rounded-md hover:bg-newGreen-500 hover:text-white p-5 cursor-pointer text-center shadow-sm hover:shadow-md">
                         <button className="upload-button font-bold" onClick={onButtonClick}>
                             {gc?.chooseFile}
                         </button>

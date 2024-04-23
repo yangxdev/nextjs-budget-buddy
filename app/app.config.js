@@ -58,8 +58,8 @@ module.exports = {
         ],
     },
 
-    payment: {
-        paymentCategories: [
+    expenses: {
+        expenseCategories: [
             "Groceries",
             "Car maintenance",
             "Car payment",
@@ -129,7 +129,7 @@ module.exports = {
             en: {
                 navMenu: {
                     dashboard: "Dashboard",
-                    payment: "Payment",
+                    expenses: "Expenses",
                     income: "Income",
                     debt: "Debt",
                     savings: "Savings",
@@ -137,6 +137,11 @@ module.exports = {
 
                     settings: "Settings",
                     signOut: "Sign out",
+                },
+
+                dashboard: {
+                    title: "Dashboard",
+                    subtitle: "Summary of your data in the last month",
                 },
 
                 income: {
@@ -153,7 +158,7 @@ module.exports = {
 
                             reset: "Reset",
                             add: "Add",
-                            addRandom: "Add 10 random incomes",
+                            addRandom: "+10 entries",
                         },
 
                         addIncomeWithFile: {
@@ -196,14 +201,19 @@ module.exports = {
                         thisMonth: "This month",
                         thisWeek: "This week",
                     },
-                    incomeInfoGraph: {
+                    incomeInfoChart: {
                         title: "Categories",
 
-                        noIncomeDataAvailable: "No income data available",
+                        noExpenseDataAvailable: "No income data available",
 
-                        buttonThisWeek: "This week",
-                        buttonThisMonth: "This month",
-                        buttonThisYear: "This year",
+                        // buttonThisWeek: "This week",
+                        // buttonThisMonth: "This month",
+                        // buttonThisYear: "This year",
+                        buttonThisWeek: "1w",
+                        buttonThisMonth: "1M",
+                        buttonThisYear: "1y",
+                        buttonThreeYears: "3y",
+                        buttonAllTime: "All",
 
                         buttonDefault: "doughnutYearly",
                     },
@@ -214,11 +224,11 @@ module.exports = {
                     },
                 },
 
-                payment: {
-                    title: "Payments",
-                    addPayment: {
-                        addPaymentForm: {
-                            title: "Add payment",
+                expenses: {
+                    title: "Expenses",
+                    addExpense: {
+                        addExpenseForm: {
+                            title: "Add expense",
                             date: "Date",
                             source: "Store / Vendor",
                             amount: "Amount",
@@ -228,17 +238,17 @@ module.exports = {
 
                             reset: "Reset",
                             add: "Add",
-                            addRandom: "Add 10 random payments",
+                            addRandom: "+10 entries",
                         },
 
-                        addPaymentWithFile: {
+                        addExpenseWithFile: {
                             title: "Import CSV",
                             chooseFile: "Choose a file",
                             dragHere: "or drag it here",
 
-                            addPaymentWithFileModal: {
-                                title: "Import payment data",
-                                question: "Do you want to import the following payment data?",
+                            addExpenseWithFileModal: {
+                                title: "Import expense data",
+                                question: "Do you want to import the following expense data?",
 
                                 selectAll: "Select all",
                                 unselectAll: "Unselect all",
@@ -262,19 +272,19 @@ module.exports = {
                             },
                         },
                     },
-                    paymentInfoSummary: {
+                    expenseInfoSummary: {
                         title: "Summary",
 
-                        noPaymentDataAvailable: "No payment data available",
+                        noExpenseDataAvailable: "No expense data available",
 
                         thisYear: "This year",
                         thisMonth: "This month",
                         thisWeek: "This week",
                     },
-                    paymentInfoGraph: {
+                    expenseInfoChart: {
                         title: "Categories",
 
-                        noPaymentDataAvailable: "No payment data available",
+                        noExpenseDataAvailable: "No expense data available",
 
                         // buttonThisWeek: "This week",
                         // buttonThisMonth: "This month",
@@ -287,36 +297,36 @@ module.exports = {
 
                         buttonDefault: "doughnutYearly",
                     },
-                    paymentInfoHistory: {
+                    expenseInfoHistory: {
                         title: "History",
 
-                        noPaymentDataAvailable: "No payment data available",
+                        noExpenseDataAvailable: "No expense data available",
                     },
-                    paymentInfoInsights: {
+                    expenseInfoInsights: {
                         title: "Insights ( this year )",
 
-                        mostExpensivePayment: "Most expensive payment",
+                        mostExpensiveExpense: "Most expensive expense",
                         mostExpensiveCategory: "Most expensive category",
                         mostExpensiveMonth: "Most expensive month",
-                        mostFrequentPayment: "Most frequent payment",
-                        cheapestPayment: "Cheapest payment",
-                        averagePaymentAmount: "Average payment amount",
-                        totalPaymentsMade: "Total payments made",
+                        mostFrequentExpense: "Most frequent expense",
+                        cheapestExpense: "Cheapest expense",
+                        averageExpenseAmount: "Average expense amount",
+                        totalExpensesMade: "Total expenses made",
 
                         at: "@",
                         times: "times",
                         spent: "spent",
-                        payments: "payments",
-                        payment: "payment",
+                        expenses: "expenses",
+                        expense: "expense",
 
-                        noPaymentDataAvailable: "No payment data available",
+                        noExpenseDataAvailable: "No expense data available",
                     },
                 },
             },
             it: {
                 navMenu: {
                     dashboard: "Dashboard",
-                    payment: "Pagamenti",
+                    expense: "Spese",
                     income: "Entrate",
                     debt: "Debiti",
                     savings: "Risparmi",
@@ -324,6 +334,11 @@ module.exports = {
 
                     settings: "Impostazioni",
                     signOut: "Esci",
+                },
+
+                dashboard: {
+                    title: "Dashboard",
+                    subtitle: "Sommario dei tuoi dati nell'ultimo mese",
                 },
 
                 income: {
@@ -401,13 +416,13 @@ module.exports = {
                     },
                 },
 
-                payment: {
-                    title: "Pagamenti",
-                    addPayment: {
+                expense: {
+                    title: "Spese",
+                    addExpense: {
                         title: "Pagamento",
 
-                        addPaymentForm: {
-                            title: "Aggiungi pagamento",
+                        addExpenseForm: {
+                            title: "Aggiungi spesa",
                             date: "Data",
                             source: "Negozio / Venditore",
                             amount: "Importo",
@@ -417,15 +432,15 @@ module.exports = {
 
                             reset: "Annulla",
                             add: "Aggiungi",
-                            addRandom: "Aggiungi 10 pagamenti casuali",
+                            addRandom: "Aggiungi 10 spese casuali",
                         },
 
-                        addPaymentWithFile: {
+                        addExpenseWithFile: {
                             title: "Carica CSV",
                             chooseFile: "Scegli un file",
                             dragHere: "o trascinalo qui",
 
-                            addPaymentWithFileModal: {
+                            addExpenseWithFileModal: {
                                 title: "Caricamento CSV",
                                 question: "Vuoi importare i seguenti dati?",
 
@@ -451,19 +466,19 @@ module.exports = {
                             },
                         },
                     },
-                    paymentInfoSummary: {
+                    expenseInfoSummary: {
                         title: "Sommario",
 
-                        noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
+                        noExpenseDataAvailable: "Nessun dato sulle spese disponibile",
 
                         thisYear: "Quest'anno",
                         thisMonth: "Questo mese",
                         thisWeek: "Questa settimana",
                     },
-                    paymentInfoGraph: {
+                    expenseInfoChart: {
                         title: "Categorie",
 
-                        noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
+                        noExpenseDataAvailable: "Nessun dato sulle spese disponibile",
 
                         // buttonThisWeek: "Questa sett.",
                         // buttonThisMonth: "Questo mese",
@@ -474,29 +489,29 @@ module.exports = {
                         buttonThreeYears: "3y",
                         buttonAllTime: "Tutto",
                     },
-                    paymentInfoHistory: {
+                    expenseInfoHistory: {
                         title: "Cronologia",
 
-                        noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
+                        noExpenseDataAvailable: "Nessun dato sulle spese disponibile",
                     },
-                    paymentInfoInsights: {
+                    expenseInfoInsights: {
                         title: "Insights",
 
-                        mostExpensivePayment: "Pagamento più costoso",
+                        mostExpensiveExpense: "Pagamento più costoso",
                         mostExpensiveCategory: "Categoria più costosa",
                         mostExpensiveMonth: "Mese più costoso",
-                        mostFrequentPayment: "Pagamento più frequente",
-                        cheapestPayment: "Pagamento meno costoso",
-                        averagePaymentAmount: "Media dei pagamenti",
-                        totalPaymentsMade: "Pagamenti totali",
+                        mostFrequentExpense: "Pagamento più frequente",
+                        cheapestExpense: "Pagamento meno costoso",
+                        averageExpenseAmount: "Media delle spese",
+                        totalExpensesMade: "Spese totali",
 
                         at: "@",
                         times: "volte",
                         spent: "spesi",
-                        payments: "pagamenti",
-                        payment: "pagamento",
+                        expenses: "spese",
+                        expense: "spesa",
 
-                        noPaymentDataAvailable: "Nessun dato sui pagamenti disponibile",
+                        noExpenseDataAvailable: "Nessun dato sulle spese disponibile",
                     },
                 },
             },

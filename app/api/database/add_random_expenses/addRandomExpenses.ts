@@ -1,14 +1,14 @@
 import GlobalConfig from "@/app/app.config";
 
-const addRandomIncomes = async () => {
-    
+const addRandomExpenses = async () => {
+
     const response = await fetch('https://random-word-api.herokuapp.com/word?number=30');
     if (!response.ok) {
         throw new Error('HTTP error ' + response.status);
     }
     const sources = await response.json();
 
-    const categories = GlobalConfig.income.incomeCategories;
+    const categories = GlobalConfig.expenses.expenseCategories;
     const currencies = ["USD", "EUR"];
     for (let i = 0; i < 10; i++) {
         const sourcePre = sources[Math.floor(Math.random() * sources.length)];
@@ -26,7 +26,7 @@ const addRandomIncomes = async () => {
         const category = categories[Math.floor(Math.random() * categories.length)];
         const notes = `Random note ${i + 1}`;
 
-        const responsePromise = fetch("/api/database/add_income", {
+        const responsePromise = fetch("/api/database/add_expense", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -50,4 +50,4 @@ const addRandomIncomes = async () => {
     }
 };
 
-export default addRandomIncomes;
+export default addRandomExpenses;

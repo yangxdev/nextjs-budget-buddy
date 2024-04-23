@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income?.addIncome?.addIncomeWithFile?.addIncomeWithFileModal;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseWithFile?.addExpenseWithFileModal;
 
-export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?: any; handleClose?: any }) {
+export default function AddExpenseWithFileModal(props: { expenseData: any; isOpen?: any; handleClose?: any }) {
     const { isOpen, handleClose } = props;
-    const [checkboxes, setCheckboxes] = useState(new Array(props.incomeData.length).fill(false));
+    const [checkboxes, setCheckboxes] = useState(new Array(props.expenseData.length).fill(false));
     const [selectedEntries, setSelectedEntries] = useState(0);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
 
     const router = useRouter();
     function handleImport() {
-        const updatedIncomeData = props.incomeData.map(
+        const updatedExpenseData = props.expenseData.map(
             (
                 _data: {
                     enabled: boolean;
@@ -32,7 +32,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                 },
                 index: number
             ) => {
-                if (props.incomeData[index].enabled && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked) {
+                if (props.expenseData[index].enabled && (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked) {
                     // const checkbox = (document.getElementsByName("checkbox")[index] as HTMLInputElement).checked;
                     const date = `${(document.getElementsByName("month")[index] as HTMLInputElement).value}-${(document.getElementsByName("day")[index] as HTMLInputElement).value}-${(document.getElementsByName("year")[index] as HTMLInputElement).value}`;
                     const source = (document.getElementsByName("source")[index] as HTMLInputElement).value;
@@ -53,11 +53,11 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                 }
             }
         );
-        const filteredIncomeData = updatedIncomeData.filter((data: any) => data !== null);
+        const filteredExpenseData = updatedExpenseData.filter((data: any) => data !== null);
 
         try {
-            const responsePromises = filteredIncomeData.map((data: any) =>
-                fetch("/api/database/add_income", {
+            const responsePromises = filteredExpenseData.map((data: any) =>
+                fetch("/api/database/add_expense", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -74,11 +74,11 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
             Promise.all(responsePromises)
                 .then(() => {
                     router.refresh();
-                    toast.success("Income(s) added successfully", {
+                    toast.success("Expense(s) added successfully", {
                     });
                 })
                 .catch(() => {
-                    toast.error("Error when adding income(s)", {
+                    toast.error("Error when adding expense(s)", {
                         style: {
                             background: "#fff",
                             color: "#000",
@@ -139,7 +139,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                             transition duration-100
                           "
                                                         onClick={() => {
-                                                            setCheckboxes(new Array(props.incomeData.length).fill(true));
+                                                            setCheckboxes(new Array(props.expenseData.length).fill(true));
                                                             toast.success("All entries selected", {});
                                                         }}
                                                     >
@@ -163,7 +163,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                 transition duration-100
                                 "
                                                         onClick={() => {
-                                                            setCheckboxes(new Array(props.incomeData.length).fill(false));
+                                                            setCheckboxes(new Array(props.expenseData.length).fill(false));
                                                             toast.error("All entries unselected", {});
                                                         }}
                                                     >
@@ -187,7 +187,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                                 </thead>
                                             </table>
                                             <div className="max-h-[70vh] transition duration-100">
-                                                {props.incomeData.map(
+                                                {props.expenseData.map(
                                                     (
                                                         data: {
                                                             enabled: boolean;
@@ -291,12 +291,12 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                                                                                                 e.target.classList.add("text-black");
                                                                                             }
                                                                                         }}
-                                                                                        defaultValue={GlobalConfig.income.incomeCategories.includes(data.category) ? data.category : "Other"}
+                                                                                        defaultValue={GlobalConfig.expenses.expenseCategories.includes(data.category) ? data.category : "Other"}
                                                                                         className={`${widths.category} bg-white text-black focus:outline-none hover:shadow-md transition duration-100 px-2 py-2 rounded-md cursor-pointer ${
-                                                                                            !GlobalConfig.income.incomeCategories.includes(data.category) ? "text-newRed-500" : "text-black"
+                                                                                            !GlobalConfig.expenses.expenseCategories.includes(data.category) ? "text-newRed-500" : "text-black"
                                                                                         }`}
                                                                                     >
-                                                                                        {GlobalConfig.income.incomeCategories.map((category, index) => {
+                                                                                        {GlobalConfig.expenses.expenseCategories.map((category, index) => {
                                                                                             return (
                                                                                                 <option key={index} value={category} className={``}>
                                                                                                     {category}

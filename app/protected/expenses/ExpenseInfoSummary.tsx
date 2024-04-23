@@ -1,10 +1,10 @@
-import { getConvertedPaymentsByDateRange } from "@/app/api/database/get_payments/payments";
+import { getConvertedExpensesByDateRange } from "@/app/api/database/get_expenses/expenses";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoSummary;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.expenseInfoSummary;
 
-export default async function PaymentInfoSummary() {
+export default async function ExpenseInfoSummary() {
     const today = new Date();
     const firstDayOfWeek = new Date(
         today.getFullYear(),
@@ -14,23 +14,23 @@ export default async function PaymentInfoSummary() {
     const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
 
-    const convertedPaymentsThisWeek = await getConvertedPaymentsByDateRange(firstDayOfWeek, today);
-    const convertedPaymentsThisMonth = await getConvertedPaymentsByDateRange(firstDayOfMonth, today);
-    const convertedPaymentsThisYear = await getConvertedPaymentsByDateRange(firstDayOfYear, today);
+    const convertedExpensesThisWeek = await getConvertedExpensesByDateRange(firstDayOfWeek, today);
+    const convertedExpensesThisMonth = await getConvertedExpensesByDateRange(firstDayOfMonth, today);
+    const convertedExpensesThisYear = await getConvertedExpensesByDateRange(firstDayOfYear, today);
 
-    function checkIfPaymentsAreEmpty() {
-        return convertedPaymentsThisWeek.length === 0 && convertedPaymentsThisMonth.length === 0 && convertedPaymentsThisYear.length === 0;
+    function checkIfExpensesAreEmpty() {
+        return convertedExpensesThisWeek.length === 0 && convertedExpensesThisMonth.length === 0 && convertedExpensesThisYear.length === 0;
     }
 
-    const sumThisYear = convertedPaymentsThisYear.reduce((acc: number, payment: number) => acc + payment, 0);
-    const sumThisMonth = convertedPaymentsThisMonth.reduce((acc: number, payment: number) => acc + payment, 0);
-    const sumThisWeek = convertedPaymentsThisWeek.reduce((acc: number, payment: number) => acc + payment, 0);
+    const sumThisYear = convertedExpensesThisYear.reduce((acc: number, expense: number) => acc + expense, 0);
+    const sumThisMonth = convertedExpensesThisMonth.reduce((acc: number, expense: number) => acc + expense, 0);
+    const sumThisWeek = convertedExpensesThisWeek.reduce((acc: number, expense: number) => acc + expense, 0);
 
     return (
-        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
+        <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 min-w-80 rounded-2xl text-sm select-none h-min">
             <div className="text-lg font-bold select-none mb-2">{gc?.title}</div>
-            {checkIfPaymentsAreEmpty() ? (
-                <div className="text-left text-sm">{gc?.noPaymentDataAvailable}</div>
+            {checkIfExpensesAreEmpty() ? (
+                <div className="text-left text-sm">{gc?.noExpenseDataAvailable}</div>
             ) : (
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-row justify-between items-center gap-4">
