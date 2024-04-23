@@ -3,14 +3,14 @@
 // FIXED: The colors in the legend are not consistent with the colors in the chart
 
 import { useEffect, useState } from "react";
-import InfoChartDoughnut from "./charts/PaymentDoughnut";
+import InfoChartDoughnut from "./charts/IncomeDoughnut";
 import GlobalConfig from "@/app/app.config";
 import classNames from "classnames";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment?.paymentInfoChart;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income?.incomeInfoChart;
 
-export default function PaymentInfoChartDoughnutClient(props: any) {
+export default function IncomeInfoChartDoughnutClient(props: any) {
     function checkEmpty(): boolean {
         if (props.datasets[0] === undefined && props.datasets[1] === undefined && props.datasets[2] === undefined) {
             return true;
@@ -106,8 +106,11 @@ export default function PaymentInfoChartDoughnutClient(props: any) {
                     </button>
                 </div>
             )}
-            {checkEmpty() && <div>{gc?.noPaymentDataAvailable}</div>}
+            {checkEmpty() && <div>{gc?.noIncomeDataAvailable}</div>}
             {!checkEmpty() && <InfoChartDoughnut id={selectedOption} categories={categories} datasetsData={datasetsData} />}
         </>
     );
 }
+
+
+// TODO: fix hover when disabled

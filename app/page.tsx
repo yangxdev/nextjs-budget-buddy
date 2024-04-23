@@ -6,8 +6,12 @@ import InfoChartVerticalBarServer from "./InfoChartVerticalBarServer";
 import PaymentInfoHistory from "./protected/payment/PaymentInfoHistory";
 import GlobalConfig from "@/app/app.config";
 import IncomeInfoHistory from "./protected/income/IncomeInfoHistory";
+import TotalIncome from "./components/dashboard/TotalIncome";
+import Greetings from "./components/Greetings";
+import TotalExpenses from "./components/dashboard/TotalExpenses";
 
-const gc = GlobalConfig.i18n.translations[GlobalConfig.i18n.defaultLanguage || "en"]?.dashboard;
+const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
+const gc = GlobalConfig.i18n.translations[defaultLanguage]?.dashboard;
 
 export default async function Home() {
     const session = await getServerSession();
@@ -17,21 +21,22 @@ export default async function Home() {
 
     return (
         <>
-            <div className="font-bold text-3xl mb-2 select-none">{gc?.title}</div>
-            <div className="select-none mb-6">{gc?.subtitle}</div>
-            <div className="flex flex-row gap-8 justify-between h-fit">
+            <div className="font-bold text-4xl mb-2 select-none">{gc?.title}</div>
+            <div className="text-lg greeting my-2 opacity-80" suppressHydrationWarning>
+                    <Greetings />
+                </div>
+            <div className="flex flex-row gap-8 justify-between h-fit mt-6">
                 <div className="flex flex-col gap-8 justify-between mb-[190px]">
                     <div className="flex flex-row gap-8 h-fit">
                         <Balance />
-                        <InfoChartVerticalBarServer />
+                        <TotalIncome />
+                        <TotalExpenses />
+                        {/* <InfoChartVerticalBarServer /> */}
                     </div>
                     <div className="flex flex-row gap-8 h-fit">
-                        {/* <Balance /> */}
                     </div>
                 </div>
                 <div className="flex flex-row gap-8 h-fit">
-                    {/* <IncomeInfoHistory />
-                    <PaymentInfoHistory /> */}
                 </div>
             </div>
         </>

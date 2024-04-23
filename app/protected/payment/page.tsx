@@ -9,7 +9,7 @@ import PaymentInfoInsights from "./PaymentInfoInsights";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment;
 
 export default async function Payment() {
     const session = await getServerSession();
@@ -32,7 +32,7 @@ export default async function Payment() {
                             <PaymentInfoChartDoughnutServer />
                         </div>
                         <div className="flex flex-col gap-8">
-                            <PaymentInfoInsights />
+                            {/* <PaymentInfoInsights /> */}
                         </div>
                     </div>
                     <PaymentInfoHistory />

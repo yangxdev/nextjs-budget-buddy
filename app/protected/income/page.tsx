@@ -3,12 +3,12 @@ import { getServerSession } from "next-auth";
 import AddIncome from "./AddIncome";
 import IncomeInfoHistory from "./IncomeInfoHistory";
 import IncomeInfoSummary from "./IncomeInfoSummary";
-import IncomeInfoGraph from "./IncomeInfoGraph";
+import IncomeInfoGraph from "./IncomeInfoChartDoughnutServer";
 import AddIncomeWithFile from "./AddIncomeWithFile";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.income;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income;
 
 export default async function Income() {
     const session = await getServerSession();

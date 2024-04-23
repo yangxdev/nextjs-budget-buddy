@@ -3,7 +3,7 @@ import GlobalConfig from "@/app/app.config";
 import PaymentInfoChartDoughnutClient from "./PaymentInfoChartDoughnutClient";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoChart;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment?.paymentInfoChart;
 
 /**
  * Payment information graph component
@@ -71,13 +71,13 @@ export default async function PaymentInfoChartDoughnutServer(): Promise<JSX.Elem
     });
 
     return (
-        <div className="p-5 bg-lightGrayCustom3 border-[1px] border-[#383b40] max-w-80 min-w-80 rounded-2xl text-sm select-none h-min max-h-[35rem]">
+        <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 min-w-80 rounded-2xl text-sm select-none h-min max-h-[35rem]">
             <div className="mb-2 justify-between flex flex-row">
-                <div className="font-bold text-lg">{gc?.title}</div>
+                <div className="font-semibold text-lg">{gc?.title}</div>
             </div>
             <PaymentInfoChartDoughnutClient datasets={[datasetsDataWeekly, datasetsDataMonthly, datasetsDataYearly, datasetsDataThreeYears, datasetsDataAllTime]} categories={[categoriesWeekly, categoriesMonthly, categoriesYearly, categoriesThreeYears, categoriesAllTime]} />
         </div>
     );
 }
 
-// TOOD: align with income section once development is done for payment section
+// TODO: align with income section once development is done for payment section
