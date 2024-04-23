@@ -28,8 +28,8 @@ export default async function Payment() {
                             <AddPaymentWithFile />
                         </div>
                         <div className="flex flex-col gap-8">
-                            {/* <PaymentInfoSummary /> */}
-                            {/* <PaymentInfoChartDoughnutServer /> */}
+                            <PaymentInfoSummary />
+                            <PaymentInfoChartDoughnutServer />
                         </div>
                         <div className="flex flex-col gap-8">
                             {/* <PaymentInfoInsights /> */}
