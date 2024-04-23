@@ -15,7 +15,7 @@ import { parse, format, isValid } from "date-fns";
 import { enUS, it } from "date-fns/locale";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.paymentInfoHistory;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment?.paymentInfoHistory;
 
 export default async function PaymentInfoHistory() {
     const paymentData = await getPaymentDataByQuantity(15);
@@ -48,13 +48,13 @@ export default async function PaymentInfoHistory() {
 
                     {Object.entries(groupedPaymentsByDay).map(([date, payments]) => (
                         <div key={date}>
-                            <div className="date-divider pt-2 border-t-2 border-[#aaa] font-semibold text-base">
-                                {date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}
-                            </div>
-                            {" "}
+                            <div className="date-divider py-2 border-t-2 border-lightBorder font-semibold text-base">{date && isValid(parse(date, dateFormatInput, new Date())) ? format(parse(date, dateFormatInput, new Date()), dateFormat, { locale }) : "Invalid date"}</div>{" "}
                             {payments.map((payment: { source: any; category: any; currency: any; amount: any; date: any; createdAt: any }, index: number) => (
-                                <div key={index} className={`hover:bg-[#313131] transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== paymentData.payments.length - 1 ? "border-b-[0.1rem] border-b-[#313131]" : ""}`}>
-                                    <div className="icon rounded-full p-3 bg-accentRed">
+                                <div
+                                    key={index}
+                                    className={`rounded-xl hover:bg-newBlue-500 hover:text-white transition duration-100 cursor-pointer p-2 flex flex-row justify-between items-center gap-4 px-2 py-4 ${index !== paymentData.payments.length - 1 ? "border-b-[1px] border-b-lightBorder" : ""}`}
+                                >
+                                    <div className="icon rounded-full p-3 bg-newBlue-500 text-white border-2 border-whiteDarker">
                                         {payment.category === "Job" && <PiSuitcaseBold size={20} />}
                                         {payment.category === "Crypto" && <MdCurrencyBitcoin size={20} />}
                                         {payment.category === "Reward" && <PiMedal size={20} />}

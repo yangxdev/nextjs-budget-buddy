@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage]?.payment?.addPayment?.addPaymentWithFile;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.payment?.addPayment?.addPaymentWithFile;
 
 export default function AddPaymentWithFile() {
     const fileInputRef = useRef<HTMLInputElement>(null);

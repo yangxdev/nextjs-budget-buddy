@@ -19,7 +19,7 @@ const config: Config = {
                 lightGrayCustom2: "#353a3d", // logout button
                 lightGrayCustom3: "#26292e", // cards background
                 lightGrayCustom4: "#434343", // background color of input boxes inside cards for dark theme
-                textColor: "#fff", // main text
+                textcolor: "#000", // main text
                 accentGreenLighter: "#76E0B5",
                 accentGreen: "#06c879",
                 accentGreenDarker: "#08B36C",
