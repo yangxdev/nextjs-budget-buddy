@@ -17,7 +17,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
         const disabledCount = checkboxes.filter((checkbox, index) => checkbox && props.incomeData[index].enabled === false).length;
         const finalCount = count - disabledCount;
         setSelectedEntries(finalCount < 0 ? 0 : finalCount);
-    }, [checkboxes]);
+    }, [checkboxes, props.incomeData]);
 
     const router = useRouter();
     function handleImport() {
