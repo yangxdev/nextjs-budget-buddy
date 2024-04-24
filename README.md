@@ -1,15 +1,24 @@
-# YANGXDEV
-
-## Budget Buddy
+# 💸 Budget Buddy
+### 👨🏻‍💻 By Yang (@yangxdev)
 
 `nextjs-budget-buddy` is a project that helps individuals manage their personal finances and budget effectively. It is built using Next.js, a React-based framework that enables server-side rendering and generates static websites for React-based web applications. The project utilizes Tailwind CSS for efficient and customizable styling. Deployment of the project is facilitated by Vercel, a cloud platform for static sites and serverless functions.
 
 ---
 
-### Contents
+### 🖼️ Screenshots
+
+![Website Desktop Dashboard Section Screenshot](./public/v0.1.0-alpha/dashboard.jpeg)
+![Website Desktop Income Section Screenshot](./public/v0.1.0-alpha/income.jpeg)
+
+<!-- <div class="flex">
+    <img src="/public/readme/mobile_portfolio.png" alt="Website Mobile Portfolio Section Screenshot" width="400">&nbsp;&nbsp;
+</div> -->
+
+---
+
+### 📖 Contents
 
 - [Overview](#overview)
-- [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [Structure](#structure)
@@ -19,7 +28,7 @@
 
 ---
 
-### Overview
+### 🔎 Overview
 
 With `nextjs-budget-buddy`, users can track their expenses, incomes, investments, and soon, cryptocurrencies. It provides a comprehensive solution for managing personal finances. The project also integrates Next-auth, which enables users to log in using providers such as Google and GitHub, ensuring a secure and convenient authentication process.
 
@@ -27,17 +36,7 @@ The user-friendly interface and intuitive features of `nextjs-budget-buddy` make
 
 ---
 
-### Screenshots
-
-![Website Desktop Income Section Screenshot](./public/nextjs-budget-buddy-preview4.png)
-
-<!-- <div class="flex">
-    <img src="/public/readme/mobile_portfolio.png" alt="Website Mobile Portfolio Section Screenshot" width="400">&nbsp;&nbsp;
-</div> -->
-
----
-
-### Technologies
+### ⚙️ Technologies
 
 - [Next.js](https://nextjs.org/), a React-based framework that enables functionality like server-side rendering and generating static websites for React-based web applications.
 - [Tailwind CSS](https://tailwindcss.com/), a utility-first CSS framework that provides low-level utility classes to build designs directly in your markup. It's highly customizable and efficient.
@@ -47,7 +46,7 @@ The user-friendly interface and intuitive features of `nextjs-budget-buddy` make
 
 ---
 
-### Installation
+### 🛠️ Installation
 
 To get this project up and running on your local machine, follow these steps:
 
@@ -83,7 +82,7 @@ To get this project up and running on your local machine, follow these steps:
 
 ---
 
-### Structure
+### 🗂️ Structure
 
 The project is organized into the following key directories, each serving a specific purpose:
 - `app`
@@ -130,7 +129,7 @@ The project is organized into the following key directories, each serving a spec
 
 ---
 
-### Deployment
+### 🚀 Deployment
 This project is currently deployed on Vercel for personal use. If you wish to deploy a similar project, follow these steps:
 
 #### Prerequisites:
@@ -171,7 +170,7 @@ For any updates or changes to the project, simply push the changes to the connec
 
 ---
 
-### Contact
+### 💬 Contact
 
 Feel free to reach out if you have any questions, suggestions, or just want to connect! You can contact me via:
 
@@ -183,13 +182,13 @@ Feel free to reach out if you have any questions, suggestions, or just want to c
 
 I'm open to collaboration, feedback, and discussions about software engineering, frontend development, or anything related to my projects.
 
-Looking forward to hearing from you!
+Looking forward to hearing from you! ✨
 
  <img src="./public/logo_small_gray.jpg" alt="End of Document - Personal Logo" width="100">
 
 ---
 
-### License
+### 📄 License
 
 MIT License
 

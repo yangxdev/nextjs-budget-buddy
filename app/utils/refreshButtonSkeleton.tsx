@@ -14,16 +14,16 @@ export default function RefreshButtonSkeleton(SkeletonCard: any, timeout: number
     skeleton.style.zIndex = "1000";
     // skeleton.style.padding = DASHBOARD_PADDING;
 
-    const targetPageContent = document.getElementById(targetPageId)?.firstChild as HTMLElement;
-    targetPageContent!.style.display = "none";
+    // const targetPageContent = document.getElementById(targetPageId)?.firstChild as HTMLElement;
+    // targetPageContent!.style.display = "none";
 
-    ReactDOM.render(SkeletonCard, skeleton);
-    targetPage!.appendChild(skeleton);
+    // ReactDOM.render(SkeletonCard, skeleton);
+    // targetPage!.appendChild(skeleton);
     router.refresh();
 
-    setTimeout(() => {
-        targetPage!.removeChild(skeleton);
-        targetPageContent!.style.display = "block";
-    }, timeout);
+    // setTimeout(() => {
+    //     targetPage!.removeChild(skeleton);
+    //     targetPageContent!.style.display = "block";
+    // }, timeout);
     return <></>;
 }

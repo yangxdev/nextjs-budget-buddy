@@ -249,8 +249,8 @@ export default function AddExpenseWithFile() {
     return (
         <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
             <AddExpenseWithFileModal
-                isOpen={openDialog}
                 expenseData={expenseData}
+                isOpen={openDialog}
                 handleClose={() => {
                     setOpenDialog(false);
                     if (fileInputRef.current) {

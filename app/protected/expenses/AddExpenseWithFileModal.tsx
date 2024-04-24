@@ -17,7 +17,7 @@ export default function AddExpenseWithFileModal(props: { expenseData: any; isOpe
         const disabledCount = checkboxes.filter((checkbox, index) => checkbox && props.expenseData[index].enabled === false).length;
         const finalCount = count - disabledCount;
         setSelectedEntries(finalCount < 0 ? 0 : finalCount);
-    }, [checkboxes]);
+    }, [checkboxes, props.expenseData]);
 
     const router = useRouter();
     function handleImport() {
@@ -254,15 +254,15 @@ export default function AddExpenseWithFileModal(props: { expenseData: any; isOpe
                                                                                         maxLength={10}
                                                                                         className={`${widths.amount} bg-white text-black focus:outline-none hover:shadow-md transition duration-100 px-2 py-2 rounded-md cursor-text`}
                                                                                         readOnly={false}
-                                                                                        // onKeyPress={(e) => {
-                                                                                        //   const value = (e.target as HTMLInputElement).value + e.key;
-                                                                                        //   const regex = /^[0-9]*\.?[0-9]*$/;
-                                                                                        //   const decimalSplit = value.split(".");
-                                                                                        //   const decimalPart = decimalSplit.length > 1 ? decimalSplit[1] : null;
-                                                                                        //   if (!regex.test(value) || (decimalPart?.length ?? 0) > 2 || decimalSplit.length - 1 > 1) {
-                                                                                        //     e.preventDefault();
-                                                                                        //   }
-                                                                                        // }}
+                                                                                    // onKeyPress={(e) => {
+                                                                                    //   const value = (e.target as HTMLInputElement).value + e.key;
+                                                                                    //   const regex = /^[0-9]*\.?[0-9]*$/;
+                                                                                    //   const decimalSplit = value.split(".");
+                                                                                    //   const decimalPart = decimalSplit.length > 1 ? decimalSplit[1] : null;
+                                                                                    //   if (!regex.test(value) || (decimalPart?.length ?? 0) > 2 || decimalSplit.length - 1 > 1) {
+                                                                                    //     e.preventDefault();
+                                                                                    //   }
+                                                                                    // }}
                                                                                     />
                                                                                 </td>
 
@@ -294,9 +294,8 @@ export default function AddExpenseWithFileModal(props: { expenseData: any; isOpe
                                                                                             }
                                                                                         }}
                                                                                         defaultValue={GlobalConfig.expenses.expenseCategories.includes(data.category) ? data.category : "Other"}
-                                                                                        className={`${widths.category} bg-white text-black focus:outline-none hover:shadow-md transition duration-100 px-2 py-2 rounded-md cursor-pointer ${
-                                                                                            !GlobalConfig.expenses.expenseCategories.includes(data.category) ? "text-newRed-500" : "text-black"
-                                                                                        }`}
+                                                                                        className={`${widths.category} bg-white text-black focus:outline-none hover:shadow-md transition duration-100 px-2 py-2 rounded-md cursor-pointer ${!GlobalConfig.expenses.expenseCategories.includes(data.category) ? "text-newRed-500" : "text-black"
+                                                                                            }`}
                                                                                     >
                                                                                         {GlobalConfig.expenses.expenseCategories.map((category, index) => {
                                                                                             return (

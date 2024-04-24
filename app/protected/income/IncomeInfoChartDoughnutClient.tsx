@@ -8,7 +8,7 @@ import GlobalConfig from "@/app/app.config";
 import classNames from "classnames";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
-const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income?.incomeInfoChart;
+const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income;
 
 export default function IncomeInfoChartDoughnutClient(props: any) {
     function checkEmpty(): boolean {
@@ -33,7 +33,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
     const categoriesAllTime = props.categories[4];
     const datasetsDataAllTime = props.datasets[4];
 
-    const [selectedOption, setSelectedOption] = useState<string>(gc?.buttonDefault || "doughnutYearly");
+    const [selectedOption, setSelectedOption] = useState<string>(gc?.incomeInfoChart?.buttonDefault || "doughnutYearly");
 
     const dataMapping: { [key: string]: { categories: any; datasetsData: any } } = {
         doughnutWeekly: { categories: categoriesWeekly, datasetsData: datasetsDataWeekly },
@@ -58,7 +58,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
                         onClick={() => setSelectedOption("doughnutWeekly")}
                         title={props.datasets[1] === undefined || props.datasets[1].length === 0 ? "There's no available data for this date range" : ""}
                     >
-                        {gc?.buttonThisWeek}
+                        {gc?.incomeInfoChart?.buttonThisWeek}
                     </button>
                     <button
                         className={`
@@ -69,7 +69,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
                         onClick={() => setSelectedOption("doughnutMonthly")}
                         title={props.datasets[1] === undefined || props.datasets[1].length === 0 ? "There's no available data for this date range" : ""}
                     >
-                        {gc?.buttonThisMonth}
+                        {gc?.incomeInfoChart?.buttonThisMonth}
                     </button>
 
                     <button
@@ -80,7 +80,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
                         disabled={props.datasets[2] === undefined || props.datasets[2].length === 0}
                         onClick={() => setSelectedOption("doughnutYearly")}
                     >
-                        {gc?.buttonThisYear}
+                        {gc?.incomeInfoChart?.buttonThisYear}
                     </button>
 
                     <button
@@ -91,7 +91,7 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
                         disabled={props.datasets[3] === undefined || props.datasets[3].length === 0}
                         onClick={() => setSelectedOption("doughtnutThreeYears")}
                     >
-                        {gc?.buttonThreeYears}
+                        {gc?.incomeInfoChart?.buttonThreeYears}
                     </button>
 
                     <button
@@ -102,11 +102,11 @@ export default function IncomeInfoChartDoughnutClient(props: any) {
                         disabled={props.datasets[4] === undefined || props.datasets[4].length === 0}
                         onClick={() => setSelectedOption("doughnutAllTime")}
                     >
-                        {gc?.buttonAllTime}
+                        {gc?.incomeInfoChart?.buttonAllTime}
                     </button>
                 </div>
             )}
-            {checkEmpty() && <div>{gc?.noIncomeDataAvailable}</div>}
+            {checkEmpty() && <div>{gc?.incomeInfoHistory?.noIncomeDataAvailable}</div>}
             {!checkEmpty() && <InfoChartDoughnut id={selectedOption} categories={categories} datasetsData={datasetsData} />}
         </>
     );
