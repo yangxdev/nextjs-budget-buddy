@@ -43,6 +43,7 @@ export default function AddExpenseWithFileModal(props: { expenseData: any; isOpe
                     const category = (document.getElementsByName("category")[index] as HTMLSelectElement).value;
                     const notes = (document.getElementsByName("notes")[index] as HTMLInputElement).value;
                     return {
+                        type: "expense",
                         source: source,
                         date: date,
                         amount: amount,

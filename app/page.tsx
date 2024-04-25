@@ -10,6 +10,7 @@ import TotalIncome from "./components/dashboard/TotalIncome";
 import Greetings from "./components/Greetings";
 import TotalExpenses from "./components/dashboard/TotalExpenses";
 import MoneyFlow from "./components/dashboard/MoneyFlow";
+import Transactions from "./components/dashboard/Transactions";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.dashboard;
@@ -36,6 +37,7 @@ export default async function Home() {
                     </div>
                     <div className="flex flex-row gap-8 h-auto">
                         <MoneyFlow />
+                        <Transactions />
                     </div>
                 </div>
                 <div className="flex flex-row gap-8 h-full">

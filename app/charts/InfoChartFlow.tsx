@@ -37,6 +37,12 @@ export default function InfoChartFlow(props: any) {
                     usePointStyle: true, // this will set the legend shapes to dots
                     boxHeight: 6, // thanks LingLing @ https://stackoverflow.com/questions/54865461/chart-js-style-legend-smaller-circles
                 },
+                onHover: (event: any) => {
+                    event.native.target.style.cursor = 'pointer';
+                },
+                onLeave: (event: any) => {
+                    event.native.target.style.cursor = 'default';
+                },
             },
         },
     };

@@ -10,7 +10,7 @@ export default async function MoneyFlow() {
     const incomeRawData = await getIncomeDataAndConversionRates(startDate, endDate);
 
     return (
-        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl text-sm select-none w-[40rem] h-fit">
+        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl text-sm select-none w-[43rem] h-[25rem]">
             <div className="flex flex-row justify-between select-none items-center">
                 <div className="font-semibold text-lg">Money Flow</div>
             </div>

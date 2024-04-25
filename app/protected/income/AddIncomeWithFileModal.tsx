@@ -43,6 +43,7 @@ export default function AddIncomeWithFileModal(props: { incomeData: any; isOpen?
                     const category = (document.getElementsByName("category")[index] as HTMLSelectElement).value;
                     const notes = (document.getElementsByName("notes")[index] as HTMLInputElement).value;
                     return {
+                        type: "income",
                         source: source,
                         date: date,
                         amount: amount,
