@@ -9,6 +9,7 @@ import IncomeInfoHistory from "./protected/income/IncomeInfoHistory";
 import TotalIncome from "./components/dashboard/TotalIncome";
 import Greetings from "./components/Greetings";
 import TotalExpenses from "./components/dashboard/TotalExpenses";
+import MoneyFlow from "./components/dashboard/MoneyFlow";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.dashboard;
@@ -34,6 +35,7 @@ export default async function Home() {
                         {/* <InfoChartVerticalBarServer /> */}
                     </div>
                     <div className="flex flex-row gap-8 h-fit">
+                        <MoneyFlow />
                     </div>
                 </div>
                 <div className="flex flex-row gap-8 h-fit">
