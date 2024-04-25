@@ -26,19 +26,19 @@ export default async function Home() {
             <div className="text-lg greeting my-2 opacity-80" suppressHydrationWarning>
                     <Greetings />
                 </div>
-            <div className="flex flex-row gap-8 justify-between h-fit mt-6">
-                <div className="flex flex-col gap-8 justify-between mb-[190px]">
-                    <div className="flex flex-row gap-8 h-fit">
+            <div className="flex flex-row gap-8 justify-between h-auto mt-6">
+                <div className="flex flex-col gap-8 justify-between mb-[190px] h-full">
+                    <div className="flex flex-row gap-8 h-auto">
                         <Balance />
                         <TotalIncome />
                         <TotalExpenses />
                         {/* <InfoChartVerticalBarServer /> */}
                     </div>
-                    <div className="flex flex-row gap-8 h-fit">
+                    <div className="flex flex-row gap-8 h-auto">
                         <MoneyFlow />
                     </div>
                 </div>
-                <div className="flex flex-row gap-8 h-fit">
+                <div className="flex flex-row gap-8 h-full">
                 </div>
             </div>
         </>

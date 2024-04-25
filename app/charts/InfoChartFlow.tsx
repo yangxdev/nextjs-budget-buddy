@@ -11,9 +11,6 @@ export default function InfoChartFlow(props: any) {
                 title: {
                     display: true,
                     text: "Month",
-                    padding: {
-                        top: 10,
-                    },
                 },
                 stacked: true,
                 grid: {
@@ -24,9 +21,6 @@ export default function InfoChartFlow(props: any) {
                 title: {
                     display: true,
                     text: "Amount",
-                    padding: {
-                        bottom: 10,
-                    },
                 },
                 stacked: true,
                 ticks: {

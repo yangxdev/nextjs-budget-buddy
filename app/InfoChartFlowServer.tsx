@@ -11,18 +11,18 @@ export default async function InfoChartFlowServer(props: { incomeData: any; expe
     const incomeConversionRates = props.incomeData.conversionRates;
 
     const labels = [
-        "January",
-        "February",
-        "March",
-        "April",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
         "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
     ];
     const convertedExpenseData = await getConvertedExpensesFromDataWithStructure(expenseData, expenseConversionRates);
     let orderedExpenseDataByDate = Array.isArray(convertedExpenseData) ? convertedExpenseData.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime()) : [];
@@ -46,7 +46,7 @@ export default async function InfoChartFlowServer(props: { incomeData: any; expe
         if (!acc[month]) {
             acc[month] = 0;
         }
-        acc[month] += curr.amount;
+        acc[month] += parseFloat(curr.amount.toFixed(2));
         return acc;
     }, []);
 
@@ -56,7 +56,7 @@ export default async function InfoChartFlowServer(props: { incomeData: any; expe
         if (!acc[month]) {
             acc[month] = 0;
         }
-        acc[month] += curr.amount;
+        acc[month] += parseFloat(curr.amount.toFixed(2));
         return acc;
     }, []);
 

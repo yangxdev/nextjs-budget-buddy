@@ -19,8 +19,8 @@ export default async function TotalExpense() {
     const expenseDataByDateRange = expenseDataByDateRangeRaw.expenses;
 
     return (
-        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl text-sm select-none w-[22rem] h-fit">
-            <div className="flex flex-row justify-between select-none items-center">
+        <div className="p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl text-sm select-none w-[22rem] h-[18rem]">
+            <div className="flex flex-row justify-between sel   ect-none items-center">
                 <div className="font-semibold text-lg">Total Expenses</div>
                 <div className="text-sm">
                     From {monthName} {year}
