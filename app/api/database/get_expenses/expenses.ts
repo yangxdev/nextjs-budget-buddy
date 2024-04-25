@@ -64,6 +64,27 @@ export async function getConvertedExpensesFromData(expenseData: any, conversionR
     });
 }
 
+// getConvertedExpensesFromData but retains the structure of the original data
+export async function getConvertedExpensesFromDataWithStructure(expenseData: any, conversionRates: any) {
+    return expenseData?.expenses?.map((expense: {
+        date: any; amount: number; currency: string
+    }) => {
+        if (expense.currency === GlobalConfig.currency.baseCurrency) {
+            return {
+                amount: expense.amount,
+                currency: expense.currency,
+                date: expense.date,
+            };
+        } else {
+            return {
+                amount: expense.amount / conversionRates[expense.currency],
+                currency: GlobalConfig.currency.baseCurrency,
+                date: expense.date,
+            };
+        }
+    });
+}
+
 export async function getMostExpensiveExpense(expenseData: any) {
     const mostExpensiveExpense = Math.max(...expenseData.expenses.map((expense: { amount: number }) => expense.amount));
     return mostExpensiveExpense;

@@ -9,6 +9,8 @@ import IncomeInfoHistory from "./protected/income/IncomeInfoHistory";
 import TotalIncome from "./components/dashboard/TotalIncome";
 import Greetings from "./components/Greetings";
 import TotalExpenses from "./components/dashboard/TotalExpenses";
+import MoneyFlow from "./components/dashboard/MoneyFlow";
+import Transactions from "./components/dashboard/Transactions";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.dashboard;
@@ -25,18 +27,20 @@ export default async function Home() {
             <div className="text-lg greeting my-2 opacity-80" suppressHydrationWarning>
                     <Greetings />
                 </div>
-            <div className="flex flex-row gap-8 justify-between h-fit mt-6">
-                <div className="flex flex-col gap-8 justify-between mb-[190px]">
-                    <div className="flex flex-row gap-8 h-fit">
+            <div className="flex flex-row gap-8 justify-between h-auto mt-6">
+                <div className="flex flex-col gap-8 justify-between mb-[190px] h-full">
+                    <div className="flex flex-row gap-8 h-auto">
                         <Balance />
                         <TotalIncome />
                         <TotalExpenses />
                         {/* <InfoChartVerticalBarServer /> */}
                     </div>
-                    <div className="flex flex-row gap-8 h-fit">
+                    <div className="flex flex-row gap-8 h-auto">
+                        <MoneyFlow />
+                        <Transactions />
                     </div>
                 </div>
-                <div className="flex flex-row gap-8 h-fit">
+                <div className="flex flex-row gap-8 h-full">
                 </div>
             </div>
         </>

@@ -1,20 +1,21 @@
 // schema.prisma
 
 generator client {
-      provider = "prisma-client-js"
+    provider = "prisma-client-js"
 
-      // IMPORTANT: uncomment the following line when deploying to production
+    // IMPORTANT: uncomment the following line when deploying to production
     //     //   output   = "../src/generated/client"
 }
 
 datasource db {
-      provider  = "postgresql"
-      url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-      directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Income {
     id        String   @id @default(cuid())
+    type      String
     date      DateTime
     source    String
     amount    Float
@@ -26,33 +27,34 @@ model Income {
     userId    String   @map(name: "user_id")
     user      User     @relation(fields: [userId], references: [id])
 
-      @@map(name: "incomes")
+    @@map(name: "incomes")
 }
 
 model Expense {
-      id        String   @id @default(cuid())
-      date      DateTime
-      source    String
-      amount    Float
-      currency  String
-      category  String
-      notes     String?
-      createdAt DateTime @default(now()) @map(name: "created_at")
-      updatedAt DateTime @updatedAt @map(name: "updated_at")
-      userId    String   @map(name: "user_id")
-      user      User     @relation(fields: [userId], references: [id])
+    id        String   @id @default(cuid())
+    type      String
+    date      DateTime
+    source    String
+    amount    Float
+    currency  String
+    category  String
+    notes     String?
+    createdAt DateTime @default(now()) @map(name: "created_at")
+    updatedAt DateTime @updatedAt @map(name: "updated_at")
+    userId    String   @map(name: "user_id")
+    user      User     @relation(fields: [userId], references: [id])
 
-      @@map(name: "expenses")
+    @@map(name: "expenses")
 }
 
 model User {
-      id        String    @id @default(cuid())
-      email     String    @unique
-      name      String?
-      createdAt DateTime  @default(now()) @map(name: "created_at")
-      updatedAt DateTime  @updatedAt @map(name: "updated_at")
-      incomes   Income[]
-      expenses  Expense[]
+    id        String    @id @default(cuid())
+    email     String    @unique
+    name      String?
+    createdAt DateTime  @default(now()) @map(name: "created_at")
+    updatedAt DateTime  @updatedAt @map(name: "updated_at")
+    incomes   Income[]
+    expenses  Expense[]
 
-      @@map(name: "users")
+    @@map(name: "users")
 }

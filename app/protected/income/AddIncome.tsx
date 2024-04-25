@@ -40,6 +40,7 @@ export default function AddIncome() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                type: "income",
                 source,
                 date,
                 amount,
