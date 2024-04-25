@@ -95,8 +95,8 @@ export default function NavMenu() {
                         {gc?.savings}
                     </NavLink>
                     {/* <NavLink to="/p/crypto" icon={MdOutlineSavings}>
-            {gc?.crypto}
-          </NavLink> */}
+                        {gc?.crypto}
+                    </NavLink> */}
                 </ul>
             </div>
             <div>

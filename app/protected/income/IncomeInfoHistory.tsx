@@ -87,7 +87,7 @@ export default async function IncomeInfoHistory() {
                                         </div>
                                         <div className="flex flex-col font-semibold items-end justify-center">
                                             <div className="flex flex-row">
-                                                <div>{"-"}</div>
+                                                <div>{"+"}</div>
                                                 <div className="currency px-1">{income.currency}</div>
                                                 <div className="amount">{income.amount}</div>
                                             </div>

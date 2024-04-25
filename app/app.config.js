@@ -326,7 +326,7 @@ module.exports = {
             it: {
                 navMenu: {
                     dashboard: "Dashboard",
-                    expense: "Spese",
+                    expenses: "Spese",
                     income: "Entrate",
                     debt: "Debiti",
                     savings: "Risparmi",
@@ -416,7 +416,7 @@ module.exports = {
                     },
                 },
 
-                expense: {
+                expenses: {
                     title: "Spese",
                     addExpense: {
                         title: "Pagamento",
