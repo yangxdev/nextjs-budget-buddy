@@ -80,7 +80,7 @@ export default async function Transactions() {
                                                     {category === "Debt" && <GiPayMoney size={20} />}
                                                     {category === "Electronics" && <MdComputer size={20} />}
                                                     {category === "Entertainment" && <FaGamepad size={20} />}
-                                                    {category === "Gas" && <FaGasPump size={20} />}
+                                                    {category === "Gas" && <FaGasPump size={15} />}
                                                     {category === "Gifts" && <PiGift size={20} />}
                                                     {category === "Going out" && <FaWalking size={20} />}
                                                     {category === "Gym" && <FaDumbbell size={20} />}

@@ -7,8 +7,8 @@
 
 ### 🖼️ Screenshots
 
-![Website Desktop Dashboard Section Screenshot](./public/v0.1.0-alpha/dashboard.jpeg)
-![Website Desktop Income Section Screenshot](./public/v0.1.0-alpha/income.jpeg)
+![Website Desktop Dashboard Section Screenshot](./public/version-0/v0.2.1-alpha/dashboard.jpeg)
+![Website Desktop Income Section Screenshot](./public/version-0/v0.2.1-alpha/income.jpeg)
 
 <!-- <div class="flex">
     <img src="/public/readme/mobile_portfolio.png" alt="Website Mobile Portfolio Section Screenshot" width="400">&nbsp;&nbsp;
