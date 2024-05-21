@@ -70,6 +70,7 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { MdMoneyOff } from "react-icons/md";
 import { MdOutlineSavings } from "react-icons/md";
 import { GoHomeFill } from "react-icons/go";
+import { SiBitcoinsv } from "react-icons/si";
 
 export default function NavMenu() {
     return (
@@ -94,9 +95,9 @@ export default function NavMenu() {
                     <NavLink to="/p/savings" icon={MdOutlineSavings}>
                         {gc?.savings}
                     </NavLink>
-                    {/* <NavLink to="/p/crypto" icon={MdOutlineSavings}>
+                    <NavLink to="/p/crypto" icon={SiBitcoinsv}>
                         {gc?.crypto}
-                    </NavLink> */}
+                    </NavLink>
                 </ul>
             </div>
             <div>
