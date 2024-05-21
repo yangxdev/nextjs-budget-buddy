@@ -7,14 +7,14 @@ import { setAddModal } from "@/app/features/addModal/addModalSlice";
 import { FaPlus } from "react-icons/fa6";
 import "@/app/css/AddModal.css";
 
-export default function AddCryptoSection(props: { cryptos: string[] }) {
+export default function AddCryptoSection(props: { symbols: string[] }) {
     // const dispatch = useDispatch();
     // const addModal = useSelector((state: RootState) =>   state.addModal.value);
     const [selectedSymbol, setSelectedSymbol] = React.useState("");
     const [selectedSymbolValue, setSelectedSymbolValue] = React.useState<number>(0);
     const [selectingCrypto, setSelectingCrypto] = React.useState(false);
     const [insertedAmount, setInsertedAmount] = React.useState<number>(0);
-    const cryptos = props.cryptos;
+    const symbols = props.symbols;
     const [showAddModal, setShowAddModal] = React.useState(false);
 
     useEffect(() => {
@@ -86,7 +86,7 @@ export default function AddCryptoSection(props: { cryptos: string[] }) {
                             <Select
                                 style={{ marginBottom: 0, display: "inline-block", width: "calc(40% - 8px)", marginRight: "10px" }}
                                 showSearch
-                                placeholder="Select a crypto"
+                                placeholder="Select a symbol"
                                 optionFilterProp="children"
                                 filterOption={(input, option) => (option?.children as unknown as string).toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                 onChange={(value) => {
@@ -94,7 +94,7 @@ export default function AddCryptoSection(props: { cryptos: string[] }) {
                                     formRef.current.setFieldsValue({ symbol: value });
                                 }}
                             >
-                                {cryptos.map((crypto) => (
+                                {symbols.map((crypto) => (
                                     <Select.Option key={crypto} value={crypto}>
                                         {crypto}
                                     </Select.Option>
@@ -115,7 +115,7 @@ export default function AddCryptoSection(props: { cryptos: string[] }) {
                             <Input
                                 type="number"
                                 min={0}
-                                style={{ display: "inlie-block", marginRight: "10px", width: "calc(40% - 8px)" }}
+                                style={{ display: "inline-block", marginRight: "10px", width: "calc(40% - 8px)" }}
                                 onChange={(value) => {
                                     setInsertedAmount(parseFloat(value.target.value));
                                     formRef.current.setFieldsValue({ amount: value.target.value });
