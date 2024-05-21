@@ -12,6 +12,8 @@ import TotalExpenses from "./components/dashboard/TotalExpenses";
 import MoneyFlow from "./components/dashboard/MoneyFlow";
 import Transactions from "./components/dashboard/TransactionsClient";
 import TransactionsServer from "./components/dashboard/TransactionsServer";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.dashboard;
@@ -26,8 +28,8 @@ export default async function Home() {
         <>
             <div className="font-bold text-4xl mb-2 select-none">{gc?.title}</div>
             <div className="text-lg greeting my-2 opacity-80" suppressHydrationWarning>
-                    <Greetings />
-                </div>
+                <Greetings />
+            </div>
             <div className="flex flex-row gap-8 justify-between h-auto mt-6">
                 <div className="flex flex-col gap-8 justify-between mb-[190px] h-full">
                     <div className="flex flex-row gap-8 h-auto">
@@ -41,8 +43,7 @@ export default async function Home() {
                         <TransactionsServer />
                     </div>
                 </div>
-                <div className="flex flex-row gap-8 h-full">
-                </div>
+                <div className="flex flex-row gap-8 h-full"></div>
             </div>
         </>
     );

@@ -9,6 +9,8 @@ import { getServers } from "dns";
 import { Toaster } from "react-hot-toast";
 
 import localFont from "next/font/local";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 
 const myFont = localFont({ src: "./fonts/Avenir Book.ttf" });
 
@@ -34,9 +36,7 @@ export default async function RootLayout({
                 <SessionProvider session={session}>
                     <main className="flex flex-row">
                         <NavMenu />
-                        <div
-                            className="flex-grow p-dashboard-padding h-screen relative bg-whiteDarker"
-                        >
+                        <div className="flex-grow p-dashboard-padding h-screen relative bg-whiteDarker">
                             {children}
                             <Toaster position="top-right" reverseOrder={false} />
                         </div>
