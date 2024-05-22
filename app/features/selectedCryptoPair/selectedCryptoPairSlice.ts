@@ -7,7 +7,7 @@ export interface selectedCryptoPairState {
 }
 
 const initialState: selectedCryptoPairState = {
-    value: "",
+    value: "BTCUSDT",
 };
 
 export const selectedCryptoPairSlice = createSlice({

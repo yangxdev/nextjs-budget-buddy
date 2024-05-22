@@ -1,6 +1,6 @@
-import InfoChartLineClient from "./InfoChartLineClient";
+import InfoChartLineClientCrypto from "./InfoChartLineClientCrypto";
 
-export default async function InfoChartLine(props: { data: any; title: string; lineColor: string }) {
+export default async function InfoChartLineServerCrypto(props: { data: any; title: string; lineColor: string }) {
     const data = props.data;
     let orderedDataByDate = Array.isArray(data) ? data.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime()) : [];
     if (orderedDataByDate.length === 0) {
@@ -19,7 +19,7 @@ export default async function InfoChartLine(props: { data: any; title: string; l
 
     return (
         <div>
-            <InfoChartLineClient labels={labels} rawData={amounts} title={chartLabel} lineColor={props.lineColor} />
+            <InfoChartLineClientCrypto labels={labels} rawData={amounts} title={chartLabel} lineColor={props.lineColor} />
         </div>
     );
 }
