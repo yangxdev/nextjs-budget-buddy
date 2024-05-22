@@ -90,7 +90,6 @@ export default function PairLineChartSection(props: { pairs: string[] }) {
                 </Select>
             </Form.Item>
             <div>
-                <div className="opacity-60 font-semibold">Historical data:</div>
                 <div>
                     <Radio.Group
                         defaultValue={7}

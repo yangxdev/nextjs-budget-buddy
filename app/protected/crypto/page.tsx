@@ -33,3 +33,5 @@ export default async function Crypto() {
         </>
     );
 }
+
+// TODO: show sidebar on hover
