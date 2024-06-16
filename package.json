@@ -10,11 +10,12 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@ant-design/cssinjs": "^1.20.0",
     "@headlessui/react": "^1.7.18",
     "@paralleldrive/cuid2": "^2.2.2",
     "@reduxjs/toolkit": "^2.2.5",
     "@vercel/postgres": "^0.7.2",
-    "antd": "^5.17.3",
+    "antd": "^5.18.1",
     "chart.js": "^4.4.2",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",
