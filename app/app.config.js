@@ -234,7 +234,7 @@ module.exports = {
                             amount: "Amount",
                             currency: "Currency",
                             category: "Category",
-                            notes: "Notes (optional)",
+                            notes: "Notes",
 
                             reset: "Reset",
                             add: "Add",
@@ -428,7 +428,7 @@ module.exports = {
                             amount: "Importo",
                             currency: "Valuta",
                             category: "Categoria",
-                            notes: "Note (opzionale)",
+                            notes: "Note",
 
                             reset: "Annulla",
                             add: "Aggiungi",

@@ -6,14 +6,18 @@ import addRandomExpenses from "@/app/api/database/add_random_expenses/addRandomE
 import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
 import { CgDice5 } from "react-icons/cg";
-import { Button } from 'antd';
-import { StyleProvider } from '@ant-design/cssinjs';
+import { Button, DatePicker, Form, Input, Space, Select } from "antd";
+import { StyleProvider } from "@ant-design/cssinjs";
+import dayjs from "dayjs";
+
+const { TextArea } = Input;
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseForm;
 
 export default function AddExpense() {
     const currentDate = new Date().toISOString().substring(0, 10);
+    const momentDate = dayjs(currentDate);
 
     const sourceRef = useRef<HTMLInputElement>(null);
     const dateRef = useRef<HTMLInputElement>(null);
@@ -82,17 +86,20 @@ export default function AddExpense() {
 
     return (
         <StyleProvider hashPriority="high">
-            <div ref={elementRef} className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
+            {/* <div ref={elementRef} className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min"> */}
+            <Form name="addExpenseForm" layout="vertical" className="bg-white border-[1px] border-lightBorder rounded-2xl" onFinish={handleSubmit} style={{ padding: "1.5rem" }}>
                 <div className="font-bold pb-2 text-lg">{gc?.title}</div>
-                <div className="pb-2">
-                    {gc?.date}
-                    <input type="date" ref={dateRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md" defaultValue={currentDate} required />
-                </div>
-                <div className="pb-2">
+                <Form.Item label={gc?.date} name="date" rules={[{ required: true, message: "Please select a date" }]}>
+                    <DatePicker className="w-full" defaultValue={momentDate} />
+                </Form.Item>
+                {/* <div className="pb-2">
                     {gc?.source}
                     <input type="text" ref={sourceRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 hover:bg-white transition duration-100 focus:outline-none dark:[color-scheme:dark] shadow-sm hover:shadow-md" required />
-                </div>
-                <div className="pb-2 flex flex-row gap-4">
+                </div> */}
+                <Form.Item label={gc?.source} name="source" rules={[{ required: true, message: "Please enter a source" }]}>
+                    <Input />
+                </Form.Item>
+                {/* <div className="pb-2 flex flex-row gap-4">
                     <div className="flex flex-col w-1/2">
                         {gc?.amount}
                         <input
@@ -114,8 +121,22 @@ export default function AddExpense() {
                             ))}
                         </select>
                     </div>
-                </div>
-                <div className="pb-2">
+                </div> */}
+                <Form.Item label={gc?.amount} name="amount" rules={[{ required: true, message: "Please enter an amount" }]}>
+                    <Form.Item name="amount" rules={[{ required: true, message: "Please enter an amount" }]} style={{ display: "inline-block", width: "calc(50%)", marginRight: "8px", marginBottom: "0px" }}>
+                        <Input type="number" />
+                    </Form.Item>
+                    <Form.Item name="currency" rules={[{ required: true, message: "Please select a currency" }]} style={{ display: "inline-block", width: "calc(50% - 8px)", marginRight: "0px", marginBottom: "0px" }}>
+                        <Select defaultValue={GlobalConfig.currency.baseCurrency} style={{ width: "100%" }}>
+                            {GlobalConfig.currency.currencies.map((currency, index) => (
+                                <Select.Option key={index} value={currency}>
+                                    {currency}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </Form.Item>
+                </Form.Item>
+                {/* <div className="pb-2">
                     {gc?.category}
                     <select ref={categoryRef} required className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md">
                         {GlobalConfig.expenses.expenseCategories.map((category, index) => (
@@ -124,63 +145,67 @@ export default function AddExpense() {
                             </option>
                         ))}
                     </select>
-                </div>
-                <div className="pb-2">
+                </div> */}
+                <Form.Item label={gc?.category} name="category" rules={[{ required: true, message: "Please select a category" }]}>
+                    <Select defaultValue={GlobalConfig.expenses.expenseCategories[0]} style={{ width: "100%" }}>
+                        {GlobalConfig.expenses.expenseCategories.map((category, index) => (
+                            <Select.Option key={index} value={category}>
+                                {category}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                </Form.Item>
+                {/* <div className="pb-2">
                     {gc?.notes}
                     <textarea ref={notesRef} className="w-full bg-whiteDarker border-[1px] border-lightBorder rounded-md p-2 cursor-pointer hover:bg-white transition duration-100 dark:[color-scheme:dark] focus:outline-none shadow-sm hover:shadow-md" rows={1}></textarea>
-                </div>
+                </div> */}
+                <Form.Item label={gc?.notes} name="notes">
+                    <TextArea rows={1} />
+                </Form.Item>
+
                 <div className="flex flex-row justify-end gap-2">
                     {GlobalConfig.debug.showAddRandomEntriesButton && (
-                        // <button
-                        //     onClick={() => {
-                        //         addRandomExpenses();
-                        //         toast.success("Random Expenses Added", {});
-                        //     }}
-                        //     className="flex flex-row items-center gap-1 transition duration-100 bg-white rounded-md p-2 hover:bg-newGreen-500 hover:text-white"
-                        // >
-                        //     <div>
-                        //         <CgDice5 />
-                        //     </div>
-                        //     <div>{gc?.addRandom}</div>
-                        // </button>
-                        <Button onClick={() => {
-                            addRandomExpenses();
-                            toast.success("Random Expenses Added", {});
-                        }} type="dashed">
+                        <Button
+                            onClick={() => {
+                                addRandomExpenses();
+                                toast.success("Random Expenses Added", {});
+                            }}
+                            type="dashed"
+                        >
                             <CgDice5 />
                             {gc?.addRandom}
                         </Button>
                     )}
-                    {/* <button
+                    <Button
+                        // onClick={() => {
+                        //     sourceRef.current!.value = "";
+                        //     dateRef.current!.value = currentDate;
+                        //     amountRef.current!.value = "";
+                        //     currencyRef.current!.value = GlobalConfig.currency.baseCurrency;
+                        //     categoryRef.current!.value = GlobalConfig.expenses.expenseCategories[0];
+                        //     notesRef.current!.value = "";
+                        //     toast.success("Fields reset", {});
+                        // }}
                         onClick={() => {
-                            sourceRef.current!.value = "";
-                            dateRef.current!.value = currentDate;
-                            amountRef.current!.value = "";
-                            currencyRef.current!.value = GlobalConfig.currency.baseCurrency;
-                            categoryRef.current!.value = GlobalConfig.expenses.expenseCategories[0];
-                            notesRef.current!.value = "";
                             toast.success("Fields reset", {});
                         }}
-                        className="transition duration-100 bg-white rounded-md p-2 hover:bg-newRed-500 hover:text-white"
+                        htmlType="reset"
+                        type="default"
+                        danger
                     >
                         {gc?.reset}
-                    </button> */}
-                    <Button onClick={() => {
-                        sourceRef.current!.value = "";
-                        dateRef.current!.value = currentDate;
-                        amountRef.current!.value = "";
-                        currencyRef.current!.value = GlobalConfig.currency.baseCurrency;
-                        categoryRef.current!.value = GlobalConfig.expenses.expenseCategories[0];
-                        notesRef.current!.value = "";
-                        toast.success("Fields reset", {});
-                    }} type="default" danger>{gc?.reset}</Button>
+                    </Button>
 
-                    {/* <button onClick={handleSubmit} className="transition border-[1px] shadow-sm hover:shadow-md duration-100 bg-white rounded-md p-2 hover:bg-newGreen-500 hover:text-white">
-                    {gc?.add}
-                </button> */}
-                    <Button onClick={handleSubmit} type="primary">{gc?.add}</Button>
+                    <Button
+                        // onClick={handleSubmit}
+                        htmlType="submit"
+                        type="primary"
+                    >
+                        {gc?.add}
+                    </Button>
                 </div>
-            </div>
+                {/* </div> */}
+            </Form>
         </StyleProvider>
     );
 }

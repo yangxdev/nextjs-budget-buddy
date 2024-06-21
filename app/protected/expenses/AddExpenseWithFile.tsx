@@ -3,11 +3,36 @@ import React, { useRef, useState } from "react";
 import AddExpenseWithFileModal from "./AddExpenseWithFileModal";
 import DOMPurify from "dompurify";
 import GlobalConfig from "@/app/app.config";
+import { InboxOutlined } from "@ant-design/icons";
+import type { UploadProps } from "antd";
+import { message, Upload } from "antd";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.expenses?.addExpense?.addExpenseWithFile;
 
 export default function AddExpenseWithFile() {
+    const { Dragger } = Upload;
+
+    const props = {
+        name: "file",
+        multiple: false,
+        onChange(info: any) {
+            const { status } = info.file;
+            if (status !== "uploading") {
+                console.log(info.file, info.fileList);
+            }
+            if (status === "done") {
+                message.success(`${info.file.name} file uploaded successfully.`);
+                handleChange({ target: { files: [info.file.originFileObj] } } as any);
+            } else if (status === "error") {
+                message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+        onDrop(e: any) {
+            console.log("Dropped files", e.dataTransfer.files);
+        },
+    };
+
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const [expenseData, setExpenseData] = useState<any[]>([]);
@@ -215,29 +240,10 @@ export default function AddExpenseWithFile() {
         handleFileUpload({ target: { files: file } } as any);
     }
 
-    const [dragActive, setDragActive] = useState(false);
-
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleDrag = function (e: any) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.type === "dragover" || e.type === "dragover") {
-            setDragActive(true);
-        } else if (e.type === "dragleave") {
-            setDragActive(false);
-        }
-    };
-    const handleDrop = function (e: any) {
-        e.preventDefault();
-        e.stopPropagation();
-        setDragActive(false);
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            handleFile(e.dataTransfer.files);
-        }
-    };
     const handleChange = function (e: any) {
-        e.preventDefault();
+        // e.preventDefault();
         if (e.target.files && e.target.files[0]) {
             handleFile(e.target.files);
         }
@@ -247,7 +253,7 @@ export default function AddExpenseWithFile() {
     };
 
     return (
-        <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min">
+        <div className="p-5 bg-white border-[1px] border-lightBorder max-w-80 rounded-2xl text-sm select-none h-min flex flex-col gap-2">
             <AddExpenseWithFileModal
                 expenseData={expenseData}
                 isOpen={openDialog}
@@ -260,18 +266,19 @@ export default function AddExpenseWithFile() {
             />
             <div className="text-lg font-semibold pb-2">{gc?.title}</div>
 
-            <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
-                <input className="hidden" ref={fileInputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
-                <label id="label-file-upload" htmlFor="input-file-upload" className={` w-full ${dragActive ? "drag-active" : ""}`} onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
-                    <div className="transition ease-in-out duration-100 bg-whiteDarker border-[1px] border-lightBorder rounded-md hover:bg-newGreen-500 hover:text-white p-5 cursor-pointer text-center shadow-sm hover:shadow-md">
-                        <button className="upload-button font-bold" onClick={onButtonClick}>
-                            {gc?.chooseFile}
-                        </button>
-                        <p>{gc?.dragHere}</p>
-                    </div>
-                </label>
-                {dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div>}
-            </form>
+            <Dragger
+                {...props}
+                beforeUpload={(file) => {
+                    handleFile(file);
+                    return true; // return false so file is not auto uploaded
+                }}
+            >
+                <p className="ant-upload-drag-icon">
+                    <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">{gc?.chooseFile}</p>
+                <p className="ant-upload-hint">{gc?.dragHere}</p>
+            </Dragger>
         </div>
     );
 }
