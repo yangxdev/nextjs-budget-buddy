@@ -488,6 +488,8 @@ module.exports = {
                         buttonThisYear: "1y",
                         buttonThreeYears: "3y",
                         buttonAllTime: "Tutto",
+
+                        buttonDefault: "doughnutYearly",
                     },
                     expenseInfoHistory: {
                         title: "Cronologia",
