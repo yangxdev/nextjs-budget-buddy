@@ -23,7 +23,7 @@ export default async function Expense() {
                 <div className="font-bold text-3xl pb-6 select-none">{gc?.title}</div>
                 <div className="flex flex-row gap-8 justify-between h-full">
                     <div className="flex flex-row gap-8">
-                        <div className="flex flex-col gap-8 min-w-80">
+                        <div className="flex flex-col gap-8 min-w-80 max-w-80">
                             <AddExpense />
                             <AddExpenseWithFile />
                         </div>
