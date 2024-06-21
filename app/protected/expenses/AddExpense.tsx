@@ -6,7 +6,8 @@ import addRandomExpenses from "@/app/api/database/add_random_expenses/addRandomE
 import { useRouter } from "next/navigation";
 import VanillaTilt from "vanilla-tilt";
 import { CgDice5 } from "react-icons/cg";
-import { Button, DatePicker, Form, Input, Space, Select, FormProps } from "antd";
+import { Button, DatePicker, Form, Input, Select, FormProps, message, Popconfirm } from "antd";
+import type { PopconfirmProps } from "antd";
 import { StyleProvider } from "@ant-design/cssinjs";
 import dayjs, { Dayjs } from "dayjs";
 
@@ -76,6 +77,15 @@ export default function AddExpense() {
         console.log("Failed:", errorInfo);
     };
 
+    const confirm: PopconfirmProps["onConfirm"] = () => {
+        addRandomExpenses();
+        message.success("10 entries added successfully");
+    };
+
+    const cancel: PopconfirmProps["onCancel"] = () => {
+        message.error("Add entries cancelled");
+    };
+
     const elementRef = useRef(null);
 
     useEffect(() => {
@@ -135,16 +145,12 @@ export default function AddExpense() {
 
                 <div className="flex flex-row justify-end gap-2">
                     {GlobalConfig.debug.showAddRandomEntriesButton && (
-                        <Button
-                            onClick={() => {
-                                addRandomExpenses();
-                                toast.success("Random Expenses Added", {});
-                            }}
-                            type="dashed"
-                        >
-                            <CgDice5 />
-                            {gc?.addRandom}
-                        </Button>
+                        <Popconfirm title="Add 10 random entries" description="Are you sure you want to add 10 random entries?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
+                            <Button type="dashed">
+                                <CgDice5 />
+                                {gc?.addRandom}
+                            </Button>
+                        </Popconfirm>
                     )}
                     <Button
                         onClick={() => {
