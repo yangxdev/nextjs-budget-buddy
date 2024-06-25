@@ -96,7 +96,6 @@ The project is organized into the following key directories, each serving a spec
             - Currently, the supported login methods are Google and GitHub.
          - These routes are restricted to authenticated users to ensure that only authorized individuals can access sensitive information or perform certain actions.
          - To access the routes in the `protected` folder, the user must first authenticate using their Google or GitHub account.
-    - `components`:
 
 - `components`:
     - This folder houses components related to the navigation menu on the left side of the application.
