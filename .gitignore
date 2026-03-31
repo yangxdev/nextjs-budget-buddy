@@ -36,4 +36,7 @@ next-env.d.ts
 
 .env
 
+# docker
+mongo_data/
+
 .vercel

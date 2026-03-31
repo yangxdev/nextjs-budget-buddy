@@ -1,20 +1,24 @@
-import { sql } from "@vercel/postgres";
+import { getDb } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
-// import cuid from "cuid";
-import { createId } from "@paralleldrive/cuid2";
 
 export async function POST(request: Request) {
     const { type, source, date, amount, currency, category, notes } = await request.json();
-    // const id = cuid();
-    const id = createId();
-    const userId = "cltyanrp50000rbp159e9j2i8";
-    const createdAt = new Date().toISOString();
-    const updatedAt = new Date().toISOString();
+    const userId = "000000000000000000000001";
+    const now = new Date();
     try {
-        const result = await sql`
-            INSERT INTO incomes (id, type, date, source, amount, currency, category, notes, created_at, updated_at, user_id) 
-            VALUES (${id}, ${type}, ${date}, ${source}, ${amount}, ${currency}, ${category}, ${notes}, ${createdAt}, ${updatedAt}, ${userId})`;
-        // console.log(result);
+        const db = getDb();
+        const result = await db.collection("incomes").insertOne({
+            type,
+            date: new Date(date),
+            source,
+            amount: parseFloat(amount),
+            currency,
+            category,
+            notes: notes || null,
+            createdAt: now,
+            updatedAt: now,
+            userId,
+        });
         return NextResponse.json({ result }, { status: 200 });
     } catch (error) {
         console.error(error);

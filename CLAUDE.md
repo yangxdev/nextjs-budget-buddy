@@ -4,20 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Budget Buddy is a personal finance management web app built with Next.js 15 (App Router), TypeScript, Tailwind CSS, and PostgreSQL via Prisma. Authentication uses NextAuth v4 with GitHub and Google OAuth providers.
+Budget Buddy is a personal finance management web app built with Next.js 15 (App Router), TypeScript, Tailwind CSS, and MongoDB (native driver). Authentication uses NextAuth v4 with GitHub and Google OAuth providers. Local development runs via Docker Compose (Next.js + MongoDB).
 
 ## Commands
 
 | Task | Command |
 |------|---------|
-| Dev server | `yarn dev` (port 3000) |
-| Build | `yarn build` (runs `prisma generate && next build && prisma db push`) |
+| Full local stack | `docker compose up` (Next.js + MongoDB) |
+| Stop local stack | `docker compose down` |
+| Rebuild containers | `docker compose up --build` |
+| Dev server (no Docker) | `yarn dev` (port 3000, requires MongoDB on localhost:27017) |
+| Build | `yarn build` |
 | Start prod | `yarn start` |
 | Lint | `yarn lint` (`next lint` — deprecated in Next 15, future migration to ESLint CLI) |
-| Generate Prisma client | `yarn prisma generate` |
-| Push schema to DB | `yarn prisma db push` |
-| Create migration | `yarn prisma migrate dev --name <name>` |
-| Prisma Studio | `yarn prisma studio` |
+| MongoDB Compass | Connect to `mongodb://localhost:27017` |
 
 ## Architecture
 
@@ -42,13 +42,15 @@ const cookieStore = await cookies();
 cookieStore.get("key");
 ```
 
-### Data Layer — Dual Approach
+### Data Layer — MongoDB
 
-The project has **two coexisting database access patterns**:
-1. **Raw SQL via `@vercel/postgres`** — used in `/app/api/database/` API routes (legacy approach)
-2. **Prisma ORM** — schema defined in `/prisma/schema.prisma`, singleton client in `/lib/prisma.ts`
+MongoDB via the native `mongodb` driver. Client singleton in `/lib/mongodb.ts` (cached on `globalThis` in dev to survive hot-reloads). Database: `budget_buddy`.
 
-Models: `User`, `Income`, `Expense` — Income and Expense share nearly identical schemas (type, date, source, amount, currency, category, notes).
+Collections: `users`, `incomes`, `expenses` — Income and Expense share nearly identical document shapes (type, date, source, amount, currency, category, notes, userId).
+
+- **Reads**: Server components import helper functions from `get_expenses/expenses.ts` and `get_incomes/incomes.ts` which query MongoDB directly
+- **Writes**: Client components POST to `/api/database/add_expense` and `/api/database/add_income` API routes
+- **Indexes**: `{ userId: 1, date: -1 }` on incomes/expenses, unique `{ email: 1 }` on users (created by `mongo-init/init.js`)
 
 ### Middleware
 
@@ -93,8 +95,7 @@ See `.env.example` for the full list. Key variables:
 - `NEXTAUTH_URL` — set to `http://localhost:3000` for local dev (auto-detected on Vercel)
 - `GITHUB_ID`, `GITHUB_SECRET` — GitHub OAuth
 - `GOOGLE_ID`, `GOOGLE_SECRET` — Google OAuth
-- `POSTGRES_PRISMA_URL` — DB connection (pooled)
-- `POSTGRES_URL_NON_POOLING` — DB connection (direct)
+- `MONGODB_URI` — MongoDB connection string (`mongodb://localhost:27017/budget_buddy` for local dev)
 
 ### Path Alias
 

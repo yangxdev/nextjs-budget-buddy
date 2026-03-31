@@ -1,14 +1,10 @@
 import GlobalConfig from "@/app/app.config";
 import { getConversionRatesByArray } from "@/app/api/currency/currencies";
-import { prisma } from "@/app/api/_base";
+import { getDb } from "@/lib/mongodb";
 
 export async function getExpenseDataByQuantity(quantity: number) {
-    const expenses = await prisma.expense.findMany({
-        take: quantity,
-        orderBy: {
-            date: "desc",
-        },
-    });
+    const db = getDb();
+    const expenses = await db.collection("expenses").find().sort({ date: -1 }).limit(quantity).toArray();
 
     return {
         expenses,
@@ -16,14 +12,13 @@ export async function getExpenseDataByQuantity(quantity: number) {
 }
 
 export async function getExpenseDataByDateRange(startDate: string, endDate: string) {
-    const expenses = await prisma.expense.findMany({
-        where: {
-            date: {
-                gte: new Date(startDate),
-                lte: new Date(endDate),
-            },
+    const db = getDb();
+    const expenses = await db.collection("expenses").find({
+        date: {
+            $gte: new Date(startDate),
+            $lte: new Date(endDate),
         },
-    });
+    }).toArray();
 
     return {
         expenses,
