@@ -158,7 +158,7 @@ module.exports = {
 
                             reset: "Reset",
                             add: "Add",
-                            addRandom: "+10 entries",
+                            addRandom: "+5 entries",
                         },
 
                         addIncomeWithFile: {
@@ -238,7 +238,7 @@ module.exports = {
 
                             reset: "Reset",
                             add: "Add",
-                            addRandom: "+10 entries",
+                            addRandom: "+5 entries",
                         },
 
                         addExpenseWithFile: {
@@ -357,7 +357,7 @@ module.exports = {
 
                             reset: "Annulla",
                             add: "Aggiungi",
-                            addRandom: "Aggiungi 10 entrate casuali",
+                            addRandom: "Aggiungi 5 entrate casuali",
                         },
 
                         addIncomeWithFile: {
@@ -432,7 +432,7 @@ module.exports = {
 
                             reset: "Annulla",
                             add: "Aggiungi",
-                            addRandom: "Aggiungi 10 spese casuali",
+                            addRandom: "Aggiungi 5 spese casuali",
                         },
 
                         addExpenseWithFile: {

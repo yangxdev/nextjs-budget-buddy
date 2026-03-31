@@ -1,16 +1,17 @@
 import GlobalConfig from "@/app/app.config";
 
 const addRandomIncomes = async () => {
-    
-    const response = await fetch('https://random-word-api.herokuapp.com/word?number=30');
-    if (!response.ok) {
-        throw new Error('HTTP error ' + response.status);
-    }
-    const sources = await response.json();
+
+    const wordPromises = Array.from({ length: 5 }, () =>
+        fetch('https://api.api-ninjas.com/v2/randomword', {
+            headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_NINJAS_KEY ?? '' },
+        }).then((res) => res.json()).then((data) => data[0])
+    );
+    const sources = await Promise.all(wordPromises);
 
     const categories = GlobalConfig.income.incomeCategories;
     const currencies = ["USD", "EUR"];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
         const sourcePre = sources[Math.floor(Math.random() * sources.length)];
         const source = sourcePre.charAt(0).toUpperCase() + sourcePre.slice(1);
 

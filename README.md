@@ -59,20 +59,11 @@ To get this project up and running on your local machine, follow these steps:
    cd nextjs-budget-buddy
    ```
 3. **Install Dependencies:**
-   Use npm to install the required dependencies.
-   ```
-   npm install
-   ```
-   If you prefer using yarn:
    ```
    yarn install
    ```
 4. **Start the Development Server:**
    Run the development server to view the project in your browser.
-   ```
-   npm run dev
-   ```
-   or with yarn:
    ```
    yarn dev
    ```
@@ -145,7 +136,7 @@ This project is currently deployed on Vercel for personal use. If you wish to de
    - Select the repository where your project is hosted.
 2. **Configure Settings:**
    - Choose the branch you want to deploy (e.g., main or master).
-   - Set the build command to match your project setup (e.g., npm run build).
+   - Set the build command to match your project setup (e.g., yarn build).
 3. **Environment Variables:**
    - If your project requires environment variables, configure them in the Vercel dashboard under the project settings.
 4. **PostgreSQL Setup:**

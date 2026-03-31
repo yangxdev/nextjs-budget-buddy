@@ -7,7 +7,8 @@ export async function getConversionRatesByArray(
     baseCurrency: string
 ) {
     const conversionRates: Record<string, number> = {};
-    const rates = cookies().get("conversionRates");
+    const cookieStore = await cookies();
+    const rates = cookieStore.get("conversionRates");
     let parsedRates: Record<string, number> = {}; // Add index signature to allow indexing with a string
     try {
         parsedRates = JSON.parse(rates?.value as string);

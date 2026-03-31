@@ -4,20 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Budget Buddy is a personal finance management web app built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and PostgreSQL via Prisma. Authentication uses NextAuth v4 with GitHub and Google OAuth providers.
+Budget Buddy is a personal finance management web app built with Next.js 15 (App Router), TypeScript, Tailwind CSS, and PostgreSQL via Prisma. Authentication uses NextAuth v4 with GitHub and Google OAuth providers.
 
 ## Commands
 
 | Task | Command |
 |------|---------|
-| Dev server | `npm run dev` (port 3000) |
-| Build | `npm run build` (runs `prisma generate && next build && prisma db push`) |
-| Start prod | `npm start` |
-| Lint | `npm run lint` (ESLint with next/core-web-vitals) |
-| Generate Prisma client | `npx prisma generate` |
-| Push schema to DB | `npx prisma db push` |
-| Create migration | `npx prisma migrate dev --name <name>` |
-| Prisma Studio | `npx prisma studio` |
+| Dev server | `yarn dev` (port 3000) |
+| Build | `yarn build` (runs `prisma generate && next build && prisma db push`) |
+| Start prod | `yarn start` |
+| Lint | `yarn lint` (`next lint` — deprecated in Next 15, future migration to ESLint CLI) |
+| Generate Prisma client | `yarn prisma generate` |
+| Push schema to DB | `yarn prisma db push` |
+| Create migration | `yarn prisma migrate dev --name <name>` |
+| Prisma Studio | `yarn prisma studio` |
 
 ## Architecture
 
@@ -29,8 +29,18 @@ Protected pages live under `/app/protected/` but are served at `/p/*` via a URL 
 
 - NextAuth v4 configured in `/app/utils/authOptions.ts` (GitHub + Google providers)
 - `SessionProvider` wrapper in root layout (`/app/layout.tsx`)
-- Server components check auth via `getServerSession(authOptions)`; client components use `useSession()`
+- Server components check auth via `getServerSession(authOptions)` — **always pass `authOptions`**, omitting it returns `null`
+- Client components use `useSession()`
 - Protected routes (`/p/income`, `/p/expenses`, `/p/savings`, `/p/settings`) redirect to sign-in if unauthenticated
+
+### Next.js 15 Async APIs
+
+`cookies()`, `headers()`, and `params` are **async** in Next.js 15. Always `await` them before accessing values:
+
+```ts
+const cookieStore = await cookies();
+cookieStore.get("key");
+```
 
 ### Data Layer — Dual Approach
 
@@ -71,8 +81,16 @@ Models: `User`, `Income`, `Expense` — Income and Expense share nearly identica
 
 Tailwind CSS with dark mode (selector-based toggle), custom theme colors (accent greens/reds), and plugins (scrollbar, scrollbar-hide, animate). Local font: Avenir Book.
 
+### ESLint
+
+ESLint 9 with flat config (`eslint.config.mjs`). Uses `@eslint/eslintrc` FlatCompat to bridge the `next/core-web-vitals` config. The old `.eslintrc.json` has been removed.
+
 ### Environment Variables
 
+See `.env.example` for the full list. Key variables:
+
+- `NEXTAUTH_SECRET` — **required** for NextAuth JWT signing
+- `NEXTAUTH_URL` — set to `http://localhost:3000` for local dev (auto-detected on Vercel)
 - `GITHUB_ID`, `GITHUB_SECRET` — GitHub OAuth
 - `GOOGLE_ID`, `GOOGLE_SECRET` — Google OAuth
 - `POSTGRES_PRISMA_URL` — DB connection (pooled)

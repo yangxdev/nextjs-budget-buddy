@@ -3,8 +3,9 @@ import { cookies } from "next/headers";
 import GlobalConfig from "@/app/app.config";
 
 export async function middleware(request: NextRequest) {
-    const storedRates = cookies().get("conversionRates");
-    const storedDate = cookies().get("conversionRatesDate");
+    const cookieStore = await cookies();
+    const storedRates = cookieStore.get("conversionRates");
+    const storedDate = cookieStore.get("conversionRatesDate");
     if (
         storedRates?.value === '' ||
         isNaN(Date.parse(storedDate?.value ?? '')) ||
