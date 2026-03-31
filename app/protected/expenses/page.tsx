@@ -1,11 +1,12 @@
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+
 import AddExpense from "./AddExpense";
 import ExpenseInfoHistory from "./ExpenseInfoHistory";
 import ExpenseInfoSummary from "./ExpenseInfoSummary";
 import ExpenseInfoChartDoughnutServer from "./ExpenseInfoChartDoughnutServer";
 import AddExpenseWithFile from "./AddExpenseWithFile";
-import ExpenseInfoInsights from "./ExpenseInfoInsights";
 import GlobalConfig from "@/app/app.config";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
@@ -28,14 +29,19 @@ export default async function Expense() {
                             <AddExpenseWithFile />
                         </div>
                         <div className="flex flex-col gap-8">
-                            <ExpenseInfoSummary />
-                            <ExpenseInfoChartDoughnutServer />
+                            <Suspense fallback={<div className="animate-pulse bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl h-40" />}>
+                                <ExpenseInfoSummary />
+                            </Suspense>
+                            <Suspense fallback={<div className="animate-pulse bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl h-80" />}>
+                                <ExpenseInfoChartDoughnutServer />
+                            </Suspense>
                         </div>
                         <div className="flex flex-col gap-8">
-                            {/* <ExpenseInfoInsights /> */}
                         </div>
                     </div>
-                    <ExpenseInfoHistory />
+                    <Suspense fallback={<div className="animate-pulse bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl w-80 h-full" />}>
+                        <ExpenseInfoHistory />
+                    </Suspense>
                 </div>
             </div>
         </div>

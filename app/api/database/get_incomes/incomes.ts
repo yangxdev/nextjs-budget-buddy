@@ -1,28 +1,34 @@
+import { cache } from "react";
+
 import GlobalConfig from "@/app/app.config";
 import { getConversionRatesByArray } from "@/app/api/currency/currencies";
 import { getDb } from "@/lib/mongodb";
 
-export async function getIncomeDataByQuantity(quantity: number) {
+const _getIncomeDataByQuantity = cache(async (quantity: number) => {
     const db = getDb();
     const incomes = await db.collection("incomes").find().sort({ date: -1 }).limit(quantity).toArray();
+    return { incomes };
+});
 
-    return {
-        incomes,
-    };
+export async function getIncomeDataByQuantity(quantity: number) {
+    return _getIncomeDataByQuantity(quantity);
 }
 
-export async function getIncomeDataByDateRange(startDate: string, endDate: string) {
+const _getIncomeDataByDateRange = cache(async (startDay: string, endDay: string) => {
     const db = getDb();
     const incomes = await db.collection("incomes").find({
         date: {
-            $gte: new Date(startDate),
-            $lte: new Date(endDate),
+            $gte: new Date(startDay + "T00:00:00.000Z"),
+            $lte: new Date(endDay + "T23:59:59.999Z"),
         },
     }).toArray();
+    return { incomes };
+});
 
-    return {
-        incomes,
-    };
+export async function getIncomeDataByDateRange(startDate: string, endDate: string) {
+    const startDay = new Date(startDate).toISOString().split("T")[0];
+    const endDay = new Date(endDate).toISOString().split("T")[0];
+    return _getIncomeDataByDateRange(startDay, endDay);
 }
 
 export async function getConvertedIncomesByDateRange(startDate: Date, endDate: Date) {

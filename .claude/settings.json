@@ -2,7 +2,24 @@
   "permissions": {
     "allow": [
       "Bash(yarn list:*)",
-      "Bash(yarn install:*)"
+      "Bash(yarn install:*)",
+      "Bash(grep -r import.*from.*[''] /Users/admintemp/dev_personal/nextjs-budget-buddy/app --include=*.ts --include=*.tsx)",
+      "Bash(grep -r import.*clsx /Users/admintemp/dev_personal/nextjs-budget-buddy/app --include=*.ts --include=*.tsx /Users/admintemp/dev_personal/nextjs-budget-buddy/lib --include=*.ts --include=*.tsx)",
+      "Bash(grep -r import.*tailwind-merge /Users/admintemp/dev_personal/nextjs-budget-buddy/app --include=*.ts --include=*.tsx /Users/admintemp/dev_personal/nextjs-budget-buddy/lib --include=*.ts --include=*.tsx)",
+      "Bash(grep -r from.*['']next[''] /Users/admintemp/dev_personal/nextjs-budget-buddy --include=*.ts --include=*.tsx --exclude-dir=node_modules --exclude-dir=.next)",
+      "Bash(grep -r from.*['']react[''] /Users/admintemp/dev_personal/nextjs-budget-buddy --include=*.ts --include=*.tsx --exclude-dir=node_modules --exclude-dir=.next)",
+      "Bash(grep -r from.*['']react-dom[''] /Users/admintemp/dev_personal/nextjs-budget-buddy --include=*.ts --include=*.tsx --exclude-dir=node_modules --exclude-dir=.next)",
+      "Bash(grep -r classnames /Users/admintemp/dev_personal/nextjs-budget-buddy --include=*.ts --include=*.tsx --exclude-dir=node_modules --exclude-dir=.next)",
+      "Bash(grep -r react-icons /Users/admintemp/dev_personal/nextjs-budget-buddy --include=*.ts --include=*.tsx --exclude-dir=node_modules --exclude-dir=.next)",
+      "Bash(grep -r tailwind-datepicker /Users/admintemp/dev_personal/nextjs-budget-buddy --include=*.ts --include=*.tsx --exclude-dir=node_modules --exclude-dir=.next)",
+      "Bash(grep -r \"tailwindcss-animate\\\\|animate-\" /Users/admintemp/dev_personal/nextjs-budget-buddy/app --include=*.ts --include=*.tsx --include=*.css)",
+      "Bash(grep -r \"currency-codes-ts\\\\|currencyCodes\" /Users/admintemp/dev_personal/nextjs-budget-buddy --include=*.ts --include=*.tsx --exclude-dir=node_modules --exclude-dir=.next)",
+      "Bash(grep -r \"tailwind-datepicker\\\\|Datepicker\\\\|datepicker\" /Users/admintemp/dev_personal/nextjs-budget-buddy/app --include=*.ts --include=*.tsx)",
+      "Bash(yarn remove:*)",
+      "Bash(node -e \"const m = require\\(''/Users/admintemp/dev_personal/nextjs-budget-buddy/node_modules/tailwind-scrollbar-hide/dist/index.js''\\); console.log\\(''type:'', typeof m\\); console.log\\(''keys:'', Object.keys\\(m\\)\\)\")"
+    ],
+    "additionalDirectories": [
+      "/tmp"
     ]
   }
 }

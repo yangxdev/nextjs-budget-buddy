@@ -1,32 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import GlobalConfig from "@/app/app.config";
 
+let ratesCache: { rates: Record<string, number>; date: string } | null = null;
+
 export async function middleware(request: NextRequest) {
-    const cookieStore = await cookies();
-    const storedRates = cookieStore.get("conversionRates");
-    const storedDate = cookieStore.get("conversionRatesDate");
-    if (
-        storedRates?.value === '' ||
-        isNaN(Date.parse(storedDate?.value ?? '')) ||
-        new Date(storedDate?.value ?? '').toLocaleDateString() < new Date().toLocaleDateString()
-    ) {
-        const response = NextResponse.next();
+    const today = new Date().toISOString().split("T")[0];
+
+    if (!ratesCache || ratesCache.date !== today) {
         const APIresponse = await fetch(
-            // `https://v6.exchangerate-api.com/v6/9c90d2094ff9dfae6d61f3c8/latest/${GlobalConfig.currency.baseCurrency}`
             `https://v6.exchangerate-api.com/v6/36cc2903270ba2aebf936568/latest/${GlobalConfig.currency.baseCurrency}`
-            // `https://api.currencyapi.com/v3/latest?apikey=cur_live_Wd7lJ5fDp4usf8KYc2wU6bHOtEx0arplQcw1mYcF`
         );
         const data = await APIresponse.json();
-        const rates = data.conversion_rates;
-
-        response.cookies.set("conversionRates", JSON.stringify(rates));
-        response.cookies.set(
-            "conversionRatesDate",
-            new Date().toISOString().split("T")[0]
-        );
-        return response;
+        ratesCache = { rates: data.conversion_rates, date: today };
     }
+
+    const response = NextResponse.next();
+    response.cookies.set("conversionRates", JSON.stringify(ratesCache.rates));
+    response.cookies.set("conversionRatesDate", ratesCache.date);
+    return response;
 }
 
 export const config = {

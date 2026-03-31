@@ -5,7 +5,6 @@
 import { useEffect, useState } from "react";
 import InfoChartDoughnut from "./charts/IncomeDoughnut";
 import GlobalConfig from "@/app/app.config";
-import classNames from "classnames";
 
 const defaultLanguage = GlobalConfig.i18n.defaultLanguage || "en";
 const gc = GlobalConfig.i18n.translations[defaultLanguage as keyof typeof GlobalConfig.i18n.translations]?.income;

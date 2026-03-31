@@ -1,11 +1,9 @@
-import Image from "next/image";
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+
 import Balance from "./components/dashboard/Balance";
-import InfoChartVerticalBarServer from "./InfoChartVerticalBarServer";
-import ExpenseInfoHistory from "./protected/expenses/ExpenseInfoHistory";
 import GlobalConfig from "@/app/app.config";
-import IncomeInfoHistory from "./protected/income/IncomeInfoHistory";
 import TotalIncome from "./components/dashboard/TotalIncome";
 import Greetings from "./components/Greetings";
 import TotalExpenses from "./components/dashboard/TotalExpenses";
@@ -30,19 +28,34 @@ export default async function Home() {
             <div className="flex flex-row gap-8 justify-between h-auto mt-6">
                 <div className="flex flex-col gap-8 justify-between mb-[190px] h-full">
                     <div className="flex flex-row gap-8 h-auto">
-                        <Balance />
-                        <TotalIncome />
-                        <TotalExpenses />
-                        {/* <InfoChartVerticalBarServer /> */}
+                        <Suspense fallback={<DashboardCardSkeleton />}>
+                            <Balance />
+                        </Suspense>
+                        <Suspense fallback={<DashboardCardSkeleton />}>
+                            <TotalIncome />
+                        </Suspense>
+                        <Suspense fallback={<DashboardCardSkeleton />}>
+                            <TotalExpenses />
+                        </Suspense>
                     </div>
                     <div className="flex flex-row gap-8 h-auto">
-                        <MoneyFlow />
-                        <Transactions />
+                        <Suspense fallback={<DashboardCardSkeleton wide />}>
+                            <MoneyFlow />
+                        </Suspense>
+                        <Suspense fallback={<DashboardCardSkeleton />}>
+                            <Transactions />
+                        </Suspense>
                     </div>
                 </div>
                 <div className="flex flex-row gap-8 h-full">
                 </div>
             </div>
         </>
+    );
+}
+
+function DashboardCardSkeleton({ wide }: { wide?: boolean }) {
+    return (
+        <div className={`p-6 bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl animate-pulse ${wide ? "w-[43rem] h-[25rem]" : "w-[22rem] h-[18rem]"}`} />
     );
 }

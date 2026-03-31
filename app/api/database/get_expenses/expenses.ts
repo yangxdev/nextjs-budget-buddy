@@ -1,28 +1,34 @@
+import { cache } from "react";
+
 import GlobalConfig from "@/app/app.config";
 import { getConversionRatesByArray } from "@/app/api/currency/currencies";
 import { getDb } from "@/lib/mongodb";
 
-export async function getExpenseDataByQuantity(quantity: number) {
+const _getExpenseDataByQuantity = cache(async (quantity: number) => {
     const db = getDb();
     const expenses = await db.collection("expenses").find().sort({ date: -1 }).limit(quantity).toArray();
+    return { expenses };
+});
 
-    return {
-        expenses,
-    };
+export async function getExpenseDataByQuantity(quantity: number) {
+    return _getExpenseDataByQuantity(quantity);
 }
 
-export async function getExpenseDataByDateRange(startDate: string, endDate: string) {
+const _getExpenseDataByDateRange = cache(async (startDay: string, endDay: string) => {
     const db = getDb();
     const expenses = await db.collection("expenses").find({
         date: {
-            $gte: new Date(startDate),
-            $lte: new Date(endDate),
+            $gte: new Date(startDay + "T00:00:00.000Z"),
+            $lte: new Date(endDay + "T23:59:59.999Z"),
         },
     }).toArray();
+    return { expenses };
+});
 
-    return {
-        expenses,
-    };
+export async function getExpenseDataByDateRange(startDate: string, endDate: string) {
+    const startDay = new Date(startDate).toISOString().split("T")[0];
+    const endDay = new Date(endDate).toISOString().split("T")[0];
+    return _getExpenseDataByDateRange(startDay, endDay);
 }
 
 export async function getExpenseDataAndConversionRates(startDate: Date, endDate: Date) {

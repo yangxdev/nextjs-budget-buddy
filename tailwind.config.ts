@@ -1,11 +1,11 @@
 import type { Config } from "tailwindcss";
 import { SIDEBAR_MIN_WIDTH, MAIN_PADDING, DASHBOARD_PADDING } from "./app/_styles/styles";
 import scrollbar from "tailwind-scrollbar";
-import scrollbarHide from "tailwind-scrollbar-hide";
+import scrollbarHide = require("tailwind-scrollbar-hide");
 
 const config: Config = {
     darkMode: "selector",
-    content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}", "./node_modules/tailwind-datepicker-react/dist/**/*.js"],
+    content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
     theme: {
         extend: {
             animation: {

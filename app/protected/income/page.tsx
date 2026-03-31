@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+
 import AddIncome from "./AddIncome";
 import IncomeInfoHistory from "./IncomeInfoHistory";
 import IncomeInfoSummary from "./IncomeInfoSummary";
@@ -26,11 +28,17 @@ export default async function Income() {
                         <AddIncomeWithFile />
                     </div>
                     <div className="flex flex-col gap-8 min-w-80">
-                        <IncomeInfoSummary />
-                        <IncomeInfoGraph />
+                        <Suspense fallback={<div className="animate-pulse bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl h-40" />}>
+                            <IncomeInfoSummary />
+                        </Suspense>
+                        <Suspense fallback={<div className="animate-pulse bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl h-80" />}>
+                            <IncomeInfoGraph />
+                        </Suspense>
                     </div>
                 </div>
-                <IncomeInfoHistory />
+                <Suspense fallback={<div className="animate-pulse bg-white dark:bg-lightGrayCustom3 border-[1px] border-lightBorder rounded-2xl w-80 h-full" />}>
+                    <IncomeInfoHistory />
+                </Suspense>
             </div>
         </>
     );
