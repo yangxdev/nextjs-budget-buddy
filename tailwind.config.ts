@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
-const { SIDEBAR_MIN_WIDTH, MAIN_PADDING, DASHBOARD_PADDING } = require("./app/_styles/styles");
+import { SIDEBAR_MIN_WIDTH, MAIN_PADDING, DASHBOARD_PADDING } from "./app/_styles/styles";
+import scrollbar from "tailwind-scrollbar";
+import scrollbarHide from "tailwind-scrollbar-hide";
 
 const config: Config = {
     darkMode: "selector",
@@ -65,6 +67,6 @@ const config: Config = {
             },
         },
     },
-    plugins: [require("tailwind-scrollbar"), require("tailwind-scrollbar-hide")],
+    plugins: [scrollbar, scrollbarHide],
 };
 export default config;
